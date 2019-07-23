@@ -10,9 +10,11 @@ import { SharedModule } from "./shared/shared.module";
 import { HttpClientModule } from "@angular/common/http";
 import { HomeComponent } from './home/home.component';
 
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent, HomeComponent],
-  imports: [BrowserModule, AppRoutingModule, SharedModule, HttpClientModule],
+  imports: [BrowserModule, AppRoutingModule, SharedModule, HttpClientModule,NgbModule],
   providers: [],
   bootstrap: [AppComponent]
 })
