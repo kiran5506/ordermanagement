@@ -1,6 +1,7 @@
 import { AuthenticationService } from "./../../services/authentication.service";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-login",
@@ -12,7 +13,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private loginService: AuthenticationService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private router: Router
   ) {
     this.loadingLoginForm(fb);
   }
@@ -36,7 +38,12 @@ export class LoginComponent implements OnInit {
       localStorage.removeItem("user");
       localStorage.setItem("user", JSON.stringify(response.userdata));
 
-      console.log("loginResponse", response.userdata);
+      console.log("loginResponse", response);
+      if (response.status === 200) {
+        this.router.navigateByUrl("/home");
+      } else if (response.status === 404) {
+        this.router.navigateByUrl("/login");
+      }
     });
   }
 }
