@@ -1,7 +1,7 @@
+import { HomeComponent } from "./home/home.component";
+import { LoginComponent } from "./shared/login/login.component";
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
-import { LoginComponent } from "./shared/login/login.component";
-import { HomeComponent } from "./home/home.component";
 
 const routes: Routes = [
   { path: "", pathMatch: "full", redirectTo: "home" },
