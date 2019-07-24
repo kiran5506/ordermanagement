@@ -1,1 +1,17 @@
-<p>home</p>
+<div class="container">
+  <div *ngFor="let item of products">
+    name:
+    <input
+      type="text"
+      placeholder="name"
+      value="{{ item.comp_name }}"
+      readonly
+    />
+    price: <input value="{{ item.price }}" readonly /> qty:<input
+      type="number"
+      placeholder="quantity"
+      value=""
+    />
+    total:<input type="text" value="" readonly />
+  </div>
+</div>

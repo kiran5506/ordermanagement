@@ -21,10 +21,13 @@ export class AuthenticationService {
     // headers = headers.append("Auth-key", "ordmangRestApi");
     // headers = headers.append("Content-Type", "application/json"
     let headers = new HttpHeaders({
+      // "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,OPTIONS",
+      // "Access-Control-Allow-Origin": "*",
       "Content-Type": "application/json",
       "Auth-key": "ordmangRestApi"
     });
     let options = { headers: headers };
+
     return this.http.post(this.baseUrl + "admin/login", data, options);
   }
 }

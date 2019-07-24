@@ -1,3 +1,4 @@
+import { HttpClientModule } from "@angular/common/http";
 import { FooterComponent } from "./shared/footer/footer.component";
 import { HeaderComponent } from "./shared/header/header.component";
 import { SharedModule } from "./shared/shared.module";
@@ -9,7 +10,7 @@ import { HomeComponent } from "./home/home.component";
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, HeaderComponent, FooterComponent],
-  imports: [BrowserModule, AppRoutingModule, SharedModule],
+  imports: [BrowserModule, AppRoutingModule, SharedModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent]
 })
