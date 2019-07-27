@@ -1,23 +1,17 @@
-<!-- <div class="container">
-  <div *ngFor="let item of products">
-    name:
-    <input
-      type="text"
-      placeholder="name"
-      value="{{ item.comp_name }}"
-      readonly
-    />
-    price: <input value="{{ item.price }}" readonly /> qty:<input
-      type="number"
-      placeholder="quantity"
-      value=""
-    />
-    total:<input type="text" value="" readonly />
-  </div>
-</div> -->
-<div class="container">
-  <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquid a maxime nulla! Veniam, nemo vero 
-  illum consequatur, fuga repellendus rem explicabo repudiandae reiciendis harum cum nam ducimus obcaecati 
-  dignissimos? Modi!
-  </p>
+<div class="container home">
+  <section>
+    <div *ngFor="let item of products; let i = index">
+      <div>
+        <input readonly value="{{ item.comp_name }}" />
+        <input readonly value="{{ item.price }}" />
+        <input
+          type="number"
+          (input)="productValue(item, $event.target.value, i)"
+        />
+        <input readonly value="{{ item.totalPrice }}" />
+
+        <button type="submit" (click)="cart()">addToCart</button>
+      </div>
+    </div>
+  </section>
 </div>

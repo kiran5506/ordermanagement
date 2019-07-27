@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  Url: "http://macsof.in/order/services/"
+  url: "http://macsof.in/order/services/"
 };
 
 /*

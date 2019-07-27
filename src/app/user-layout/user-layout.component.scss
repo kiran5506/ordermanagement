@@ -1,0 +1,22 @@
+sidenav-wrapper {
+  position: absolute;
+  width: 240px;
+  height: 100vh;
+  top: 0px;
+  z-index: 20;
+  padding-top: 70px;
+  background: #fff;
+  box-shadow: 1px 0px 20px rgba(0, 0, 0, 0.08);
+  // @include mobile {
+  //   width: 70px;
+  // }
+  // @include tablet {
+  //   width: 70px;
+  // }
+}
+.main-wrapper {
+  margin-left: 240px;
+  height: calc(100vh - 64px);
+  position: relative;
+  overflow: auto;
+}

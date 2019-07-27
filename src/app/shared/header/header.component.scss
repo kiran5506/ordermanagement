@@ -1,44 +1,40 @@
-// head{
-//     background-color:#3c8dbc;
-//     color:white;
-// }
 
 .header-widget {
-    background-color:#3c8dbc; 
+  background-color: #1f2a2c;
 }
 .navbar ul li {
-    padding:0 13px;
+  padding: 0 13px;
 }
 
 .navbar ul li a {
-    font-weight: bold;
-    font-size:13px;
-    font-family: Arial, Helvetica, sans-serif;
-    color:grey;
+  font-weight: bold;
+  font-size: 13px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #fff;
 }
 
-.user-image{
-    float:left;
-    width:25px;
-    height:25px;
-    border-radius:50px;
-    margin-right:10px;
-    margin-top:4px;
+.user-image {
+  float: left;
+  width: 25px;
+  height: 25px;
+  border-radius: 50px;
+  margin-right: 10px;
+  margin-top: 4px;
 }
 
 hr {
-    margin:5px 10px 9px 10px;
+  margin: 5px 10px 9px 10px;
 }
 
-.drop1 a {
-    text-align:center;
-}
+// .drop1 a {
+//   text-align: center;
+// }
 
 .dropdown a:hover {
-    color:#3c8dbc;
+  color: #3c8dbc;
 }
 @media screen and (max-width: 480px) {
-    .drop1 a{
-        text-align:center;
-    }
+  .drop1 a {
+    text-align: center;
+  }
 }

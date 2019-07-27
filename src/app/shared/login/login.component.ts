@@ -30,11 +30,12 @@ export class LoginComponent implements OnInit {
   login() {
     console.log("login");
     let formData = {
-      emailmobile: this.loginForm.value.userName,
+      email: this.loginForm.value.userName,
       password: this.loginForm.value.password
     };
+
+    console.log("formData", formData);
     this.loginService.login(formData).subscribe((response: any) => {
-      localStorage.removeItem("user");
       localStorage.setItem("user", JSON.stringify(response.userdata));
 
       console.log("loginResponse", response);

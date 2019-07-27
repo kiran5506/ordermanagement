@@ -7,7 +7,8 @@ import { Observable } from "rxjs";
   providedIn: "root"
 })
 export class ProductsService {
-  baseUrl = environment.Url;
+  production: false;
+  baseUrl = environment.url;
 
   constructor(private http: HttpClient) {}
 
