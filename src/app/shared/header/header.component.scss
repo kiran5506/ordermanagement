@@ -10,7 +10,7 @@
   font-weight: bold;
   font-size: 13px;
   font-family: Arial, Helvetica, sans-serif;
-  color: #fff;
+  color: green;
 }
 
 .user-image {
@@ -22,17 +22,53 @@
   margin-top: 4px;
 }
 
+.user-image1 {
+    width: 45px;
+    height: 45px;
+    border-radius: 50px;
+    // margin-right: 10px;
+    // margin-top: 4px;
+}
+
 hr {
   margin: 5px 10px 9px 10px;
 }
 
-// .drop1 a {
-//   text-align: center;
+.drop1 a{
+    text-align: center;
+}
+
+.image1 {
+    display:flex;
+    padding:6px;
+    justify-content: center;
+}
+
+.image1 p{
+    margin:0px;
+
+}
+
+.dropimage{
+    text-align: center;
+}
+
+.drop-text {
+    font-size:10px;
+}
+
+.drop-button {
+    text-align:center;
+}
+
+
+
+
+// .dropdown a:hover {
+//   color: #3c8dbc;
 // }
 
-.dropdown a:hover {
-  color: #3c8dbc;
-}
+
 @media screen and (max-width: 480px) {
   .drop1 a {
     text-align: center;

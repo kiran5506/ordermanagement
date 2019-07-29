@@ -1,5 +1,5 @@
 <div class="container-fluid header-widget">
-  <nav class="navbar navbar-expand-lg">
+  <nav class="navbar navbar-expand-md">
     <button class="navbar-toggler" data-toggle="collapse" data-target="#menu">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -19,27 +19,27 @@
         </li>
         <li class="nav-item dropdown" *ngIf="isShowhide">
           <img src="assets/user.jpg" alt="image" class="user-image" />
-          <a
-            class="nav-link dropdown-toggle"
-            data-toggle="dropdown"
-            data-target="dropdown_target"
-            href="#"
-          >
+          <a class="nav-link dropdown-toggle" data-toggle="dropdown" data-target="dropdown_target" href="#">
             USER
           </a>
-          <div
-            class="dropdown-menu dropdown-menu-left drop1"
-            aria-labelledby="dropdown_target"
-          >
-            <a class="dropdown-item" [routerLink]="['user']">profile</a>
+          <div class="dropdown-menu dropdown-menu-left drop1" aria-labelledby="dropdown_target">
+            <div class="image1">
+              <div>
+                <img src="assets/user.jpg" alt="image" class="user-image1">
+              </div>
+              <div>
+                <p>Name</p>
+                <p class="drop-text">Designation</p>
+              </div>
+            </div>
             <hr />
-            <a class="dropdown-item" [routerLink]="['user/myOrders']"
-              >MyOrders</a
-            >
+            <a class="dropdown-item" [routerLink]="['user']">My Profile</a>
             <hr />
-            <button class="dropdown-item" (click)="logout()">
-              LogOut
-            </button>
+            <a class="dropdown-item" [routerLink]="['user/myOrders']">My Orders</a>
+            <hr />
+            <div class="drop-button">
+              <button type="button" class="btn btn-primary" (click)="logout()">Logout</button>
+            </div>
           </div>
         </li>
       </ul>
