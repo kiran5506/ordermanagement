@@ -1,0 +1,171 @@
+<div class="container pt-3">
+  <div class="row justify-content-sm-center signUp">
+    <div class="col-sm-6 col-md-4">
+      <div class="card border-info text-center">
+        <div class="card-header">
+          Sign Up to continue  
+        </div>
+        <div class="card-body">
+          <form
+            class="form-signUp"
+            [formGroup]="signUpForm"
+            (ngSubmit)="onSignUp(signUpForm)"
+          >
+            <div class="form-group">
+              <input
+                type="text"
+                class="form-control mb-2"
+                placeholder="ShopName"
+                formControlName="shop_name"
+                [ngClass]="{
+                  'is-invalid img':
+                    signUpForm.get('shop_name').touched &&
+                    signUpForm.get('shop_name').invalid
+                }"
+             
+              />
+              <div class="invalid-feedback invalid-txt">
+                   ShopName is Required
+              </div>
+            </div>
+            <div class="form-group">
+              <input
+                type="text"
+                class="form-control mb-2"
+                placeholder="OwnerName"
+                formControlName="owner_name"
+                [ngClass]="{
+                  'is-invalid img':
+                    signUpForm.get('owner_name').touched &&
+                    signUpForm.get('owner_name').invalid
+                }"
+               
+              />
+              <div class="invalid-feedback invalid-txt">
+                OwnerName is Required
+              </div>
+                   
+            </div>
+            <div class="form-group" >
+              <input
+                type="text"
+                class="form-control mb-2"
+                placeholder="GST Number"
+                formControlName="gst_number"
+                [ngClass]="{
+                  'is-invalid img':
+                    signUpForm.get('gst_number').touched &&
+                    signUpForm.get('gst_number').invalid
+                }"
+               
+              />
+              <div class="invalid-feedback invalid-txt">
+                GST Number is Required
+              </div>
+            </div>
+            <div class="form-group">
+              <input
+                type="number"
+                class="form-control mb-2"
+                placeholder="MobileNumber"
+                formControlName="mobile_number"
+                [ngClass]="{
+                  'is-invalid img':
+                    signUpForm.get('mobile_number').touched &&
+                    signUpForm.get('mobile_number').invalid
+                }"
+               
+              />
+              <div class="invalid-feedback invalid-txt">
+                MobileNumber is Required
+              </div>
+            </div>
+            <div class="form-group">
+              <input
+                type="email"
+                class="form-control mb-2"
+                placeholder="Email"
+                formControlName="email"
+                [ngClass]="{
+                  'is-invalid img':
+                    signUpForm.get('email').touched &&
+                    signUpForm.get('email').invalid
+                }"
+               
+              />
+              <div
+                *ngIf="
+                  signUpForm.get('email').touched &&
+                  signUpForm.get('email').invalid
+                "
+                class="invalid-feedback invalid-txt"
+              >
+                <div *ngIf="signUpForm.get('email').errors.required">
+                  Email is required
+                </div>
+                <div *ngIf="signUpForm.get('email').errors.pattern">
+                  Email is must be a valid email 
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <input
+                type="text"
+                class="form-control mb-2"
+                placeholder="Address"
+                formControlName="address"
+                [ngClass]="{
+                  'is-invalid img':
+                    signUpForm.get('address').touched &&
+                    signUpForm.get('address').invalid
+                }"
+              
+              />
+              <div class="invalid-feedback invalid-txt">
+                Address is Required
+              </div>
+            </div>
+            <div class="form-group">
+              <input
+                type="text"
+                class="form-control mb-2"
+                placeholder="PinCode"
+                formControlName="pincode"
+                [ngClass]="{
+                  'is-invalid img':
+                    signUpForm.get('pincode').touched &&
+                    signUpForm.get('pincode').invalid
+                }"
+            
+              />
+              <div class="invalid-feedback invalid-txt">
+               Pincode is Required
+              </div>
+            </div>
+            <div class="form-group">
+              <input
+                type="password"
+                class="form-control mb-2"
+                placeholder="Password"
+                formControlName="password"
+                [ngClass]="{
+                  'is-invalid img':
+                    signUpForm.get('password').touched &&
+                    signUpForm.get('password').invalid
+                }"
+              />
+              <div class="invalid-feedback invalid-txt">
+                Password is Required
+              </div>
+            </div>
+            
+            <button class="btn btn-lg btn-primary btn-block mb-1" type="submit" [disabled]="signUpForm.invalid">
+              Sign Up
+            </button>
+            <a href="#" class="float-right">Need help?</a>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

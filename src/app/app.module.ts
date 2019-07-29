@@ -1,3 +1,4 @@
+import { AuthenticationService } from "src/app/services/authentication.service";
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { FooterComponent } from "./shared/footer/footer.component";
@@ -19,7 +20,7 @@ import { HomeComponent } from "./home/home.component";
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [AuthGuard],
+  providers: [AuthGuard, AuthenticationService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

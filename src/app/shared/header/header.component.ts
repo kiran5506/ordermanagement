@@ -1,3 +1,4 @@
+import { DatabroadcastService } from "./../../services/databroadcast.service";
 import { AuthenticationService } from "src/app/services/authentication.service";
 import { Component, OnInit } from "@angular/core";
 
@@ -7,11 +8,28 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./header.component.scss"]
 })
 export class HeaderComponent implements OnInit {
-  constructor(private authService: AuthenticationService) {}
+  isShowhide: boolean = false;
+
+  constructor(
+    private authService: AuthenticationService,
+    private broadcastService: DatabroadcastService
+  ) {}
 
   ngOnInit() {}
 
   logout() {
     this.authService.logOut();
+  }
+
+  ngAfterViewInit() {
+    this.broadcastService.isShowhide.subscribe((data: any) => {
+      console.log(data);
+
+      if (data == true) {
+        this.isShowhide = true;
+      } else {
+        this.isShowhide = false;
+      }
+    });
   }
 }

@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
     this.cementProductsList();
   }
   cementProductsList() {
-    this.productService.getProducts().subscribe(resp => {
+    this.productService.getCementProducts().subscribe(resp => {
       for (var i = 0; i < resp.product.length; i++) {
         resp.product[i]["qty"] = "";
         resp.product[i]["totalPrice"] = "";
