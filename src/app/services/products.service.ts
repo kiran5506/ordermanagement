@@ -2,6 +2,11 @@ import { Injectable } from "@angular/core";
 import { environment } from "src/environments/environment";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs";
+let headers = new HttpHeaders({
+  "Content-Type": "application/json",
+  "Auth-key": "ordmangRestApi"
+});
+let options = { headers: headers };
 
 @Injectable({
   providedIn: "root"
@@ -12,13 +17,10 @@ export class ProductsService {
 
   constructor(private http: HttpClient) {}
 
-  getProducts(): Observable<any> {
-    let headers = new HttpHeaders({
-      "Content-Type": "application/json",
-      "Auth-key": "ordmangRestApi"
-    });
-    let options = { headers: headers };
-
+  getCementProducts(): Observable<any> {
     return this.http.get(this.baseUrl + "products/cementProductsList", options);
+  }
+  getBarsProducts(): Observable<any> {
+    return this.http.get(this.baseUrl + "products/barsList", options);
   }
 }
