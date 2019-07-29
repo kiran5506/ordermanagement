@@ -10,8 +10,9 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { AuthGuard } from "./shared/security/auth.guard";
 import { HomeComponent } from "./home/home.component";
+import { CartComponent } from './cart/cart.component';
 @NgModule({
-  declarations: [AppComponent, HomeComponent, HeaderComponent, FooterComponent],
+  declarations: [AppComponent, HomeComponent, HeaderComponent, FooterComponent, CartComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

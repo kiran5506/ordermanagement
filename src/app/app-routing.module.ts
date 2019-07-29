@@ -1,3 +1,4 @@
+import { CartComponent } from "./cart/cart.component";
 import { SignupComponent } from "./shared/signup/signup.component";
 import { HomeComponent } from "./home/home.component";
 import { LoginComponent } from "./shared/login/login.component";
@@ -10,6 +11,7 @@ const routes: Routes = [
   { path: "home", component: HomeComponent },
   { path: "login", component: LoginComponent },
   { path: "signUp", component: SignupComponent },
+  { path: "cart", component: CartComponent },
   {
     path: "user",
     loadChildren: "./user-layout/user-layout.module#UserLayoutModule",
