@@ -1,16 +1,26 @@
 
 .header-widget {
-  background-color: #1f2a2c;
+  background-color: #2874f0;
 }
+
+.logo-text h2{
+  color:#ffffff;
+}
+
+// .navbar-toggler-icon {
+//   color:#ffffff;
+// }
+
 .navbar ul li {
   padding: 0 13px;
 }
 
 .navbar ul li a {
+  text-transform: uppercase;
   font-weight: bold;
   font-size: 13px;
   font-family: Arial, Helvetica, sans-serif;
-  color: green;
+  color: #ffffff;
 }
 
 .user-image {
@@ -61,16 +71,15 @@ hr {
     text-align:center;
 }
 
-
-
-
-// .dropdown a:hover {
-//   color: #3c8dbc;
-// }
-
-
 @media screen and (max-width: 480px) {
   .drop1 a {
     text-align: center;
+  }
+}
+
+@media screen and(max-width: 480px) {
+  .logo-text h2 {
+    font-size: 22px;
+    margin-left: -20px;
   }
 }
