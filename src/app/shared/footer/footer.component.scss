@@ -5,7 +5,7 @@
 }
 
 .data {
-    padding:100px 0 100px 0;
+    padding:100px 35px 100px 35px;
 }
 
 .footer-widget a {
@@ -16,13 +16,33 @@
     margin-top:22px;
 }
 
-.image1 {
+.image-text img {
     height:70px;
     width:67px;
 }
 
-.image2 {
-    height:75px;
-    width:75px;
-    padding:2px;
+.image-text {
+    display: flex;
+    margin-bottom:20px;
+}
+
+.image-text p {
+    margin:0px;
+}
+
+.text{
+    padding: 7px;
+    margin-left: 17px;
+}
+
+.footer-text {
+    font-size:12px;
+    text-align:center;
+}
+
+.footer-image {
+    float:left;
+    width:80px;
+    height:80px;
+    margin:17px;
 }
