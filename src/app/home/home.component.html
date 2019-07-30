@@ -36,3 +36,44 @@
         </a>
     </div>
 </div>
+<div class="container home">
+  <section>
+    <div *ngFor="let item of cementProducts">
+      <div>
+        <input readonly value="{{ item.comp_name }}" />
+        <input readonly value="{{ item.price }}" />
+        <input
+          type="number"
+          (input)="productValue(item, $event.target.value, i)"
+        />
+        <input readonly value="{{ item.totalPrice }}" />
+
+        <button type="submit" (click)="cart()">addToCart</button>
+      </div>
+    </div>
+  </section>
+  <section>
+    <div *ngFor="let product of barsProducts; let i = index">
+      <div>
+        <input readonly value="{{ product.bar_cmp_name }}" />
+        <div *ngFor="let bar of product.barsList; let j = index">
+          <input readonly value="{{ bar.type }}" />
+          <input readonly value="{{ bar.value }}" />
+          <input
+            type="number"
+            value=""
+            (input)="barsQuntity(bar, $event.target.value, i, j)"
+            placeholder="quantity"
+          />
+          <input value="{{ bar.totalPrice }}" placeholder="totalPrice" />
+        </div>
+
+        <input
+          value="{{ product.totalCartPrice }}"
+          placeholder="totalCartPrice"
+        />
+      </div>
+    </div>
+  </section>
+  <button type="submit" (click)="barsproductsList()">bars</button>
+</div>
