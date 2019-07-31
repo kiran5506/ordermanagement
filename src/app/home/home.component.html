@@ -8,10 +8,10 @@
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <img src="assets/caro.jpg" alt="Los Angeles" width="1100" height="500">
-                <div class="carousel-caption">
+                <!-- <div class="carousel-caption">
                     <h3>Los Angeles</h3>
                     <p>We had such a great time in LA!</p>
-                </div>
+                </div> -->
             </div>
             <div class="carousel-item">
                 <img src="assets/caro1.jpg" alt="Chicago" width="1100" height="500">
@@ -37,9 +37,9 @@
     </div>
 </div>
 
-<div class="container">
+<div class="container cement-section">
     <div class="cement-widget">
-        <h2>Cement Company</h2>
+        <p class="section-heading">Ce<span class="style">ment Compa</span>ny</p>
         <div class="row">
             <div class="col-sm-3" *ngFor="let item of cementProducts; let i = index">
                 <div class=" cement-showcase">
@@ -51,25 +51,61 @@
                         <div class="cement-price">
                             <p><b>Price</b></p>
                             <p><b>Qty</b></p>
-                            <p><b>Total</b></p>
+                            <p><b>&nbsp;&nbsp;Total</b></p>
                         </div>
                         <div class="cement-price1">
                             <p><span>&#8377;</span>{{item.price}}<span>&#215;</span></p>
                             <input type="text" name="qty" (input)="productValue(item, $event.target.value, i)">
                             <span>&#61;</span>
-                            <input type="text" class="cement-input" name="total"  readonly value="{{ item.totalPrice }}" >
+                            <input type="text" class="cement-input" name="total" readonly value="{{ item.totalPrice }}">
                         </div>
                     </div>
                     <div>
-                        <button type="button" class="btn cart-btn" (click) = "addToCart()">Add To Cart</button>
+                        <button type="button" class="btn cart-btn" (click)="addToCart()">Add To Cart</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<div class="container home">
-    <!-- <section>
+
+<div class="container bar-section">
+    <div class="bar-widget">
+        <p class="section-heading">Bars</p>
+        <div class="row">
+            <div class="col-sm-4" *ngFor="let product of barsProducts; let i = index">
+                <div class=" bar-showcase">
+                    <img src="assets/cement.jpg" alt="photo">
+                    <div>
+                        <p><b>{{ product.bar_cmp_name }}</b></p>
+                    </div>
+                    <div class="bar-value">
+                        <div class="bar-price1" *ngFor="let bar of product.barsList; let j = index">
+                            <p>{{ bar.type }}&nbsp;<span>&#8211;</span>&nbsp;</p>
+                            <p><span>&#8377;&nbsp;</span>{{ bar.value }}&nbsp;<span>&#215;&nbsp;</span></p>
+                            <input type="number" value="" (input)="barsQuntity(bar, $event.target.value, i, j)"
+                                placeholder="quantity" />
+                            <span>&nbsp;&#61;&nbsp;</span>
+                            <input type="text" class="bars-input-name" name="total" readonly value="{{ bar.totalPrice }}">
+
+                        </div>
+                    </div>
+                    <div>
+                        <label for="total-price">Total Price&nbsp;&nbsp;</label>
+                        <input type="text" name="total" readonly value="{{ product.totalCartPrice }}" />
+                    </div>
+                    <div>
+                        <button type="button" class="btn cart-btn" (click)="addToCart()">Add To Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- <div class="container home">
+    <section>
         <div *ngFor="let item of cementProducts">
             <div>
                 <input readonly value="{{ item.comp_name }}" />
@@ -80,7 +116,7 @@
                 <button type="submit" (click)="cart()">addToCart</button>
             </div>
         </div>
-    </section> -->
+    </section>
     <section>
         <div *ngFor="let product of barsProducts; let i = index">
             <div>
@@ -97,5 +133,5 @@
             </div>
         </div>
     </section>
-    <!-- <button type="submit" (click)="barsproductsList()">bars</button> -->
-</div>
+    <button type="submit" (click)="barsproductsList()">bars</button>
+</div> -->

@@ -3,21 +3,20 @@
     <a class="#" class="navbar navbar-brand logo-text">
       <h2>Order Management</h2>
     </a>
-    <button class="navbar-toggler" data-toggle="collapse" data-target="#menu">
+    <!-- <button class="navbar-toggler" data-toggle="collapse" data-target="#menu">
+      <span class="navbar-toggler-icon"></span>
+    </button> -->
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#menu"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse justify-content-end" id="menu">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['home']">Home</a>
+          <a class="nav-link active" [routerLink]="['home']">Home</a>
         </li>
         <li class="nav-item">
-          <a
-            class="nav-link"
-            [routerLink]="['cart']"
-            class="btn btn-default btn-sm"
-            >Cart {{ cart }}</a
-          >
+          <a class="nav-link" [routerLink]="['cart']">Cart {{ cart }}</a>
           <!-- <button type="button" class="btn btn-default btn-sm">
             <span class="glyphicon glyphicon-shopping-cart"></span> Shopping
             Cart
@@ -31,18 +30,10 @@
         </li>
         <li class="nav-item dropdown" *ngIf="isShowhide">
           <img src="assets/user.jpg" alt="image" class="user-image" />
-          <a
-            class="nav-link dropdown-toggle"
-            data-toggle="dropdown"
-            data-target="dropdown_target"
-            href="#"
-          >
+          <a class="nav-link dropdown-toggle" data-toggle="dropdown" data-target="dropdown_target" href="#">
             USER
           </a>
-          <div
-            class="dropdown-menu dropdown-menu-left drop1"
-            aria-labelledby="dropdown_target"
-          >
+          <div class="dropdown-menu dropdown-menu-left drop1" aria-labelledby="dropdown_target">
             <div class="image1">
               <div>
                 <img src="assets/user.jpg" alt="image" class="user-image1" />
@@ -55,9 +46,7 @@
             <hr />
             <a class="dropdown-item" [routerLink]="['user']">My Profile</a>
             <hr />
-            <a class="dropdown-item" [routerLink]="['user/myOrders']"
-              >My Orders</a
-            >
+            <a class="dropdown-item" [routerLink]="['user/myOrders']">My Orders</a>
             <hr />
             <div class="drop-button">
               <button type="button" class="btn btn-primary" (click)="logout()">

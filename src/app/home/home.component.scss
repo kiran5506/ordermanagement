@@ -11,6 +11,17 @@
     height:400px;
 }
 
+.style{
+    border-bottom: 2px solid blue;
+
+}
+
+.cement-section {
+    margin-top:40px;
+    font-family: lato,Roboto,"Helvetica Neue",sans-serif;
+
+}
+
 .cement-widget {
     margin-top:10px;
 }
@@ -19,8 +30,20 @@
     padding-bottom:25px;
 }
 
-.cement-widget h2 {
-    margin-bottom: 15px;
+.section-heading {
+    text-align: center;
+    margin-bottom:32px;
+    font-size:39px;
+}
+
+// .cement-widget h2 {
+//     text-align:center;
+//     margin-bottom: 32px;
+// }
+
+.underline {
+    border-bottom: 2px solid currentColor;
+
 }
 
 .cement-showcase  {
@@ -53,10 +76,6 @@
     display: flex;
 }
 
-.cement-price1 p{
-    margin-right:15px;
-}
-
 .cement-price1 input {
     height:32px;
     width:42px;
@@ -73,5 +92,92 @@
 }
 
 .cement-widget textarea {
+    resize:none;
+}
+
+// -------------------------------------------------------------------------------
+// ==================================================================
+
+.bar-section {
+    margin-top:40px;
+    font-family: lato,Roboto,"Helvetica Neue",sans-serif;
+}
+
+.bar-widget {
+    margin-top:10px;
+}
+
+.bar-widget  {
+    padding-bottom:25px;
+}
+
+.section-heading {
+    text-align: center;
+    margin-bottom:32px;
+    font-size:39px;
+}
+
+// .cement-widget h2 {
+//     text-align:center;
+//     margin-bottom: 32px;
+// }
+
+.underline {
+    border-bottom: 2px solid currentColor;
+
+}
+
+.bar-showcase  {
+    margin-bottom:20px;
+    text-align: center;
+    padding: 10px;
+    /* box-shadow: 0px 2px 5px 0px; */
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,.12);
+    margin: 0 8px;
+}
+
+.bar-showcase img {
+    height:125px;
+    width:125px;
+}
+
+
+.bar-price {
+    // justify-content:center;
+    display: flex;
+}
+
+.bar-price p {
+    margin:5px;
+    padding:0px 15px 0px 0px;
+}
+
+.bar-price1 {
+    // justify-content:center;
+    display: flex;
+}
+
+.bar-price1 input {
+    height:32px;
+    width:61px;
+}
+
+.bars-input-name {
+    height:32px !important;
+    width:120px !important;
+}
+
+
+.bar-price1 .cement-input {
+    width:100px;
+}
+.cart-btn {
+    background-color: #34e65d;
+    color: #ffffff;
+    padding: 8px 13px;
+    border-radius: 15px;
+}
+
+.bar-widget textarea {
     resize:none;
 }
