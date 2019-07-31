@@ -1,3 +1,4 @@
+import { Router } from "@angular/router";
 import { FormGroup, FormBuilder, Validators, FormArray } from "@angular/forms";
 import { ProductsService } from "./../services/products.service";
 import { Component, OnInit } from "@angular/core";
@@ -15,12 +16,9 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private productService: ProductsService,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
+    private router: Router
   ) {}
-  tostar() {
-    this.toastrService.success("loginFailed", "invalid details");
-  }
-
   ngOnInit() {
     this.barsProducts = JSON.parse(localStorage.getItem("barsArray"));
     localStorage.removeItem("barsArray");
@@ -79,5 +77,14 @@ export class HomeComponent implements OnInit {
     barsProducts[itemIndex]["totalCartPrice"] = totalCartPrice;
     localStorage.removeItem("barsArray");
     localStorage.setItem("barsArray", JSON.stringify(this.barsProducts));
+  }
+
+  addToCart() {
+    let login = localStorage.getItem("isOMlogin");
+    if (login == "false") {
+      this.router.navigateByUrl("login");
+    } else {
+      this.toastrService.info("item add into cart");
+    }
   }
 }

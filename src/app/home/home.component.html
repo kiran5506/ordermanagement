@@ -41,11 +41,11 @@
     <div class="cement-widget">
         <h2>Cement Company</h2>
         <div class="row">
-            <div class="col-sm-3">
+            <div class="col-sm-3" *ngFor="let item of cementProducts; let i = index">
                 <div class=" cement-showcase">
                     <img src="assets/cement.jpg" alt="photo">
                     <div>
-                        <p><b>UltraTech</b></p>
+                        <p><b>{{item.comp_name}}</b></p>
                     </div>
                     <div class="cement-value">
                         <div class="cement-price">
@@ -54,182 +54,14 @@
                             <p><b>Total</b></p>
                         </div>
                         <div class="cement-price1">
-                            <p><span>&#8377;</span>100<span>&#215;</span></p>
-                            <input type="text" name="qty">
+                            <p><span>&#8377;</span>{{item.price}}<span>&#215;</span></p>
+                            <input type="text" name="qty" (input)="productValue(item, $event.target.value, i)">
                             <span>&#61;</span>
-                            <input type="text" class="cement-input" name="total">
+                            <input type="text" class="cement-input" name="total"  readonly value="{{ item.totalPrice }}" >
                         </div>
                     </div>
                     <div>
-                        <button type="button" class="btn cart-btn">Add To Cart</button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-3">
-                <div class=" cement-showcase">
-                    <img src="assets/cement.jpg" alt="photo">
-                    <div>
-                        <p><b>UltraTech</b></p>
-                    </div>
-                    <div class="cement-value">
-                        <div class="cement-price">
-                            <p><b>Price</b></p>
-                            <p><b>Qty</b></p>
-                            <p><b>Total</b></p>
-                        </div>
-                        <div class="cement-price1">
-                            <p><span>&#8377;</span>100<span>&#215;</span></p>
-                            <input type="text" name="qty">
-                            <span>&#61;</span>
-                            <input type="text" class="cement-input" name="total">
-                        </div>
-                    </div>
-                    <div>
-                        <button type="button" class="btn cart-btn">Add To Cart</button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-3">
-                <div class=" cement-showcase">
-                    <img src="assets/cement.jpg" alt="photo">
-                    <div>
-                        <p><b>UltraTech</b></p>
-                    </div>
-                    <div class="cement-value">
-                        <div class="cement-price">
-                            <p><b>Price</b></p>
-                            <p><b>Qty</b></p>
-                            <p><b>Total</b></p>
-                        </div>
-                        <div class="cement-price1">
-                            <p><span>&#8377;</span>100<span>&#215;</span></p>
-                            <input type="text" name="qty">
-                            <span>&#61;</span>
-                            <input type="text" class="cement-input" name="total">
-                        </div>
-                    </div>
-                    <div>
-                        <button type="button" class="btn cart-btn">Add To Cart</button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-3">
-                <div class=" cement-showcase">
-                    <img src="assets/cement.jpg" alt="photo">
-                    <div>
-                        <p><b>UltraTech</b></p>
-                    </div>
-                    <div class="cement-value">
-                        <div class="cement-price">
-                            <p><b>Price</b></p>
-                            <p><b>Qty</b></p>
-                            <p><b>Total</b></p>
-                        </div>
-                        <div class="cement-price1">
-                            <p><span>&#8377;</span>100<span>&#215;</span></p>
-                            <input type="text" name="qty">
-                            <span>&#61;</span>
-                            <input type="text" class="cement-input" name="total">
-                        </div>
-                    </div>
-                    <div>
-                        <button type="button" class="btn cart-btn">Add To Cart</button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-3">
-                <div class=" cement-showcase">
-                    <img src="assets/cement.jpg" alt="photo">
-                    <div>
-                        <p><b>UltraTech</b></p>
-                    </div>
-                    <div class="cement-value">
-                        <div class="cement-price">
-                            <p><b>Price</b></p>
-                            <p><b>Qty</b></p>
-                            <p><b>Total</b></p>
-                        </div>
-                        <div class="cement-price1">
-                            <p><span>&#8377;</span>100<span>&#215;</span></p>
-                            <input type="text" name="qty">
-                            <span>&#61;</span>
-                            <input type="text" class="cement-input" name="total">
-                        </div>
-                    </div>
-                    <div>
-                        <button type="button" class="btn cart-btn">Add To Cart</button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-3">
-                <div class=" cement-showcase">
-                    <img src="assets/cement.jpg" alt="photo">
-                    <div>
-                        <p><b>UltraTech</b></p>
-                    </div>
-                    <div class="cement-value">
-                        <div class="cement-price">
-                            <p><b>Price</b></p>
-                            <p><b>Qty</b></p>
-                            <p><b>Total</b></p>
-                        </div>
-                        <div class="cement-price1">
-                            <p><span>&#8377;</span>100<span>&#215;</span></p>
-                            <input type="text" name="qty">
-                            <span>&#61;</span>
-                            <input type="text" class="cement-input" name="total">
-                        </div>
-                    </div>
-                    <div>
-                        <button type="button" class="btn cart-btn">Add To Cart</button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-3">
-                <div class=" cement-showcase">
-                    <img src="assets/cement.jpg" alt="photo">
-                    <div>
-                        <p><b>UltraTech</b></p>
-                    </div>
-                    <div class="cement-value">
-                        <div class="cement-price">
-                            <p><b>Price</b></p>
-                            <p><b>Qty</b></p>
-                            <p><b>Total</b></p>
-                        </div>
-                        <div class="cement-price1">
-                            <p><span>&#8377;</span>100<span>&#215;</span></p>
-                            <input type="text" name="qty">
-                            <span>&#61;</span>
-                            <input type="text" class="cement-input" name="total">
-                        </div>
-                    </div>
-                    <div>
-                        <button type="button" class="btn cart-btn">Add To Cart</button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-3">
-                <div class=" cement-showcase">
-                    <img src="assets/cement.jpg" alt="photo">
-                    <div>
-                        <p><b>UltraTech</b></p>
-                    </div>
-                    <div class="cement-value">
-                        <div class="cement-price">
-                            <p><b>Price</b></p>
-                            <p><b>Qty</b></p>
-                            <p><b>Total</b></p>
-                        </div>
-                        <div class="cement-price1">
-                            <p><span>&#8377;</span>100<span>&#215;</span></p>
-                            <input type="text" name="qty">
-                            <span>&#61;</span>
-                            <input type="text" class="cement-input" name="total">
-                        </div>
-                    </div>
-                    <div>
-                        <button type="button" class="btn cart-btn">Add To Cart</button>
+                        <button type="button" class="btn cart-btn" (click) = "addToCart()">Add To Cart</button>
                     </div>
                 </div>
             </div>
@@ -237,7 +69,7 @@
     </div>
 </div>
 <div class="container home">
-    <section>
+    <!-- <section>
         <div *ngFor="let item of cementProducts">
             <div>
                 <input readonly value="{{ item.comp_name }}" />
@@ -248,7 +80,7 @@
                 <button type="submit" (click)="cart()">addToCart</button>
             </div>
         </div>
-    </section>
+    </section> -->
     <section>
         <div *ngFor="let product of barsProducts; let i = index">
             <div>
@@ -265,5 +97,5 @@
             </div>
         </div>
     </section>
-    <button type="submit" (click)="barsproductsList()">bars</button>
+    <!-- <button type="submit" (click)="barsproductsList()">bars</button> -->
 </div>
