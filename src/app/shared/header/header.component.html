@@ -9,7 +9,16 @@
           <a class="nav-link" [routerLink]="['home']">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['cart']">Cart</a>
+          <a
+            class="nav-link"
+            [routerLink]="['cart']"
+            class="btn btn-default btn-sm"
+            >Cart {{ cart }}</a
+          >
+          <!-- <button type="button" class="btn btn-default btn-sm">
+            <span class="glyphicon glyphicon-shopping-cart"></span> Shopping
+            Cart
+          </button> -->
         </li>
         <li class="nav-item" *ngIf="!isShowhide">
           <a class="nav-link" [routerLink]="['login']">SignIn</a>
@@ -19,13 +28,21 @@
         </li>
         <li class="nav-item dropdown" *ngIf="isShowhide">
           <img src="assets/user.jpg" alt="image" class="user-image" />
-          <a class="nav-link dropdown-toggle" data-toggle="dropdown" data-target="dropdown_target" href="#">
+          <a
+            class="nav-link dropdown-toggle"
+            data-toggle="dropdown"
+            data-target="dropdown_target"
+            href="#"
+          >
             USER
           </a>
-          <div class="dropdown-menu dropdown-menu-left drop1" aria-labelledby="dropdown_target">
+          <div
+            class="dropdown-menu dropdown-menu-left drop1"
+            aria-labelledby="dropdown_target"
+          >
             <div class="image1">
               <div>
-                <img src="assets/user.jpg" alt="image" class="user-image1">
+                <img src="assets/user.jpg" alt="image" class="user-image1" />
               </div>
               <div>
                 <p>Name</p>
@@ -35,10 +52,14 @@
             <hr />
             <a class="dropdown-item" [routerLink]="['user']">My Profile</a>
             <hr />
-            <a class="dropdown-item" [routerLink]="['user/myOrders']">My Orders</a>
+            <a class="dropdown-item" [routerLink]="['user/myOrders']"
+              >My Orders</a
+            >
             <hr />
             <div class="drop-button">
-              <button type="button" class="btn btn-primary" (click)="logout()">Logout</button>
+              <button type="button" class="btn btn-primary" (click)="logout()">
+                Logout
+              </button>
             </div>
           </div>
         </li>

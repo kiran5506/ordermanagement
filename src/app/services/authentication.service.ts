@@ -42,6 +42,7 @@ export class AuthenticationService {
 
   logOut() {
     this.broadCastService.isShowhide.emit(false);
+    localStorage.setItem("isOMlogin", "false");
     localStorage.removeItem("user");
     this.router.navigateByUrl("login");
   }

@@ -1,3 +1,4 @@
+import { ToastrService } from "ngx-toastr";
 import { DatabroadcastService } from "../../services/databroadcast.service";
 import { Component, OnInit } from "@angular/core";
 import { AuthenticationService } from "src/app/services/authentication.service";
@@ -11,11 +12,15 @@ import { Router } from "@angular/router";
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
+  // isError: boolean = false;
+  // errorMessage: string;
+
   constructor(
     private loginService: AuthenticationService,
     private fb: FormBuilder,
     private router: Router,
-    private databroadcastService: DatabroadcastService
+    private databroadcastService: DatabroadcastService,
+    private toastrService: ToastrService
   ) {
     this.loadingLoginForm(fb);
   }
@@ -35,19 +40,20 @@ export class LoginComponent implements OnInit {
       email: this.loginForm.value.userName,
       password: this.loginForm.value.password
     };
-
-    // this.databroadcastService.isShowhide.emit(true);
     console.log("formData", formData);
     this.loginService.login(formData).subscribe((response: any) => {
-      localStorage.setItem("user", JSON.stringify(response.userdata));
-
       console.log("loginResponse", response);
       if (response.status === 200) {
         this.databroadcastService.isShowhide.emit(true);
+        localStorage.setItem("user", JSON.stringify(response.userdata));
+        localStorage.setItem("isOMlogin", "true");
+        this.toastrService.success("login successfully");
         this.router.navigateByUrl("/home");
       } else if (response.status === 404) {
-        this.databroadcastService.isShowhide.emit(false);
-        this.router.navigateByUrl("/login");
+        this.toastrService.error("invalid credentials", "loginFailed");
+        // this.isError = true;
+        // this.errorMessage = "UserName and Password Does Not match";
+        // this.router.navigateByUrl("/login");
       }
     });
   }

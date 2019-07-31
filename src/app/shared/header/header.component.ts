@@ -10,12 +10,21 @@ import { Component, OnInit } from "@angular/core";
 export class HeaderComponent implements OnInit {
   isShowhide: boolean = false;
 
+  cart = 2;
+
   constructor(
     private authService: AuthenticationService,
     private broadcastService: DatabroadcastService
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    let login = localStorage.getItem("isOMlogin");
+    if (login == "true") {
+      this.isShowhide = true;
+    } else {
+      this.isShowhide = false;
+    }
+  }
 
   logout() {
     this.authService.logOut();

@@ -20,4 +20,8 @@ export class UserService {
   update(data: any): Observable<any> {
     return this.http.post(this.baseUrl + "users/update", data, options);
   }
+
+  getUserProfile(data: any): Observable<any> {
+    return this.http.post(this.baseUrl + "users/getuserdetails", data, options);
+  }
 }

@@ -1,3 +1,4 @@
+import { ToastrModule } from "ngx-toastr";
 import { AuthenticationService } from "src/app/services/authentication.service";
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
@@ -10,16 +11,30 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { AuthGuard } from "./shared/security/auth.guard";
 import { HomeComponent } from "./home/home.component";
-import { CartComponent } from './cart/cart.component';
+import { CartComponent } from "./cart/cart.component";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+// import {}
 @NgModule({
-  declarations: [AppComponent, HomeComponent, HeaderComponent, FooterComponent, CartComponent],
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    HeaderComponent,
+    FooterComponent,
+    CartComponent
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     SharedModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      timeOut: 6000,
+      positionClass: "toast-top-center",
+      preventDuplicates: false
+    })
   ],
   providers: [AuthGuard, AuthenticationService],
   bootstrap: [AppComponent]

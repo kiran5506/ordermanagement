@@ -1,3 +1,5 @@
+import { DatabroadcastService } from "./../../services/databroadcast.service";
+import { ToastrService } from "ngx-toastr";
 import { Validators } from "@angular/forms";
 import { FormBuilder } from "@angular/forms";
 import { FormGroup } from "@angular/forms";
@@ -17,7 +19,9 @@ export class SignupComponent implements OnInit {
   constructor(
     private authService: AuthenticationService,
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private broadCastService: DatabroadcastService,
+    private toastrService: ToastrService
   ) {
     this.loadSignUpForm(fb);
   }
@@ -41,7 +45,7 @@ export class SignupComponent implements OnInit {
       ],
       password: [null, Validators.required],
       gst_number: [null, Validators.required],
-      owner_name: ["", Validators.required],
+      owner_name: [null, Validators.required],
       address: [null, Validators.required],
       pincode: [null, Validators.required]
     });
@@ -62,8 +66,11 @@ export class SignupComponent implements OnInit {
 
     this.authService.signUp(formData).subscribe((response: any) => {
       console.log("SignUp", response);
-
       if (response.status == 200) {
+        localStorage.setItem("isOMlogin", "true");
+        localStorage.setItem("user", JSON.stringify(response.result));
+        this.broadCastService.isShowhide.emit(true);
+        this.toastrService.success("sign up successfully");
         this.router.navigateByUrl("home");
       } else {
         this.router.navigateByUrl("signUp");

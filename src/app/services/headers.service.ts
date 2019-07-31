@@ -5,12 +5,13 @@ import { HttpHeaders } from "@angular/common/http";
   providedIn: "root"
 })
 export class HeadersService {
+  visible: boolean;
   constructor() {}
 
-  headers() {
-    let headers = new HttpHeaders({
-      "Content-Type": "application/json",
-      "Auth-key": "ordmangRestApi"
-    });
-  }
+  // headers() {
+  //   let headers = new HttpHeaders({
+  //     "Content-Type": "application/json",
+  //     "Auth-key": "ordmangRestApi"
+  //   });
+  // }
 }
