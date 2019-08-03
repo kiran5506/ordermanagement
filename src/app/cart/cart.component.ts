@@ -10,6 +10,7 @@ import { Component, OnInit } from "@angular/core";
 export class CartComponent implements OnInit {
   cartProducts: any;
   user: any;
+  cartGrandTotal: any;
 
   constructor(
     private cartService: UserService,
@@ -36,9 +37,12 @@ export class CartComponent implements OnInit {
           resp.result["grandTotal"] = "";
         }
       }
-      // var grandTotal = this.cartProducts.reduce((a, b) => a + b.grandTotal, 0);
+      this.cartGrandTotal = this.cartProducts.reduce(
+        (a, b) => a + b.totalPrice,
+        0
+      );
 
-      // console.log(grandTotal, "grandTotal");
+      console.log(this.cartGrandTotal, "grandTotal");
       localStorage.setItem("cartItem", JSON.stringify(this.cartProducts));
       console.log("cartProducts", this.cartProducts);
     });
@@ -55,7 +59,6 @@ export class CartComponent implements OnInit {
     }
     let price = cart.price;
     var cartItemPrice = price * quantity;
-    console.log(cartItemPrice, "cartitemPrice");
     for (var k = 0; k < this.cartProducts.length; k++) {
       let cartitem = this.cartProducts[k].totalPrice;
       console.log(cartitem, "cartitem");
@@ -73,17 +76,17 @@ export class CartComponent implements OnInit {
         console.log("cartUpdate", resp);
       });
 
-      var grandTotal = this.cartProducts.reduce(
-        (a, b) => a + b.cartItemPrice,
+      this.cartGrandTotal = this.cartProducts.reduce(
+        (a, b) => a + b.totalPrice,
         0
       );
-      console.log("grandTotal", grandTotal);
+      console.log("grandTotal", this.cartGrandTotal);
     }
   }
 
   deleteAll() {
     let cartDelete = {
-      delete_all: 0,
+      delete_all: 1,
       user_id: this.user.user_id
     };
     this.cartService.userCartDelete(cartDelete).subscribe(resp => {
@@ -102,7 +105,7 @@ export class CartComponent implements OnInit {
       console.log("cartId", cartId);
     }
     let cartItemDelete = {
-      delete_all: 1,
+      delete_all: 0,
       user_id: this.user.user_id,
       cart_id: cartId
     };

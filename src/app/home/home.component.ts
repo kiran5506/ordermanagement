@@ -126,6 +126,7 @@ export class HomeComponent implements OnInit {
     for (var k = 0; k < barsProducts.length; k++) {
       var barsList = barsProducts[itemIndex].barsList;
 
+      console.log("barsList", barsList);
       for (var m = 0; m < barsList.length; m++) {
         barsList[barsIndex]["totalPrice"] = barsTotalPrice;
         barsList[barsIndex]["quantity"] = quantityEvent;
