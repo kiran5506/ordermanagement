@@ -17,11 +17,31 @@ export class UserService {
 
   constructor(private http: HttpClient) {}
 
-  update(data: any): Observable<any> {
+  userProfileupdate(data: any): Observable<any> {
     return this.http.post(this.baseUrl + "users/update", data, options);
   }
 
   getUserProfile(data: any): Observable<any> {
     return this.http.post(this.baseUrl + "users/getuserdetails", data, options);
+  }
+
+  addToCart(data: any): Observable<any> {
+    return this.http.post(this.baseUrl + "products/addtoCart", data, options);
+  }
+
+  userCartList(data: any): Observable<any> {
+    return this.http.post(
+      this.baseUrl + "products/getCartItemsByUserid",
+      data,
+      options
+    );
+  }
+
+  userCartDelete(data: any): Observable<any> {
+    return this.http.post(
+      this.baseUrl + "products/deleteCartItem",
+      data,
+      options
+    );
   }
 }

@@ -13,7 +13,11 @@ import { AuthGuard } from "./shared/security/auth.guard";
 import { HomeComponent } from "./home/home.component";
 import { CartComponent } from "./cart/cart.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-// import {}
+import {
+  LocationStrategy,
+  HashLocationStrategy,
+  PathLocationStrategy
+} from "@angular/common";
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +40,11 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
       preventDuplicates: false
     })
   ],
-  providers: [AuthGuard, AuthenticationService],
+  providers: [
+    AuthGuard,
+    AuthenticationService,
+    { provide: LocationStrategy, useClass: HashLocationStrategy }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

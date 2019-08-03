@@ -1,5 +1,5 @@
+import { UserService } from "./../services/user.service";
 import { Router } from "@angular/router";
-import { FormGroup, FormBuilder, Validators, FormArray } from "@angular/forms";
 import { ProductsService } from "./../services/products.service";
 import { Component, OnInit } from "@angular/core";
 import { ToastrService } from "ngx-toastr";
@@ -11,18 +11,22 @@ import { ToastrService } from "ngx-toastr";
 })
 export class HomeComponent implements OnInit {
   cementProducts: any;
+  cementQty: any;
   barsProducts: any;
-  addTocart: any;
+  storeQuntity: any;
 
   constructor(
     private productService: ProductsService,
+    private userService: UserService,
     private toastrService: ToastrService,
     private router: Router
   ) {}
   ngOnInit() {
+    localStorage.setItem("loadhompage", "true");
+    localStorage.removeItem("cementQTY");
     this.barsProducts = JSON.parse(localStorage.getItem("barsArray"));
     localStorage.removeItem("barsArray");
-
+    this.cementProducts;
     this.cementProductsList();
     this.barsproductsList();
   }
@@ -32,8 +36,10 @@ export class HomeComponent implements OnInit {
       for (var i = 0; i < resp.product.length; i++) {
         resp.product[i]["qty"] = "";
         resp.product[i]["totalPrice"] = "";
+        resp.product[i]["type_id"] = "1";
       }
       this.cementProducts = resp.product;
+      console.log("cementProducts", this.cementProducts);
     });
   }
 
@@ -41,7 +47,59 @@ export class HomeComponent implements OnInit {
     let cementTotalPrice = quantityEvent * item.price;
     this.cementProducts[index]["totalPrice"] = cementTotalPrice;
     this.cementProducts[index]["qty"] = quantityEvent;
-    this.addTocart = this.cementProducts[index];
+    localStorage.setItem(
+      "addToCart",
+      JSON.stringify(this.cementProducts[index])
+    );
+    localStorage.setItem(
+      "cementQTY",
+      JSON.stringify([{ quantityEvent, index }])
+    );
+  }
+  itemAddToCart(cartIndex) {
+    let user = JSON.parse(localStorage.getItem("user"));
+    let cementQuntity = JSON.parse(localStorage.getItem("cementQTY"));
+    let cart = JSON.parse(localStorage.getItem("addToCart"));
+    console.log(cart);
+    let login = localStorage.getItem("isOMlogin");
+
+    if (login == "false" || login == null) {
+      this.router.navigateByUrl("login");
+    } else {
+      if (cementQuntity == null) {
+        this.toastrService.info("please enter quntity");
+      } else {
+        for (var o = 0; o < cementQuntity.length; o++) {
+          var itemIndex = cementQuntity[o].index;
+          var cement = cementQuntity[o].quantityEvent;
+        }
+
+        if (itemIndex === cartIndex) {
+          if (cement < 1 || cement == "") {
+            this.toastrService.info("please enter valid quntity");
+          } else {
+            if (cart.type_id == 1) {
+              var cartDetails = {
+                user_id: user.user_id,
+                type_id: cart.type_id,
+                prod_type_id: cart.prod_cement_id,
+                quantity: cart.qty,
+                bar_products: []
+              };
+            } else {
+            }
+            console.log("cartDetails", cartDetails);
+            this.userService.addToCart(cartDetails).subscribe(resp => {
+              console.log("cartResp", resp);
+              this.toastrService.success("item add into cart");
+              localStorage.removeItem("addToCart");
+            });
+          }
+        } else {
+          this.toastrService.info("please enter quntity");
+        }
+      }
+    }
   }
 
   /* Bars Integration */
@@ -77,14 +135,5 @@ export class HomeComponent implements OnInit {
     barsProducts[itemIndex]["totalCartPrice"] = totalCartPrice;
     localStorage.removeItem("barsArray");
     localStorage.setItem("barsArray", JSON.stringify(this.barsProducts));
-  }
-
-  addToCart() {
-    let login = localStorage.getItem("isOMlogin");
-    if (login == "false") {
-      this.router.navigateByUrl("login");
-    } else {
-      this.toastrService.info("item add into cart");
-    }
   }
 }

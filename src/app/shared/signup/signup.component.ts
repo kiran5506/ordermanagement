@@ -68,7 +68,6 @@ export class SignupComponent implements OnInit {
       console.log("SignUp", response);
       if (response.status == 200) {
         localStorage.setItem("isOMlogin", "true");
-        localStorage.setItem("user", JSON.stringify(response.result));
         this.broadCastService.isShowhide.emit(true);
         this.toastrService.success("sign up successfully");
         this.router.navigateByUrl("home");

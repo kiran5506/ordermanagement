@@ -44,6 +44,8 @@ export class AuthenticationService {
     this.broadCastService.isShowhide.emit(false);
     localStorage.setItem("isOMlogin", "false");
     localStorage.removeItem("user");
+    localStorage.removeItem("addToCart");
+    localStorage.removeItem("cartList");
     this.router.navigateByUrl("login");
   }
 }

@@ -66,7 +66,7 @@ export class ProfileComponent implements OnInit {
       total_amount: "0"
     };
 
-    this.userService.update(updateForm).subscribe(resp => {
+    this.userService.userProfileupdate(updateForm).subscribe(resp => {
       console.log("updaterResp", resp);
     });
   }

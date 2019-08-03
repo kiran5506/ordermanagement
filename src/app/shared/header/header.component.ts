@@ -1,3 +1,4 @@
+import { UserService } from "./../../services/user.service";
 import { DatabroadcastService } from "./../../services/databroadcast.service";
 import { AuthenticationService } from "src/app/services/authentication.service";
 import { Component, OnInit } from "@angular/core";
@@ -10,11 +11,12 @@ import { Component, OnInit } from "@angular/core";
 export class HeaderComponent implements OnInit {
   isShowhide: boolean = false;
 
-  cart = 2;
+  cartList: any;
 
   constructor(
     private authService: AuthenticationService,
-    private broadcastService: DatabroadcastService
+    private broadcastService: DatabroadcastService,
+    private cartService: UserService
   ) {}
 
   ngOnInit() {

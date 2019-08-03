@@ -51,9 +51,6 @@ export class LoginComponent implements OnInit {
         this.router.navigateByUrl("/home");
       } else if (response.status === 404) {
         this.toastrService.error("invalid credentials", "loginFailed");
-        // this.isError = true;
-        // this.errorMessage = "UserName and Password Does Not match";
-        // this.router.navigateByUrl("/login");
       }
     });
   }
