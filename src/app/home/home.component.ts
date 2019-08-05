@@ -56,13 +56,55 @@ export class HomeComponent implements OnInit {
       JSON.stringify([{ quantityEvent, index }])
     );
   }
+
+  /*                                 Bars Integration                                       */
+
+  barsproductsList() {
+    this.productService.getBarsProducts().subscribe((response: any) => {
+      for (var i = 0; i < response.product.length; i++) {
+        let barsList = response.product[i].barsList;
+
+        for (var j = 0; j < barsList.length; j++) {
+          barsList[j]["quantity"] = "";
+          barsList[j]["totalPrice"] = "";
+          response.product[i]["totalCartPrice"] = "";
+        }
+      }
+      this.barsProducts = response.product;
+    });
+  }
+
+  barsQuntity(bar, quantityEvent, itemIndex, barsIndex) {
+    let barsTotalPrice = quantityEvent * bar.value;
+    let barsProducts = this.barsProducts;
+
+    for (var k = 0; k < barsProducts.length; k++) {
+      var barsList = barsProducts[itemIndex].barsList;
+
+      console.log("barsList", barsList);
+      for (var m = 0; m < barsList.length; m++) {
+        barsList[barsIndex]["totalPrice"] = barsTotalPrice;
+        barsList[barsIndex]["quantity"] = quantityEvent;
+      }
+    }
+    var totalCartPrice = barsList.reduce((a, b) => a + b.totalPrice, 0);
+    barsProducts[itemIndex]["totalCartPrice"] = totalCartPrice;
+    localStorage.setItem(
+      "barsQTY",
+      JSON.stringify([{ quantityEvent, itemIndex, barsIndex }])
+    );
+    localStorage.removeItem("barsArray");
+    localStorage.setItem("barsArray", JSON.stringify(this.barsProducts));
+  }
+
   itemAddToCart(cartIndex) {
     let user = JSON.parse(localStorage.getItem("user"));
     let cementQuntity = JSON.parse(localStorage.getItem("cementQTY"));
+    let barsQuntity = JSON.parse(localStorage.getItem("barsQTY"));
+    console.log("barsQuntity", barsQuntity);
     let cart = JSON.parse(localStorage.getItem("addToCart"));
     console.log(cart);
     let login = localStorage.getItem("isOMlogin");
-
     if (login == "false" || login == null) {
       this.router.navigateByUrl("login");
     } else {
@@ -100,41 +142,5 @@ export class HomeComponent implements OnInit {
         }
       }
     }
-  }
-
-  /* Bars Integration */
-
-  barsproductsList() {
-    this.productService.getBarsProducts().subscribe((response: any) => {
-      for (var i = 0; i < response.product.length; i++) {
-        let barsList = response.product[i].barsList;
-
-        for (var j = 0; j < barsList.length; j++) {
-          barsList[j]["quantity"] = "";
-          barsList[j]["totalPrice"] = "";
-          response.product[i]["totalCartPrice"] = "";
-        }
-      }
-      this.barsProducts = response.product;
-    });
-  }
-
-  barsQuntity(bar, quantityEvent, itemIndex, barsIndex) {
-    let barsTotalPrice = quantityEvent * bar.value;
-    let barsProducts = this.barsProducts;
-
-    for (var k = 0; k < barsProducts.length; k++) {
-      var barsList = barsProducts[itemIndex].barsList;
-
-      console.log("barsList", barsList);
-      for (var m = 0; m < barsList.length; m++) {
-        barsList[barsIndex]["totalPrice"] = barsTotalPrice;
-        barsList[barsIndex]["quantity"] = quantityEvent;
-      }
-    }
-    var totalCartPrice = barsList.reduce((a, b) => a + b.totalPrice, 0);
-    barsProducts[itemIndex]["totalCartPrice"] = totalCartPrice;
-    localStorage.removeItem("barsArray");
-    localStorage.setItem("barsArray", JSON.stringify(this.barsProducts));
   }
 }

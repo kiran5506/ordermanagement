@@ -8,15 +8,6 @@
     <h1>Cart Items</h1>
 
     <div class="shopping-cart">
-      <!-- <div class="column-labels">
-        <label>Image</label>
-        <label>Product</label>
-        <label>Price</label>
-        <label>Quantity</label>
-        <label>Remove</label>
-        <label>Total</label>
-      </div> -->
-
       <div class="product" *ngFor="let cart of cartProducts; let i = index">
         <div>
           <div class="product-image">
@@ -24,13 +15,10 @@
           </div>
           <div class="product-details">
             <div class="product-title">{{ cart.company_name }}</div>
-
-            <!-- <p class="product-description">
-              It has a lightweight, breathable mesh upper with forefoot cables
-              for a locked-down fit.
-            </p> -->
           </div>
-          <div class="product-price">{{ cart.price }}</div>
+          <div class="product-price">
+            <p>&#8360; {{ cart.price }}</p>
+          </div>
           <div class="product-quantity">
             <input
               type="number"
@@ -39,45 +27,24 @@
             />
           </div>
           <div class="product-removal">
-            <!-- <button class="btn btn-info btn-sm">
-              <i class="fa fa-refresh"></i>
-            </button> -->
-            <button class="btn btn-danger btn-xs" (click)="deleteOneItem(i)">
+            <button
+              class="btn btn-danger btn-xs"
+              (click)="deleteOneItem(i, cart.cart_id)"
+            >
               <i class="fa fa-trash"></i>
-              <!-- <img src="assets/trash.svg" alt="trash"> -->
             </button>
           </div>
-          <div class="product-line-price">{{ cart.totalPrice }}</div>
+          <div class="product-line-price">
+            <p>&#8360; {{ cart.totalPrice }}</p>
+          </div>
         </div>
       </div>
-      <!-- <div class="product">
-          <div class="product-image">
-            <img src="assets/user.jpg">
-          </div>
-          <div class="product-details">
-            <div class="product-title">ULTRABOOST UNCAGED SHOES</div>
-            <p class="product-description">Born from running culture, these men's shoes deliver the freedom of a cage-free
-              design</p>
-          </div>
-          <div class="product-price">45.99</div>
-          <div class="product-quantity">
-            <input type="number" value="1" min="1">
-          </div>
-          <div class="product-removal">
-            <button class="btn btn-info btn-sm">
-              <i class="fa fa-refresh"></i>
-            </button>
-            <button class="btn btn-danger btn-sm">
-              <i class="fa fa-trash-o"></i>
-            </button>
-          </div>
-          <div class="product-line-price">45.99</div>
-        </div> -->
-
       <div class="totals">
         <div class="totals-item totals-item-total">
           <label>Grand Total</label>
-          <div class="totals-value" id="cart-total">{{cartGrandTotal}}</div>
+          <div class="totals-value" id="cart-total">
+            <p>&#8360; {{ cartGrandTotal }}</p>
+          </div>
         </div>
       </div>
 

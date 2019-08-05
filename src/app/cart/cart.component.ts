@@ -1,6 +1,7 @@
 import { ToastrService } from "ngx-toastr";
 import { UserService } from "./../services/user.service";
 import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-cart",
@@ -14,7 +15,8 @@ export class CartComponent implements OnInit {
 
   constructor(
     private cartService: UserService,
-    private toasterService: ToastrService
+    private toasterService: ToastrService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -91,12 +93,20 @@ export class CartComponent implements OnInit {
     };
     this.cartService.userCartDelete(cartDelete).subscribe(resp => {
       if (resp.status == 200) {
-        this.refreshCartList;
+        this.router.navigateByUrl("cart");
         this.toasterService.error("All CartItems Deleted");
       }
       console.log("deleteCart", resp);
     });
   }
+
+  //  deleteOneitem(index){
+  //   let userId = {
+  //         user_id: this.user.user_id
+  //       };
+  // this.cartService.userCartList(userId).splice()
+
+  //  }
 
   deleteOneItem(index) {
     let cartItem = JSON.parse(localStorage.getItem("cartItem"));
@@ -111,19 +121,9 @@ export class CartComponent implements OnInit {
     };
     this.cartService.userCartDelete(cartItemDelete).subscribe(resp => {
       if (resp.status == 200) {
-        this.refreshCartList;
         this.toasterService.error("cart item Deleted");
       }
       console.log("deleteOneItem", resp);
-    });
-  }
-
-  public refreshCartList() {
-    let userId = {
-      user_id: this.user.user_id
-    };
-    this.cartService.userCartList(userId).subscribe(resp => {
-      this.cartProducts = resp.result;
     });
   }
 }
