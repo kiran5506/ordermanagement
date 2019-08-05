@@ -12,6 +12,7 @@ export class CartComponent implements OnInit {
   cartProducts: any;
   user: any;
   cartGrandTotal: any;
+  cartItemObj : any;
 
   constructor(
     private cartService: UserService,
@@ -21,6 +22,10 @@ export class CartComponent implements OnInit {
 
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem("user"));
+    this.cartItems();
+  }
+
+  cartItems(){
     let userId = {
       user_id: this.user.user_id
     };
@@ -86,44 +91,25 @@ export class CartComponent implements OnInit {
     }
   }
 
-  deleteAll() {
-    let cartDelete = {
-      delete_all: 1,
-      user_id: this.user.user_id
-    };
-    this.cartService.userCartDelete(cartDelete).subscribe(resp => {
-      if (resp.status == 200) {
-        this.router.navigateByUrl("cart");
-        this.toasterService.error("All CartItems Deleted");
+  deleteCarItem(deleteVal, cartVal) {
+    if(deleteVal == 1){
+      this.cartItemObj = {
+        delete_all: 1,
+        user_id: this.user.user_id
       }
-      console.log("deleteCart", resp);
-    });
-  }
-
-  //  deleteOneitem(index){
-  //   let userId = {
-  //         user_id: this.user.user_id
-  //       };
-  // this.cartService.userCartList(userId).splice()
-
-  //  }
-
-  deleteOneItem(index) {
-    let cartItem = JSON.parse(localStorage.getItem("cartItem"));
-    for (var n = 0; n < cartItem.length; n++) {
-      var cartId = cartItem[index].cart_id;
-      console.log("cartId", cartId);
+    }else{
+      this.cartItemObj = {
+        delete_all: 0,
+        user_id: this.user.user_id,
+        cart_id: cartVal
+      }
     }
-    let cartItemDelete = {
-      delete_all: 0,
-      user_id: this.user.user_id,
-      cart_id: cartId
-    };
-    this.cartService.userCartDelete(cartItemDelete).subscribe(resp => {
+    console.log("deleteOneItem", this.cartItemObj);
+     this.cartService.userCartDelete(this.cartItemObj).subscribe(resp => {
       if (resp.status == 200) {
-        this.toasterService.error("cart item Deleted");
+        this.cartItems();
+        this.toasterService.error(resp.message);
       }
-      console.log("deleteOneItem", resp);
-    });
+    }); 
   }
 }

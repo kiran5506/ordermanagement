@@ -1,7 +1,7 @@
 <section class="cart-section">
   <div class="container">
     <div class=" empty-cart">
-      <button type="button" class="btn btn-primary" (click)="deleteAll()">
+      <button type="button" class="btn btn-primary" (click)="deleteCarItem(1,0)">
         Empty Cart
       </button>
     </div>
@@ -29,7 +29,7 @@
           <div class="product-removal">
             <button
               class="btn btn-danger btn-xs"
-              (click)="deleteOneItem(i, cart.cart_id)"
+              (click)="deleteCarItem(0, cart.cart_id)"
             >
               <i class="fa fa-trash"></i>
             </button>
