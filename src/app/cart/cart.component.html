@@ -20,7 +20,7 @@
             <p>&#8360; {{ cart.price }}</p>
           </div>
           <div class="product-quantity">
-            <input type="number" value="{{ cart.quantity }}" (input)="cartValue(cart, $event.target.value, i)" />
+            <input type="number" value="{{ cart.quantity }}" (input)="chageCartValue( cart, 0, $event.target.value, 1)" />
           </div>
           <div class="product-removal">
             <button class="btn btn-danger btn-xs" (click)="deleteCarItem(0, cart.cart_id)">
@@ -46,7 +46,7 @@
 
           <div class="product-quantity">
             <div *ngFor="let bars of cart.bar_products">
-              <input type="number" class="bottom" value="{{bars.quantity}}" (input)="cartValue(cart, $event.target.value, i)" />
+              <input type="number" class="bottom" value="{{bars.quantity}}" (input)="chageCartValue( cart, bars, $event.target.value, 2)" />
               &#61;
               &#8360; {{ bars.price*bars.quantity }}
               <br>
@@ -77,20 +77,3 @@
     </div>
   </div>
 </section>
-<!-- <section class="cart-section">
-  <div class="container">
-    <div class="shopping-cart">
-      <div class="product">
-        
-      </div>
-      <div class="totals">
-        <div class="totals-item totals-item-total">
-          <label>Grand Total:</label>
-          <div class="totals-value" id="cart-total">
-            <p>&#8360; {{ cartGrandTotal }}</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section> -->
