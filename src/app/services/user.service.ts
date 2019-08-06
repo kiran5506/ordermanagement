@@ -44,4 +44,15 @@ export class UserService {
       options
     );
   }
+
+  userCreateAddress(data: any): Observable<any> {
+    return this.http.post(this.baseUrl + "users/addAddress", data, options);
+  }
+
+
+  userGetAddress(data:any):Observable<any>{
+
+    return this.http.post(this.baseUrl+'users/getUserAddress', data,options);
+  }
+
 }

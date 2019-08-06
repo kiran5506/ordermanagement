@@ -12,7 +12,7 @@ export class CartComponent implements OnInit {
   cartProducts: any;
   user: any;
   cartGrandTotal: any;
-  cartItemObj : any;
+  cartItemObj: any;
 
   constructor(
     private cartService: UserService,
@@ -25,7 +25,7 @@ export class CartComponent implements OnInit {
     this.cartItems();
   }
 
-  cartItems(){
+  cartItems() {
     let userId = {
       user_id: this.user.user_id
     };
@@ -92,24 +92,24 @@ export class CartComponent implements OnInit {
   }
 
   deleteCarItem(deleteVal, cartVal) {
-    if(deleteVal == 1){
+    if (deleteVal == 1) {
       this.cartItemObj = {
         delete_all: 1,
         user_id: this.user.user_id
-      }
-    }else{
+      };
+    } else {
       this.cartItemObj = {
         delete_all: 0,
         user_id: this.user.user_id,
         cart_id: cartVal
-      }
+      };
     }
     console.log("deleteOneItem", this.cartItemObj);
-     this.cartService.userCartDelete(this.cartItemObj).subscribe(resp => {
+    this.cartService.userCartDelete(this.cartItemObj).subscribe(resp => {
       if (resp.status == 200) {
         this.cartItems();
         this.toasterService.error(resp.message);
       }
-    }); 
+    });
   }
 }

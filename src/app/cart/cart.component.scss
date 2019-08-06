@@ -19,28 +19,48 @@
 
 .product-details {
   float: left;
-  width: 37%;
+  width: 20%;
 }
+
 
 .product-price {
   float: left;
-  width: 12%;
+  width: 15%;
 }
 
 .product-quantity {
   float: left;
-  width: 10%;
+  width: 15%;
 }
+
+
 
 .product-removal {
   float: left;
   width: 9%;
 }
 
+.container-fluid{
+  position: relative;
+  right: 200px;
+}
+
+
 .product-line-price {
   float: left;
   width: 12%;
   text-align: right;
+}
+
+.total{
+  float: right;
+  width: 133%;
+  position: relative;
+  top:10px;
+}
+
+.bottom {
+  margin-bottom: 8px;
 }
 
 /* This is used as the traditional .clearfix class */
@@ -198,13 +218,13 @@ label {
 .totals .totals-item label {
   float: left;
   clear: both;
-  width: 79%;
+  width: 78%;
   text-align: right;
 }
 .totals .totals-item .totals-value {
   float: right;
-  width: 21%;
-  text-align: right;
+  width: 13%;
+  text-align: left;
 }
 .totals .totals-item-total {
   font-family: "HelveticaNeue-Medium", "Helvetica Neue Medium";

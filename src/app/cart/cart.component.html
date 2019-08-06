@@ -39,16 +39,95 @@
           </div>
         </div>
       </div>
-      <div class="totals">
-        <div class="totals-item totals-item-total">
-          <label>Grand Total</label>
-          <div class="totals-value" id="cart-total">
-            <p>&#8360; {{ cartGrandTotal }}</p>
-          </div>
-        </div>
-      </div>
-
-      <button class="checkout">Checkout</button>
     </div>
   </div>
 </section>
+<section class="cart-section">
+    <div class="container">
+      <div class="shopping-cart">
+        <div class="product" *ngFor="let cart of cartProducts; let i = index">
+          <div>
+            <div class="product-image">
+              <img src="assets/cement.jpg" />
+            </div>
+            <div class="product-details">
+              <div class="product-title">{{ cart.company_name }}</div>
+            </div>
+            
+            <div class="product-price">
+                <p>&nbsp;8mm<span>&#8211;</span>&nbsp;
+                <span>&#8377;&nbsp;</span> {{ cart.price }}&nbsp;<span>&#215;&nbsp;</span></p>
+                <p>&nbsp;10mm<span>&#8211;</span>&nbsp;
+                  <span>&#8377;&nbsp;</span> {{ cart.price }}&nbsp;<span>&#215;&nbsp;</span></p>
+                <p>&nbsp;12mm<span>&#8211;</span>&nbsp;
+                    <span>&#8377;&nbsp;</span> {{ cart.price }}&nbsp;<span>&#215;&nbsp;</span></p>
+                <p>&nbsp;16mm<span>&#8211;</span>&nbsp;
+                      <span>&#8377;&nbsp;</span> {{ cart.price }}&nbsp;<span>&#215;&nbsp;</span></p>
+
+            </div>
+            
+            <div class="product-quantity">
+              <input
+                type="number" class="bottom"
+                value="{{ cart.quantity }}"
+                (input)="cartValue(cart, $event.target.value, i)"
+              />
+              &#61;
+              &#8360; {{ cart.totalPrice }} 
+              <br>
+              <input
+              type="number"class="bottom"
+              value="{{ cart.quantity }}"
+              (input)="cartValue(cart, $event.target.value, i)"
+            />
+            &#61;
+            &#8360; {{ cart.totalPrice }} 
+            <br>
+            <input
+            type="number" class="bottom"
+            value="{{ cart.quantity }}"
+            (input)="cartValue(cart, $event.target.value, i)"
+          />
+          &#61;
+          &#8360; {{ cart.totalPrice }} 
+          <br>
+          <input
+          type="number" class="bottom"
+          value="{{ cart.quantity }}"
+          (input)="cartValue(cart, $event.target.value, i)"
+        />
+        &#61;
+        &#8360; {{ cart.totalPrice }} 
+
+                 
+                <div> 
+                      <p class="total"> Total Amount = 
+                      &#8360; {{ cart.totalPrice }}</p>
+                    </div>
+            </div>
+            <div class="product-removal">
+              <button
+                class="btn btn-danger btn-xs"
+                (click)="deleteCarItem(0, cart.cart_id)"
+              >
+                <i class="fa fa-trash"></i>
+              </button>
+            </div>
+            <div class="product-line-price">
+              <p>&#8360; {{ cart.totalPrice }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="totals">
+          <div class="totals-item totals-item-total">
+            <label>Grand Total:</label>
+            <div class="totals-value" id="cart-total">
+              <p>&#8360; {{ cartGrandTotal }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+

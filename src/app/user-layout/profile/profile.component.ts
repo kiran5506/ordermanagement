@@ -70,4 +70,26 @@ export class ProfileComponent implements OnInit {
       console.log("updaterResp", resp);
     });
   }
+
+  userCreateAddress() {
+    console.log("createAddress");
+    let addressObj = {
+      user_id: this.currentUser.user_id,
+      address_type_id: 1,
+      address: "hyd"
+    };
+
+    this.userService.userCreateAddress(addressObj).subscribe(resp => {
+      console.log("addressObj", resp);
+    });
+  }
+
+  userAddress() {
+    let getAddreesObj = {
+      user_id: this.currentUser.user_id
+    };
+    this.userService.userGetAddress(getAddreesObj).subscribe(resp => {
+      console.log("getAddreesObj", getAddreesObj);
+    });
+  }
 }

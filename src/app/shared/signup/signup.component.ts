@@ -44,7 +44,7 @@ export class SignupComponent implements OnInit {
         ]
       ],
       password: [null, Validators.required],
-      gst_number: [null, Validators.required],
+      gst_number: [null],
       owner_name: [null, Validators.required],
       address: [null, Validators.required],
       pincode: [null, Validators.required]

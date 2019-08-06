@@ -61,7 +61,7 @@
                         </div>
                     </div>
                     <div>
-                        <button type="button" class="btn cart-btn" (click)="itemAddToCart(i)">Add To Cart</button>
+                        <button type="button" class="btn cart-btn" (click)="itemAddToCart(i , 1)">Add To Cart</button>
                     </div>
                 </div>
             </div>
@@ -83,7 +83,7 @@
                         <div class="bar-price1" *ngFor="let bar of product.barsList; let j = index">
                             <p>{{ bar.type }}&nbsp;<span>&#8211;</span>&nbsp;</p>
                             <p><span>&#8377;&nbsp;</span>{{ bar.value }}&nbsp;<span>&#215;&nbsp;</span></p>
-                            <input type="number" value="" (input)="barsQuntity(bar, $event.target.value, k, j)"
+                            <input type="number" value="" (input)="barsQuntity(bar, $event.target.value, k, j, product.prod_bar_company_id)"
                                 placeholder="quantity" />
                             <span>&nbsp;&#61;&nbsp;</span>
                             <input type="text" class="bars-input-name" name="total" readonly value="{{ bar.totalPrice }}">
@@ -95,7 +95,7 @@
                         <input type="text" name="total" readonly value="{{ product.totalCartPrice }}" />
                     </div>
                     <div>
-                        <button type="button" class="btn cart-btn" (click)="itemAddToCart(k)">Add To Cart</button>
+                        <button type="button" class="btn cart-btn" (click)="itemAddToCart(k , 2)">Add To Cart</button>
                     </div>
                 </div>
             </div>

@@ -14,6 +14,8 @@ export class HomeComponent implements OnInit {
   cementQty: any;
   barsProducts: any;
   storeQuntity: any;
+  barProductItems = [];
+  barCompanyId: any;
 
   constructor(
     private productService: ProductsService,
@@ -24,8 +26,6 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     localStorage.setItem("loadhompage", "true");
     localStorage.removeItem("cementQTY");
-    this.barsProducts = JSON.parse(localStorage.getItem("barsArray"));
-    localStorage.removeItem("barsArray");
     this.cementProducts;
     this.cementProductsList();
     this.barsproductsList();
@@ -36,7 +36,6 @@ export class HomeComponent implements OnInit {
       for (var i = 0; i < resp.product.length; i++) {
         resp.product[i]["qty"] = "";
         resp.product[i]["totalPrice"] = "";
-        resp.product[i]["type_id"] = "1";
       }
       this.cementProducts = resp.product;
       console.log("cementProducts", this.cementProducts);
@@ -48,7 +47,7 @@ export class HomeComponent implements OnInit {
     this.cementProducts[index]["totalPrice"] = cementTotalPrice;
     this.cementProducts[index]["qty"] = quantityEvent;
     localStorage.setItem(
-      "addToCart",
+      "cementAddToCart",
       JSON.stringify(this.cementProducts[index])
     );
     localStorage.setItem(
@@ -74,71 +73,114 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  barsQuntity(bar, quantityEvent, itemIndex, barsIndex) {
+  barsQuntity(bar, quantityEvent, itemIndex, barsIndex, prod_bar_company_id) {
+    console.log("prod_bar_company_id--->", prod_bar_company_id);
     let barsTotalPrice = quantityEvent * bar.value;
     let barsProducts = this.barsProducts;
 
     for (var k = 0; k < barsProducts.length; k++) {
       var barsList = barsProducts[itemIndex].barsList;
-
-      console.log("barsList", barsList);
       for (var m = 0; m < barsList.length; m++) {
         barsList[barsIndex]["totalPrice"] = barsTotalPrice;
         barsList[barsIndex]["quantity"] = quantityEvent;
       }
     }
+    this.barCompanyId = prod_bar_company_id;
+    let barProdObj = {
+      bar_id: bar.prod_bar_id,
+      quantity: quantityEvent
+    };
+    this.barProductItems.push(barProdObj);
+
+    console.log("barsList--->", this.barProductItems);
     var totalCartPrice = barsList.reduce((a, b) => a + b.totalPrice, 0);
     barsProducts[itemIndex]["totalCartPrice"] = totalCartPrice;
     localStorage.setItem(
       "barsQTY",
       JSON.stringify([{ quantityEvent, itemIndex, barsIndex }])
     );
-    localStorage.removeItem("barsArray");
-    localStorage.setItem("barsArray", JSON.stringify(this.barsProducts));
+    localStorage.setItem("barsList", JSON.stringify(this.barsProducts));
   }
 
-  itemAddToCart(cartIndex) {
+  itemAddToCart(cartIndex, cartType) {
     let user = JSON.parse(localStorage.getItem("user"));
     let cementQuntity = JSON.parse(localStorage.getItem("cementQTY"));
     let barsQuntity = JSON.parse(localStorage.getItem("barsQTY"));
-    console.log("barsQuntity", barsQuntity);
-    let cart = JSON.parse(localStorage.getItem("addToCart"));
-    console.log(cart);
+    let cementCart = JSON.parse(localStorage.getItem("cementAddToCart"));
+    let barsList = JSON.parse(localStorage.getItem("barsList"));
+    console.log("barsList", barsList);
     let login = localStorage.getItem("isOMlogin");
     if (login == "false" || login == null) {
       this.router.navigateByUrl("login");
     } else {
-      if (cementQuntity == null) {
-        this.toastrService.info("please enter quntity");
-      } else {
-        for (var o = 0; o < cementQuntity.length; o++) {
-          var itemIndex = cementQuntity[o].index;
-          var cement = cementQuntity[o].quantityEvent;
-        }
+      if (cartType == 2) {
+        if (barsQuntity == null) {
+          this.toastrService.info("please enter  quntity");
+        } else {
+          for (var p = 0; p < barsQuntity.length; p++) {
+            var barsItemIndex = barsQuntity[p].itemIndex;
+            var bars = barsQuntity[p].quantityEvent;
+            console.log("bars", bars);
+            var barIndex = barsQuntity[p].barsIndex;
+          }
+          if (cartIndex == barsItemIndex) {
+            console.log("cartInex", cartIndex);
+            if (bars < 1) {
+              console.log("bars", bars);
+              this.toastrService.info("please enter valid quantity");
+            } else {
+              let barsDetails = {
+                user_id: user.user_id,
+                type_id: cartType,
+                prod_type_id: this.barCompanyId,
+                quantity: 0,
+                bar_products: this.barProductItems
+              };
 
-        if (itemIndex === cartIndex) {
-          if (cement < 1 || cement == "") {
-            this.toastrService.info("please enter valid quntity");
+              console.log("barsObject-->", barsDetails);
+              this.userService.addToCart(barsDetails).subscribe(resp => {
+                console.log("cartResp", resp);
+                this.toastrService.success("item add into cart");
+                localStorage.removeItem("barsList");
+                localStorage.removeItem("barsQTY");
+              });
+            }
           } else {
-            if (cart.type_id == 1) {
+            this.toastrService.info("please enter quantity");
+          }
+        }
+      } else {
+        if (cementQuntity == null) {
+          this.toastrService.info("please enter quantity");
+        } else {
+          for (var o = 0; o < cementQuntity.length; o++) {
+            var itemIndex = cementQuntity[o].index;
+            var cement = cementQuntity[o].quantityEvent;
+          }
+
+          if (itemIndex === cartIndex) {
+            if (cement < 1 || cement == "") {
+              this.toastrService.info("please enter valid quantity");
+            } else {
               var cartDetails = {
                 user_id: user.user_id,
-                type_id: cart.type_id,
-                prod_type_id: cart.prod_cement_id,
-                quantity: cart.qty,
+                type_id: cartType,
+                prod_type_id: cementCart.prod_cement_id,
+                quantity: cementCart.qty,
                 bar_products: []
               };
-            } else {
+
+              console.log("cartDetails", cartDetails);
+              this.userService.addToCart(cartDetails).subscribe(resp => {
+                console.log("cartResp", resp);
+                this.toastrService.success("item add into cart");
+                localStorage.removeItem("cementQTY");
+                localStorage.removeItem("addToCart");
+              });
             }
-            console.log("cartDetails", cartDetails);
-            this.userService.addToCart(cartDetails).subscribe(resp => {
-              console.log("cartResp", resp);
-              this.toastrService.success("item add into cart");
-              localStorage.removeItem("addToCart");
-            });
+          } else {
+            this.toastrService.info("please enter quantity");
           }
-        } else {
-          this.toastrService.info("please enter quntity");
         }
       }
     }
