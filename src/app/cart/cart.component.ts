@@ -13,6 +13,9 @@ export class CartComponent implements OnInit {
   user: any;
   cartGrandTotal: any;
   cartItemObj: any;
+  totBaramount = 0;
+  totCementamount = 0;
+  totGrandamount = 0;
 
   constructor(
     private cartService: UserService,
@@ -34,24 +37,33 @@ export class CartComponent implements OnInit {
 
       for (var j = 0; j < this.cartProducts.length; j++) {
         let grandTotal = this.cartProducts[j].totalPrice;
-        console.log("grand", grandTotal);
+        //console.log("grand", grandTotal);
         let qty = this.cartProducts[j].quantity;
-        console.log("qty", qty);
+        //console.log("qty", qty);
         let price = this.cartProducts[j].price;
         let itemTotalPrice = qty * price;
-        for (var m = 0; m < resp.result.length; m++) {
-          resp.result[j]["totalPrice"] = itemTotalPrice;
-          resp.result["grandTotal"] = "";
+        if(this.cartProducts[j].type_id == 1){
+          this.totCementamount = this.totCementamount + itemTotalPrice;
+          console.log("result--->", resp.result[j]);
+          resp.result[j]["totalPrice"] = this.totCementamount;
+          this.totGrandamount = this.totGrandamount + this.totCementamount;
         }
+        /* kiran */
+        if(this.cartProducts[j].type_id == 2){
+          if(this.cartProducts[j].bar_products.length > 0){
+            for (let k = 0; k < this.cartProducts[j].bar_products.length; k++) {
+                this.totBaramount = this.totBaramount + (this.cartProducts[j].bar_products[k].quantity *this.cartProducts[j].bar_products[k].price); 
+            }
+           // console.log("result--->", resp.result[j]);
+            resp.result[j]["barTotal"] =  this.totBaramount;
+            this.totGrandamount = this.totGrandamount + this.totBaramount;
+          }
+        }
+        
       }
-      this.cartGrandTotal = this.cartProducts.reduce(
-        (a, b) => a + b.totalPrice,
-        0
-      );
-
-      console.log(this.cartGrandTotal, "grandTotal");
+      /* console.log(this.cartGrandTotal, "grandTotal");
       localStorage.setItem("cartItem", JSON.stringify(this.cartProducts));
-      console.log("cartProducts", this.cartProducts);
+      console.log("cartProducts", this.cartProducts); */
     });
   }
 
