@@ -26,10 +26,7 @@
           <a class="nav-link" [routerLink]="['cart']"
             ><i class="fa fa-shopping-cart  cart-custom"> Cart</i></a
           >
-          <!-- <button type="button" class="btn btn-default btn-sm">
-            <span class="glyphicon glyphicon-shopping-cart"></span> Shopping
-            Cart
-          </button> -->
+
         </li>
         <li class="nav-item" *ngIf="!isShowhide">
           <a class="nav-link" [routerLink]="['login']"><i class="fa fa-sign-in cart-custom"> SignIn</i></a>
@@ -61,9 +58,9 @@
               </div>
             </div>
             <hr />
-            <a class="dropdown-item" [routerLink]="['user']">My Profile</a>
+            <a class="dropdown-item dd" [routerLink]="['user']">My Profile</a>
             <hr />
-            <a class="dropdown-item" [routerLink]="['user/myOrders']"
+            <a class="dropdown-item dd" [routerLink]="['user/myOrders']"
               >My Orders</a
             >
             <hr />

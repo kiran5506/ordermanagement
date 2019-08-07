@@ -1,3 +1,16 @@
 .sidebar {
+  position: relative;
+  left: 40px;
   display: grid;
+}
+
+.fa-user:before {
+  padding-right: 15px;
+}
+
+.fa-shopping-cart:before {
+  padding-right: 15px;
+}
+a {
+  color: white;
 }

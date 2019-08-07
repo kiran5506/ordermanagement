@@ -8,9 +8,26 @@
   margin-top: 60px;
   margin-bottom: 40px;
 }
+
+.image {
+  border-radius: 90px;
+}
+
+.icon {
+  border: 2px;
+  border-radius: 10px;
+  position: relative;
+  right: 30px;
+  top: 40px;
+}
 .heading {
   text-align: center;
   margin-bottom: inherit;
-  color: limegreen;
+
   // font-size: x-large;
+}
+
+.button {
+  position: absolute;
+  left: 800px;
 }

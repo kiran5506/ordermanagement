@@ -1,15 +1,16 @@
-
 .header-widget {
   background-color: blue;
-  font-family: lato,Roboto,"Helvetica Neue",sans-serif;
+  font-family: lato, Roboto, "Helvetica Neue", sans-serif;
 }
 
-.logo-text h2{
-  color:#ffffff;
+.logo-text h2 {
+  color: #ffffff;
 }
 
 .navbar ul li {
   padding: 0 13px;
+  position: relative;
+  right: 30px;
 }
 
 .navbar ul li a {
@@ -20,13 +21,13 @@
 }
 
 .navbar-toggler {
-  border-color:#ffffff;
+  border-color: #ffffff;
 }
 
 .navbar-toggler-icon {
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(242,88,29)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
 }
-  // .active {
+// .active {
 //   border-bottom-color:1px solid black;
 // }
 
@@ -36,48 +37,49 @@
   height: 25px;
   border-radius: 50px;
   margin-right: 10px;
-  margin-top: 4px;
+  margin-top: 7px;
 }
 
 .user-image1 {
-    width: 45px;
-    height: 45px;
-    border-radius: 50px;
-    // margin-right: 10px;
-    // margin-top: 4px;
+  width: 45px;
+  height: 45px;
+  border-radius: 50px;
+  // margin-right: 10px;
+  // margin-top: 4px;
 }
 
 hr {
   margin: 5px 10px 9px 10px;
 }
 
-.drop1 a{
-    text-align: center;
+.drop1 a {
+  text-align: center;
 }
 
 .image1 {
-    display:flex;
-    padding:6px;
-    justify-content: center;
+  display: flex;
+  padding: 6px;
+  justify-content: center;
 }
 
-.image1 p{
-    margin:0px;
-
+.image1 p {
+  margin: 0px;
 }
 
-.dropimage{
-    text-align: center;
+.dropimage {
+  text-align: center;
 }
 
 .drop-text {
-    font-size:10px;
+  font-size: 10px;
 }
 
 .drop-button {
-    text-align:center;
+  text-align: center;
 }
-
+.dd {
+  color: black;
+}
 @media screen and (max-width: 480px) {
   .drop1 a {
     text-align: center;
