@@ -18,13 +18,15 @@ import {
   HashLocationStrategy,
   PathLocationStrategy
 } from "@angular/common";
+import { CheckOutComponent } from './check-out/check-out.component';
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     HeaderComponent,
     FooterComponent,
-    CartComponent
+    CartComponent,
+    CheckOutComponent
   ],
   imports: [
     BrowserModule,
