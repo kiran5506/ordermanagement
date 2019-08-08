@@ -1,3 +1,5 @@
+import { ToastrService } from "ngx-toastr";
+import { Router } from "@angular/router";
 import { FormBuilder, Validators } from "@angular/forms";
 import { FormGroup } from "@angular/forms";
 import { ProductsService } from "./../services/products.service";
@@ -23,7 +25,9 @@ export class CheckOutComponent implements OnInit {
   constructor(
     private userService: UserService,
     private productService: ProductsService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private router: Router,
+    private toastrService: ToastrService
   ) {
     this.loadingAddressForm(fb);
   }
@@ -36,13 +40,12 @@ export class CheckOutComponent implements OnInit {
 
     this.cartItems();
     this.getUserAddress();
-    // this.getUserDetails();
   }
 
   public loadingAddressForm(fb) {
     this.addressForm = fb.group({
-      Address_type: [null , Validators.required],
-      userAddress: [null , Validators.required]
+      Address_type: [null, Validators.required],
+      userAddress: [null, Validators.required]
     });
   }
 
@@ -51,8 +54,12 @@ export class CheckOutComponent implements OnInit {
     console.log("value", value);
   }
 
-  addNewDeliveryAddress() {
-    this.showhideAddressForm = true;
+  addNewDeliveryAddress(value) {
+    if (value == "odd") {
+      this.showhideAddressForm = true;
+    } else {
+      this.showhideAddressForm = false;
+    }
   }
 
   createNewAddress() {
@@ -64,12 +71,12 @@ export class CheckOutComponent implements OnInit {
       address: this.addressForm.value.userAddress
     };
     console.log("addressObj", addressObj);
-    // this.userService.userCreateAddress(addressObj).subscribe(response => {
-    //   console.log("createAddress", response);
-    //   if (response.status == 200) {
-    //     this.getUserAddress();
-    //   }
-    // });
+    this.userService.userCreateAddress(addressObj).subscribe(response => {
+      console.log("createAddress", response);
+      if (response.status == 200) {
+        this.getUserAddress();
+      }
+    });
   }
 
   getUserAddress() {
@@ -105,19 +112,25 @@ export class CheckOutComponent implements OnInit {
   }
 
   confirmOrder() {
-    let orderObj = {
-      user_id: this.userDetails.user_id,
-      address_id: this.address_id,
-      total_amout: this.grandTotal,
-      paymeny_type_id: 1,
-      cart_items: this.cartIds
-    };
-    console.log("orderObj", orderObj);
-    // this.productService.userConfirmOrder(orderObj).subscribe(resp => {
-    //   console.log("confirmOrder", resp);
-    //   if (resp.status == 200) {
-    //     localStorage.removeItem("grandtotal");
-    //   }
-    // });
+    if (this.address_id == undefined) {
+      this.toastrService.error("please  selecet a address");
+    } else {
+      let orderObj = {
+        user_id: this.userDetails.user_id,
+        address_id: this.address_id,
+        total_amout: this.grandTotal,
+        paymeny_type_id: 1,
+        cart_items: this.cartIds
+      };
+      console.log("orderObj", orderObj);
+
+      this.productService.userConfirmOrder(orderObj).subscribe(resp => {
+        console.log("confirmOrder", resp);
+        if (resp.status == 200) {
+          localStorage.removeItem("grandtotal");
+          this.router.navigateByUrl("thankYou");
+        }
+      });
+    }
   }
 }

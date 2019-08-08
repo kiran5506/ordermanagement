@@ -1,3 +1,4 @@
+import { ThankYouComponent } from "./thank-you/thank-you.component";
 import { CheckOutComponent } from "./check-out/check-out.component";
 import { CartComponent } from "./cart/cart.component";
 import { SignupComponent } from "./shared/signup/signup.component";
@@ -18,7 +19,8 @@ const routes: Routes = [
     loadChildren: "./user-layout/user-layout.module#UserLayoutModule",
     canActivate: [AuthGuard]
   },
-  { path: "checkOut", component: CheckOutComponent }
+  { path: "checkOut", component: CheckOutComponent, canActivate: [AuthGuard] },
+  { path: "thankYou", component: ThankYouComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({

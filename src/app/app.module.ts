@@ -19,6 +19,7 @@ import {
   PathLocationStrategy
 } from "@angular/common";
 import { CheckOutComponent } from "./check-out/check-out.component";
+import { ThankYouComponent } from './thank-you/thank-you.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +27,8 @@ import { CheckOutComponent } from "./check-out/check-out.component";
     HeaderComponent,
     FooterComponent,
     CartComponent,
-    CheckOutComponent
+    CheckOutComponent,
+    ThankYouComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +39,7 @@ import { CheckOutComponent } from "./check-out/check-out.component";
     FormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({
-      timeOut: 3000,
+      timeOut: 2000,
       positionClass: "toast-top-right",
       preventDuplicates: false
     })

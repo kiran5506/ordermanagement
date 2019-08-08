@@ -27,6 +27,7 @@ export class CartComponent implements OnInit {
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem("user"));
     this.cartItems();
+    console.log("cartItems", this.cartItems.length);
   }
 
   cartItems() {
@@ -37,6 +38,8 @@ export class CartComponent implements OnInit {
     this.cartService.userCartList(userId).subscribe(resp => {
       this.cartProducts = resp.result;
       for (var j = 0; j < this.cartProducts.length; j++) {
+        console.log("length", this.cartProducts.length);
+
         let itemTotalPrice =
           this.cartProducts[j].quantity * this.cartProducts[j].price;
         if (this.cartProducts[j].type_id == 1) {
@@ -124,6 +127,9 @@ export class CartComponent implements OnInit {
   }
 
   checkOut() {
-    this.router.navigateByUrl("checkOut");
+    if (this.cartProducts.length > 0) {
+      this.router.navigateByUrl("checkOut");
+    } else {
+    }
   }
 }
