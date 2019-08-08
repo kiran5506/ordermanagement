@@ -55,11 +55,7 @@ export class CheckOutComponent implements OnInit {
   }
 
   addNewDeliveryAddress(value) {
-    if (value == "odd") {
-      this.showhideAddressForm = true;
-    } else {
-      this.showhideAddressForm = false;
-    }
+    this.showhideAddressForm = true;
   }
 
   createNewAddress() {
