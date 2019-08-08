@@ -49,10 +49,7 @@ export class UserService {
     return this.http.post(this.baseUrl + "users/addAddress", data, options);
   }
 
-
-  userGetAddress(data:any):Observable<any>{
-
-    return this.http.post(this.baseUrl+'users/getUserAddress', data,options);
+  userGetAddress(data: any): Observable<any> {
+    return this.http.post(this.baseUrl + "users/getUserAddress", data, options);
   }
-
 }

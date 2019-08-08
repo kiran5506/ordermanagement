@@ -1,3 +1,4 @@
+import { CheckOutComponent } from "./check-out/check-out.component";
 import { CartComponent } from "./cart/cart.component";
 import { SignupComponent } from "./shared/signup/signup.component";
 import { HomeComponent } from "./home/home.component";
@@ -16,7 +17,8 @@ const routes: Routes = [
     path: "user",
     loadChildren: "./user-layout/user-layout.module#UserLayoutModule",
     canActivate: [AuthGuard]
-  }
+  },
+  { path: "checkOut", component: CheckOutComponent }
 ];
 
 @NgModule({

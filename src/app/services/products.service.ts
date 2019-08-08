@@ -23,4 +23,12 @@ export class ProductsService {
   getBarsProducts(): Observable<any> {
     return this.http.get(this.baseUrl + "products/barsList", options);
   }
+
+  userConfirmOrder(data: any): Observable<any> {
+    return this.http.post(
+      this.baseUrl + "products/confirmOrder",
+      data,
+      options
+    );
+  }
 }

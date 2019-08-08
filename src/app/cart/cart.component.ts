@@ -37,36 +37,41 @@ export class CartComponent implements OnInit {
     this.cartService.userCartList(userId).subscribe(resp => {
       this.cartProducts = resp.result;
       for (var j = 0; j < this.cartProducts.length; j++) {
-        let itemTotalPrice = this.cartProducts[j].quantity * this.cartProducts[j].price;
-        if(this.cartProducts[j].type_id == 1){
+        let itemTotalPrice =
+          this.cartProducts[j].quantity * this.cartProducts[j].price;
+        if (this.cartProducts[j].type_id == 1) {
           this.totCementamount = this.totCementamount + itemTotalPrice;
           resp.result[j]["totalPrice"] = this.totCementamount;
           this.totGrandamount = this.totGrandamount + this.totCementamount;
           console.log("cement-->", this.totCementamount);
           this.totCementamount = 0;
         }
-        if(this.cartProducts[j].type_id == 2){
-          if(this.cartProducts[j].bar_products.length > 0){
+        if (this.cartProducts[j].type_id == 2) {
+          if (this.cartProducts[j].bar_products.length > 0) {
             for (let k = 0; k < this.cartProducts[j].bar_products.length; k++) {
-                this.totBaramount = this.totBaramount + (this.cartProducts[j].bar_products[k].quantity *this.cartProducts[j].bar_products[k].price); 
+              this.totBaramount =
+                this.totBaramount +
+                this.cartProducts[j].bar_products[k].quantity *
+                  this.cartProducts[j].bar_products[k].price;
             }
-            resp.result[j]["barTotal"] =  this.totBaramount;
+            resp.result[j]["barTotal"] = this.totBaramount;
             this.totGrandamount = this.totGrandamount + this.totBaramount;
             console.log("bar-->", this.totBaramount);
             this.totBaramount = 0;
           }
-        } 
+        }
       }
       console.log("grand tot-->", this.totGrandamount);
+      localStorage.setItem("grandtotal", JSON.stringify(this.totGrandamount));
     });
   }
-  
-  chageCartValue(cartItem, bars,  quantity, typeId){
+
+  chageCartValue(cartItem, bars, quantity, typeId) {
     /* console.log("cart item--->", cartItem);
     console.log("cart qty--->", quantity);
     console.log("bars--->", bars); */
 
-    if(typeId == 1){
+    if (typeId == 1) {
       this.updateCart = {
         user_id: this.user.user_id,
         type_id: typeId,
@@ -74,11 +79,11 @@ export class CartComponent implements OnInit {
         quantity: quantity,
         bar_products: []
       };
-    }else{
+    } else {
       let bar_products = {
-        "bar_id" : bars.id,
-        "quantity" : quantity
-      }
+        bar_id: bars.id,
+        quantity: quantity
+      };
       this.updateCart = {
         user_id: this.user.user_id,
         type_id: typeId,
@@ -88,12 +93,12 @@ export class CartComponent implements OnInit {
       };
     }
     //console.log(this.updateCart);
-     this.cartService.addToCart(this.updateCart).subscribe(resp => {
+    this.cartService.addToCart(this.updateCart).subscribe(resp => {
       //console.log("cartUpdate", resp);
-      if(resp.status == 200){
+      if (resp.status == 200) {
         this.cartItems();
       }
-    }); 
+    });
   }
 
   deleteCarItem(deleteVal, cartVal) {
@@ -116,5 +121,9 @@ export class CartComponent implements OnInit {
         this.toasterService.error(resp.message);
       }
     });
+  }
+
+  checkOut() {
+    this.router.navigateByUrl("checkOut");
   }
 }
