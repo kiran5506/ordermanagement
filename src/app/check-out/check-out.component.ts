@@ -1,4 +1,4 @@
-import { FormBuilder } from "@angular/forms";
+import { FormBuilder, Validators } from "@angular/forms";
 import { FormGroup } from "@angular/forms";
 import { ProductsService } from "./../services/products.service";
 import { UserService } from "./../services/user.service";
@@ -41,8 +41,8 @@ export class CheckOutComponent implements OnInit {
 
   public loadingAddressForm(fb) {
     this.addressForm = fb.group({
-      Address_type: [null],
-      userAddress: [null]
+      Address_type: [null , Validators.required],
+      userAddress: [null , Validators.required]
     });
   }
 
