@@ -1,87 +1,59 @@
 <section class="container">
-  <div class="userdata mr-2">
-    <div class="d-flex form-group">
-      <label class="col-md-3">Name:</label>
-      <input
-        class="col-md-6 form-control"
-        type="text"
-        value="{{ userDetails.owner_name }}"
-      />
-    </div>
-    <div class="d-flex form-group">
-      <label class="col-md-3">Email:</label>
-      <input
-        class="col-md-6 form-control"
-        type="text"
-        value="{{ userDetails.email }}"
-      />
-    </div>
-    <div class="d-flex form-group">
-      <label class="col-md-3">PhoneNumber:</label>
-      <input
-        class="col-md-6 form-control"
-        type="text"
-        value="{{ userDetails.mobile_number }}"
-      />
-    </div>
-    <div class="button">
-      <button class="btn btn-primary" (click) = "addNewDeliveryAddress()">Add New Delivery Address</button>
-    </div>
-  </div>
-  <div class="typeofaddress" *ngIf="showhideAddressForm">
-    <form
-      class="address"
-      [formGroup]="addressForm"
-      (ngSubmit)="createNewAddress()"
-    >
-      <div class="form-group">
-        <label>Select Type</label>
-        <select
-          class="form-control"
-          name="Type"
-          (change)="onchange($event.target.value)"
-        >
-          <option value="type">Select</option>
-          <option value="1">Home</option>
-          <option value="2">Office</option>
-          <option value="3">Other</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label>Address</label>
-        <textarea
-          class="form-control textarea"
-          placeholder="Enter Address..."
-          cols="50"
-          formControlName="userAddress"
-        ></textarea>
-      </div>
-      <div class="submit-btn">
-        <button class="btn btn-md btn-primary" type="submit">Submit</button>
-      </div>
-    </form>
-  </div>
-  <div class="margin">
-    <label class="con">Select Address:</label>
+  <div class="col-md-12">
     <div class="row">
-      <div class="col-md-6 radio" *ngFor="let address of addressList">
-        <label id="button"
-          ><input type="radio" name="address"  (click) = "changeAddress(address.address_id)"/>TypeName :{{ address.type_name
-          }}<br />Address:{{ address.address }}</label
-        >
+      <div class="col-md-6">
+          <div class="userdata">
+              <div class=" form-group form-fields">
+                  <label class="col-md-3">Name:</label>
+                  <input class="col-md-6 form-control" value="{{ userDetails.owner_name }}"/>
+              </div>
+              <div class=" form-group form-fields">
+                  <label class="col-md-3">Email:</label>
+                  <input class="col-md-6 form-control"  value="{{ userDetails.email }}" />
+              </div>
+              <div class=" form-group form-fields">
+                  <label class="col-md-3">Phone No:</label>
+                  <input class="col-md-6 form-control"  value="{{ userDetails.mobile_number }}" />
+              </div>
+              <div class="button">
+                  <button class="btn btn-primary" (click) = "addNewDeliveryAddress()">Add New Address</button>
+              </div>
+          </div>
+          <div class="typeofaddress" *ngIf="showhideAddressForm">
+              <form class="address" [formGroup]="addressForm"
+              (ngSubmit)="createNewAddress()">
+                  <div class="form-group">
+                      <label>Select Type</label>
+                      <select class="form-control" name="Type" (change)="onchange($event.target.value)">
+                          <option value="type">Select</option>
+                          <option value="Home">Home</option>
+                          <option value="Office">Office</option>
+                          <option value="Other">Other</option>
+                      </select>
+                  </div>
+                  <div class="form-group">
+                      <label>Address</label>
+                      <textarea class="form-control textarea" placeholder="Enter Address..." cols="50" formControlName="userAddress"></textarea>
+                  </div>
+                  <div class="submit-btn">
+                      <button class="btn btn-md btn-primary" type="submit">Submit</button>
+                  </div>
+              </form>
+          </div>
       </div>
-      <!-- <div class="col-md-6 radio">
-        <label id="button"><input type="radio" name="address">TypeName :<br>Address:</label>
-      </div> 
-      <div class="col-md-6 radio">
-        <label id="button"><input type="radio" name="address">TypeName :<br>Address:</label>
-      </div> 
-      <div class="col-md-6 radio">
-        <label id="button"><input type="radio" name="address">TypeName :<br>Address:</label>
-      </div> -->
-    </div>
+      <div class="col-md-6">
+          <div class="margin">
+              <label class="con">Select Address:</label>
+              <div class="row">
+                  <div class="col-md-12 radio" *ngFor="let address of addressList">
+                      <label id="button"><input type="radio" name="address" (click) = "changeAddress(address.address_id)">TypeName : {{ address.type_name}}<br>   Address :{{ address.address }}</label>
+                  </div>
+              </div>
+          </div>
+      </div>
   </div>
+</div>
 </section>
 <div>
-  <button class="confirm  btn-lg btn-primary" (click) = "confirmOrder()">Confirm & Submit</button>
+  <button class="confirm  btn-sm btn-primary" (click) = "confirmOrder()">Confirm & Submit</button>
 </div>

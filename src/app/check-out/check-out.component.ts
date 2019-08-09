@@ -54,13 +54,12 @@ export class CheckOutComponent implements OnInit {
     console.log("value", value);
   }
 
-  addNewDeliveryAddress(value) {
+  addNewDeliveryAddress() {
     this.showhideAddressForm = true;
   }
 
   createNewAddress() {
     this.showhideAddressForm = false;
-
     let addressObj = {
       user_id: this.userDetails.user_id,
       address_type_id: this.userAddress_type,

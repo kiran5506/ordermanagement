@@ -1,27 +1,31 @@
 .submit-btn {
-  margin-left: 300px;
+  text-align: center;
+  /*margin-left:300px;*/
 }
 
 .btn {
   border-radius: 20px;
-  margin-left: -190px;
+  /*margin-left: -190px;*/
+}
+
+.form-fields {
+  display: flex;
 }
 
 .userdata {
-  margin-top: 30px;
   padding: 8px;
-  padding-top: 37px;
-  margin-left: 308px;
-  padding-right: 175px;
+  /*padding-top: 37px;*/
+  /*margin-left: 308px;*/
+  /*padding-right: 175px;*/
 }
 
-.typeofaddress {
+/*.typeofaddress {
   border: solid lightgray 1.5px;
   margin-left: 108px;
   margin-right: 88px;
   padding-left: 104px;
   padding-bottom: 20px;
-}
+}*/
 
 .add {
   padding-top: 37px;
@@ -38,9 +42,10 @@
 }
 
 .button {
-  margin-top: 37px;
+  margin-top: 22px;
   margin-bottom: 20px;
-  margin-left: 390px;
+  text-align: center;
+  /*margin-left: 390px;*/
 }
 
 .form {
@@ -55,9 +60,9 @@
 }
 
 .container {
-  border: solid lightgray 1.5px;
+  /*border: solid lightgray 1.5px;*/
   margin-top: 45px;
-  margin-bottom: 80px;
+  /*margin-bottom:80px;*/
   margin-left: 50px;
   margin-right: 50px;
 }
@@ -77,12 +82,6 @@
   margin-bottom: 30px;
 }
 
-.con {
-  margin-left: 50px;
-}
-
-.margin {
-  margin-top: 50px;
-  margin-left: 70px;
-  margin-right: 70px;
+.btn-sm {
+  border-radius: 0%;
 }

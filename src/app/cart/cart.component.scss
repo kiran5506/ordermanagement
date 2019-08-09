@@ -37,7 +37,9 @@
 
 .product-removal {
   float: left;
-  width: 9%;
+  width: 12%;
+  text-align: right;
+  
 }
 
 .container-fluid{
@@ -48,8 +50,8 @@
 
 .product-line-price {
   float: left;
-  width: 12%;
-  text-align: right;
+  width: 9%;
+  
 }
 
 .total{
@@ -288,12 +290,13 @@ label {
   }
 
   .product-removal {
-    width: auto;
+    float: right;
+    width: 70px;
+    
   }
 
   .product-line-price {
-    float: right;
-    width: 70px;
+    width: auto;
   }
 }
 /* Make more adjustments for phone */

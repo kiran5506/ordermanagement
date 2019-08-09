@@ -17,6 +17,8 @@ export class HomeComponent implements OnInit {
   barProductItems = [];
   barCompanyId: any;
 
+  cementQuantity: any;
+
   constructor(
     private productService: ProductsService,
     private userService: UserService,
@@ -46,14 +48,12 @@ export class HomeComponent implements OnInit {
     let cementTotalPrice = quantityEvent * item.price;
     this.cementProducts[index]["totalPrice"] = cementTotalPrice;
     this.cementProducts[index]["qty"] = quantityEvent;
-    localStorage.setItem(
-      "cementAddToCart",
-      JSON.stringify(this.cementProducts[index])
-    );
-    localStorage.setItem(
-      "cementQTY",
-      JSON.stringify([{ quantityEvent, index }])
-    );
+
+    let cementProductId = item.prod_cement_id;
+    this.cementQuantity = { quantityEvent, index , cementProductId};
+   
+    console.log("productId", cementProductId);
+
   }
 
   /*                                 Bars Integration                                       */
@@ -104,13 +104,13 @@ export class HomeComponent implements OnInit {
 
   itemAddToCart(cartIndex, cartType) {
     let user = JSON.parse(localStorage.getItem("user"));
-    let cementQuntity = JSON.parse(localStorage.getItem("cementQTY"));
+
     let barsQuntity = JSON.parse(localStorage.getItem("barsQTY"));
-    let cementCart = JSON.parse(localStorage.getItem("cementAddToCart"));
     let barsList = JSON.parse(localStorage.getItem("barsList"));
     console.log("barsList", barsList);
+
     let login = localStorage.getItem("isOMlogin");
-    if (login == "false" || login == null) {
+    if (login == null) {
       this.router.navigateByUrl("login");
     } else {
       if (cartType == 2) {
@@ -150,33 +150,34 @@ export class HomeComponent implements OnInit {
           }
         }
       } else {
-        if (cementQuntity == null) {
+        console.log(this.cementQuantity);
+        if (this.cementQuantity == undefined) {
           this.toastrService.info("please enter quantity");
         } else {
-          for (var o = 0; o < cementQuntity.length; o++) {
-            var itemIndex = cementQuntity[o].index;
-            var cement = cementQuntity[o].quantityEvent;
-          }
-
-          if (itemIndex === cartIndex) {
-            if (cement < 1 || cement == "") {
-              this.toastrService.info("please enter valid quantity");
+          if (this.cementQuantity.index == cartIndex) {
+            if (this.cementQuantity.quantityEvent == "") {
+              this.toastrService.info("please enter quantity");
             } else {
-              var cartDetails = {
-                user_id: user.user_id,
-                type_id: cartType,
-                prod_type_id: cementCart.prod_cement_id,
-                quantity: cementCart.qty,
-                bar_products: []
-              };
+              if (this.cementQuantity.index == cartIndex) {
+                if (this.cementQuantity.quantityEvent < 1) {
+                  this.toastrService.info("please enter valid quantity");
+                } else {
+                  var cartDetails = {
+                    user_id: user.user_id,
+                    type_id: cartType,
+                    prod_type_id: this.cementQuantity.cementProductId,
+                    quantity: this.cementQuantity.quantityEvent,
+                    bar_products: []
+                  };
 
-              console.log("cartDetails", cartDetails);
-              this.userService.addToCart(cartDetails).subscribe(resp => {
-                console.log("cartResp", resp);
-                this.toastrService.success("item add into cart");
-                localStorage.removeItem("cementQTY");
-                localStorage.removeItem("addToCart");
-              });
+                   console.log("cartDetails", cartDetails);
+                  // this.userService.addToCart(cartDetails).subscribe(resp => {
+                  //   console.log("cartResp", resp);
+                  //   this.toastrService.success("item add into cart");
+                  //   localStorage.removeItem("addToCart");
+                  // });
+                }
+              }
             }
           } else {
             this.toastrService.info("please enter quantity");

@@ -1,5 +1,4 @@
 import { DatabroadcastService } from "./databroadcast.service";
-import { HeadersService } from "./headers.service";
 import { Router } from "@angular/router";
 import { Injectable } from "@angular/core";
 import { environment } from "src/environments/environment";
@@ -24,7 +23,6 @@ export class AuthenticationService {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private headers: HeadersService,
     private broadCastService: DatabroadcastService
   ) {}
 
@@ -42,7 +40,7 @@ export class AuthenticationService {
 
   logOut() {
     this.broadCastService.isShowhide.emit(false);
-    localStorage.setItem("isOMlogin", "false");
+    localStorage.removeItem("isOMlogin");
     localStorage.removeItem("user");
     localStorage.removeItem("addToCart");
     localStorage.removeItem("cartList");

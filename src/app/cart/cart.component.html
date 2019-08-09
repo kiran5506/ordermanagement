@@ -22,14 +22,15 @@
           <div class="product-quantity">
             <input type="number" value="{{ cart.quantity }}" (input)="chageCartValue( cart, 0, $event.target.value, 1)" />
           </div>
+          <div class="product-line-price">
+              <p>&#8360; {{ cart.totalPrice }}</p>
+            </div>
           <div class="product-removal">
             <button class="btn btn-danger btn-xs" (click)="deleteCarItem(0, cart.cart_id)">
               <i class="fa fa-trash"></i>
             </button>
           </div>
-          <div class="product-line-price">
-            <p>&#8360; {{ cart.totalPrice }}</p>
-          </div>
+         
         </div>
         <!-- bar data -->
         <div *ngIf="cart.type_id == 2">
@@ -41,29 +42,35 @@
           </div>
           <div class="product-price">
             <p *ngFor="let bars of cart.bar_products">&nbsp;{{bars.type}}<span>&#8211;</span>&nbsp;
-              <span>&#8377;&nbsp;</span> {{ bars.price }}&nbsp;<span>&#215;&nbsp;</span></p>
+              <span>&#8377;&nbsp;</span> {{ bars.value }}&nbsp;<span>&#215;&nbsp;</span></p>
           </div>
 
           <div class="product-quantity">
             <div *ngFor="let bars of cart.bar_products">
               <input type="number" class="bottom" value="{{bars.quantity}}" (input)="chageCartValue( cart, bars, $event.target.value, 2)" />
-              &#61;
-              &#8360; {{ bars.price*bars.quantity }}
-              <br>
+              <!-- &#61; -->
+              
+              <!-- <br> -->
+
+              
             </div>
             <div>
                 <p class="total"> Total Amount =
                   &#8360; {{cart.barTotal}}</p>
               </div>
           </div>
+          
+
+          <div class="product-line-price" *ngFor="let bars of cart.bar_products">
+              &#8360; {{ bars.value*bars.quantity }}
+              <!-- <p>&#8360; {{ cart.barTotal }}</p> -->
+            </div>
           <div class="product-removal">
             <button class="btn btn-danger btn-xs" (click)="deleteCarItem(0, cart.cart_id)">
               <i class="fa fa-trash"></i>
             </button>
           </div>
-          <div class="product-line-price">
-            <p>&#8360; {{ cart.barTotal }}</p>
-          </div>
+          
         </div>
       </div>
       <div class="totals">

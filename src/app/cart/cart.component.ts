@@ -55,8 +55,9 @@ export class CartComponent implements OnInit {
               this.totBaramount =
                 this.totBaramount +
                 this.cartProducts[j].bar_products[k].quantity *
-                  this.cartProducts[j].bar_products[k].price;
+                  this.cartProducts[j].bar_products[k].value;
             }
+            console.log("totBaramount", this.totBaramount);
             resp.result[j]["barTotal"] = this.totBaramount;
             this.totGrandamount = this.totGrandamount + this.totBaramount;
             console.log("bar-->", this.totBaramount);
