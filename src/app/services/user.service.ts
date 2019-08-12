@@ -25,6 +25,14 @@ export class UserService {
     return this.http.post(this.baseUrl + "users/getuserdetails", data, options);
   }
 
+  getUserOrders(data: any): Observable<any> {
+    return this.http.post(
+      this.baseUrl + "products/userOrderDetails",
+      data,
+      options
+    );
+  }
+
   addToCart(data: any): Observable<any> {
     return this.http.post(this.baseUrl + "products/addtoCart", data, options);
   }
@@ -51,5 +59,16 @@ export class UserService {
 
   userGetAddress(data: any): Observable<any> {
     return this.http.post(this.baseUrl + "users/getUserAddress", data, options);
+  }
+  userDeleteAddress(data: any): Observable<any> {
+    return this.http.post(this.baseUrl + "/users/deleteAddress", data, options);
+  }
+
+  userUpdateAddress(data: any): Observable<any> {
+    return this.http.post(this.baseUrl + "users/updateAddress", data, options);
+  }
+
+  getUserAddressTypes(): Observable<any> {
+    return this.http.get(this.baseUrl + "users/addressTypes", options);
   }
 }

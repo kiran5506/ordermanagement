@@ -1,3 +1,15 @@
+<div *ngIf="!cartItemsLength">
+
+<div class="container empty_cart">
+
+ <h1>No Cart Items available</h1>
+
+</div>
+
+
+</div>
+
+<div *ngIf="cartItemsLength">
 <section class="cart-section">
   <div class="container">
     <div class=" empty-cart">
@@ -47,22 +59,17 @@
 
           <div class="product-quantity">
             <div *ngFor="let bars of cart.bar_products">
-              <input type="number" class="bottom" value="{{bars.quantity}}" (input)="chageCartValue( cart, bars, $event.target.value, 2)" />
-              <!-- &#61; -->
-              
-              <!-- <br> -->
-
-              
+              <input type="number" class="bottom" value="{{bars.quantity}}" (input)="chageCartValue( cart, bars, $event.target.value, 2)" /> 
             </div>
-            <div>
+            <!-- <div>
                 <p class="total"> Total Amount =
                   &#8360; {{cart.barTotal}}</p>
-              </div>
+              </div> -->
           </div>
           
 
-          <div class="product-line-price" *ngFor="let bars of cart.bar_products">
-              &#8360; {{ bars.value*bars.quantity }}
+          <div class=" product-line-price" >
+             <p *ngFor="let bars of cart.bar_products"> &#8360; {{ bars.value*bars.quantity }}</p>
               <!-- <p>&#8360; {{ cart.barTotal }}</p> -->
             </div>
           <div class="product-removal">
@@ -88,4 +95,5 @@
 <button type="button" class="btn btn-success" (click) = "checkOut()">
   CheckOut
 </button>
+</div>
 </div>

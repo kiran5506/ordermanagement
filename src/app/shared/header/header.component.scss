@@ -52,8 +52,15 @@ hr {
   margin: 5px 10px 9px 10px;
 }
 
-.drop1 a {
-  text-align: center;
+// .custom-dropdown {
+//   min-width: auto !important;
+// }
+
+.drop1 {
+  min-width: auto !important;
+  a {
+    text-align: center;
+  }
 }
 
 .image1 {
@@ -78,7 +85,8 @@ hr {
   text-align: center;
 }
 .dd {
-  color: black;
+  color: black !important;
+  font-size: 13px !important;
 }
 @media screen and (max-width: 480px) {
   .drop1 a {

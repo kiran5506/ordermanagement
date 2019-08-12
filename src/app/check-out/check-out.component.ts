@@ -82,7 +82,6 @@ export class CheckOutComponent implements OnInit {
     console.log("addressObj", addressObj);
 
     this.userService.userGetAddress(addressObj).subscribe(resp => {
-      resp.withCredentials = false;
       this.addressList = resp.result;
 
       console.log("addressList", this.addressList);
@@ -117,12 +116,13 @@ export class CheckOutComponent implements OnInit {
         paymeny_type_id: 1,
         cart_items: this.cartIds
       };
-      console.log("orderObj", orderObj);
+      console.log("orderObj", orderObj);  
 
       this.productService.userConfirmOrder(orderObj).subscribe(resp => {
-        console.log("confirmOrder", resp);
+        console.log("confirmOrder", resp.result);
         if (resp.status == 200) {
           localStorage.removeItem("grandtotal");
+
           this.router.navigateByUrl("thankYou");
         }
       });

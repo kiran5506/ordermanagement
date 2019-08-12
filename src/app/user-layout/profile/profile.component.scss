@@ -39,9 +39,9 @@
   /*margin-left: 390px;*/
 }
 
-.address-text p{
-  margin-top:25px;
-  font-size:20px;
+.address-text p {
+  margin-top: 25px;
+  font-size: 20px;
 }
 
 .btn {
@@ -54,18 +54,24 @@
 
 .profile-address {
   margin-bottom: 14px;
-  text-align: center;
-  padding:6px;
+  // text-align: center;
+  padding: 6px;
   border: 1px solid #e9ecef;
-
-} 
-
-.profile-address p {
-  padding:0px;
-  margin: 4px;  
-}
-
-.edit-buttons button{
-  margin-left:13px;
-
+  .address-type {
+    border: solid 1px #e6e2e2;
+    border-radius: 20%;
+    display: initial;
+    padding: 5px;
+    font-size: 12px;
+  }
+  .edit-buttons {
+    float: right;
+    button {
+      margin-left: 13px;
+    }
+  }
+  p {
+    padding: 0px;
+    margin: 4px;
+  }
 }

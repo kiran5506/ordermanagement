@@ -17,6 +17,8 @@ export class CartComponent implements OnInit {
   totCementamount = 0;
   totGrandamount = 0;
   updateCart: any;
+  cartItemsLength: boolean = false;
+
 
   constructor(
     private cartService: UserService,
@@ -37,31 +39,42 @@ export class CartComponent implements OnInit {
     };
     this.cartService.userCartList(userId).subscribe(resp => {
       this.cartProducts = resp.result;
-      for (var j = 0; j < this.cartProducts.length; j++) {
-        console.log("length", this.cartProducts.length);
 
-        let itemTotalPrice =
-          this.cartProducts[j].quantity * this.cartProducts[j].price;
-        if (this.cartProducts[j].type_id == 1) {
-          this.totCementamount = this.totCementamount + itemTotalPrice;
-          resp.result[j]["totalPrice"] = this.totCementamount;
-          this.totGrandamount = this.totGrandamount + this.totCementamount;
-          console.log("cement-->", this.totCementamount);
-          this.totCementamount = 0;
-        }
-        if (this.cartProducts[j].type_id == 2) {
-          if (this.cartProducts[j].bar_products.length > 0) {
-            for (let k = 0; k < this.cartProducts[j].bar_products.length; k++) {
-              this.totBaramount =
-                this.totBaramount +
-                this.cartProducts[j].bar_products[k].quantity *
-                  this.cartProducts[j].bar_products[k].value;
+      if (this.cartProducts.length < 1) {
+        this.cartItemsLength = false;
+      } else {
+        this.cartItemsLength = true;
+
+        for (var j = 0; j < this.cartProducts.length; j++) {
+          console.log("length", this.cartProducts.length);
+
+          let itemTotalPrice =
+            this.cartProducts[j].quantity * this.cartProducts[j].price;
+          if (this.cartProducts[j].type_id == 1) {
+            this.totCementamount = this.totCementamount + itemTotalPrice;
+            resp.result[j]["totalPrice"] = this.totCementamount;
+            this.totGrandamount = this.totGrandamount + this.totCementamount;
+            console.log("cement-->", this.totCementamount);
+            this.totCementamount = 0;
+          }
+          if (this.cartProducts[j].type_id == 2) {
+            if (this.cartProducts[j].bar_products.length > 0) {
+              for (
+                let k = 0;
+                k < this.cartProducts[j].bar_products.length;
+                k++
+              ) {
+                this.totBaramount =
+                  this.totBaramount +
+                  this.cartProducts[j].bar_products[k].quantity *
+                    this.cartProducts[j].bar_products[k].value;
+              }
+              console.log("totBaramount", this.totBaramount);
+              resp.result[j]["barTotal"] = this.totBaramount;
+              this.totGrandamount = this.totGrandamount + this.totBaramount;
+              console.log("bar-->", this.totBaramount);
+              this.totBaramount = 0;
             }
-            console.log("totBaramount", this.totBaramount);
-            resp.result[j]["barTotal"] = this.totBaramount;
-            this.totGrandamount = this.totGrandamount + this.totBaramount;
-            console.log("bar-->", this.totBaramount);
-            this.totBaramount = 0;
           }
         }
       }

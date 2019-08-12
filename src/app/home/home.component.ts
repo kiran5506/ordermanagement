@@ -26,8 +26,6 @@ export class HomeComponent implements OnInit {
     private router: Router
   ) {}
   ngOnInit() {
-    localStorage.setItem("loadhompage", "true");
-    localStorage.removeItem("cementQTY");
     this.cementProducts;
     this.cementProductsList();
     this.barsproductsList();
@@ -50,10 +48,9 @@ export class HomeComponent implements OnInit {
     this.cementProducts[index]["qty"] = quantityEvent;
 
     let cementProductId = item.prod_cement_id;
-    this.cementQuantity = { quantityEvent, index , cementProductId};
-   
-    console.log("productId", cementProductId);
+    this.cementQuantity = { quantityEvent, index, cementProductId };
 
+    console.log("productId", cementProductId);
   }
 
   /*                                 Bars Integration                                       */
@@ -170,12 +167,14 @@ export class HomeComponent implements OnInit {
                     bar_products: []
                   };
 
-                   console.log("cartDetails", cartDetails);
-                  // this.userService.addToCart(cartDetails).subscribe(resp => {
-                  //   console.log("cartResp", resp);
-                  //   this.toastrService.success("item add into cart");
-                  //   localStorage.removeItem("addToCart");
-                  // });
+                  console.log("cartDetails", cartDetails);
+
+                  this.cementQuantity = null;
+                  this.userService.addToCart(cartDetails).subscribe(resp => {
+                    console.log("cartResp", resp);
+                    this.toastrService.success("item add into cart");
+      
+                  });
                 }
               }
             }

@@ -16,10 +16,11 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import {
   LocationStrategy,
   HashLocationStrategy,
-  PathLocationStrategy
+  PathLocationStrategy,
+  CommonModule
 } from "@angular/common";
 import { CheckOutComponent } from "./check-out/check-out.component";
-import { ThankYouComponent } from './thank-you/thank-you.component';
+import { ThankYouComponent } from "./thank-you/thank-you.component";
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,6 +33,7 @@ import { ThankYouComponent } from './thank-you/thank-you.component';
   ],
   imports: [
     BrowserModule,
+    CommonModule,
     AppRoutingModule,
     SharedModule,
     HttpClientModule,
