@@ -6,6 +6,8 @@ import { RouterModule } from "@angular/router";
 import { UserLayoutRoutingModule } from "./user-layout.routing.module";
 import { UserLayoutComponent } from "./user-layout.component";
 import { ReactiveFormsModule } from "@angular/forms";
+import { BrowserModule } from "@angular/platform-browser";
+import { CommonModule } from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -14,7 +16,7 @@ import { ReactiveFormsModule } from "@angular/forms";
     SidebarComponent,
     UserLayoutComponent
   ],
-  imports: [UserLayoutRoutingModule, ReactiveFormsModule],
+  imports: [UserLayoutRoutingModule, ReactiveFormsModule, CommonModule],
   exports: [SidebarComponent]
 })
 export class UserLayoutModule {}

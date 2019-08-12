@@ -9,14 +9,23 @@ import { Component, OnInit } from "@angular/core";
 })
 export class ProfileComponent implements OnInit {
   profileForm: FormGroup;
+  addressForm: FormGroup;
   currentUser: any;
+  addressList: any;
+  addressType: any;
+  showhideuseraddressForm: boolean = false;
+  addressTypes: any;
   constructor(private userService: UserService, private fb: FormBuilder) {
     this.loadingProfileForm(fb);
+    this.loadingAddressForm(fb);
   }
 
   ngOnInit() {
     this.currentUser = JSON.parse(localStorage.getItem("user"));
     console.log("currentUser", this.currentUser);
+
+    this.userAddress();
+    this.getUserAddresstypes();
   }
 
   public loadingProfileForm(fb) {
@@ -71,16 +80,72 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  userCreateAddress() {
+  getUserAddresstypes() {
+    this.userService.getUserAddressTypes().subscribe(resp => {
+      console.log("addressTypes", resp);
+
+      this.addressTypes = resp.result;
+    });
+  }
+
+  addNewDeliveryAddress() {
+    this.showhideuseraddressForm = true;
+  }
+
+  addressTypeChange(value) {
+    this.addressType = value;
+  }
+
+  public loadingAddressForm(fb) {
+    this.addressForm = fb.group({
+      userType: [null, Validators.required],
+      userAddress: [null, Validators.required]
+    });
+  }
+
+  createNewAddress() {
+    this.showhideuseraddressForm = false;
     console.log("createAddress");
     let addressObj = {
       user_id: this.currentUser.user_id,
+      address_type_id: this.addressType,
+      address: this.addressForm.value.userAddress
+    };
+    console.log("addressObj", addressObj);
+    // this.userService.userCreateAddress(addressObj).subscribe(resp => {
+    //   console.log("addressObj", resp);
+    //   this.userAddress();
+    // });
+  }
+
+  userUpdateAddress(id, type, add) {
+    this.showhideuseraddressForm = true;
+
+    this.addressForm.patchValue({
+      userType: type,
+      userAddress: add
+    });
+    let updateObj = {
+      address_id: id,
       address_type_id: 1,
-      address: "hyd"
+      address: "Visakhaptanam"
+    };
+    console.log("updateObj", updateObj);
+    // this.userService.userUpdateAddress(updateObj).subscribe(resp => {
+    //   console.log("addressUpdate", resp);
+    // });
+  }
+
+  userDeleteAddress(id) {
+    let deleteObj = {
+      address_id: id
     };
 
-    this.userService.userCreateAddress(addressObj).subscribe(resp => {
-      console.log("addressObj", resp);
+    console.log("deleteObj", deleteObj);
+
+    this.userService.userDeleteAddress(deleteObj).subscribe(resp => {
+      console.log("deleteObj", resp);
+      this.userAddress();
     });
   }
 
@@ -89,7 +154,9 @@ export class ProfileComponent implements OnInit {
       user_id: this.currentUser.user_id
     };
     this.userService.userGetAddress(getAddreesObj).subscribe(resp => {
-      console.log("getAddreesObj", getAddreesObj);
+      console.log("getAddreesObj", resp);
+
+      this.addressList = resp.result;
     });
   }
 }
