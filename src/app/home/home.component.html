@@ -16,7 +16,7 @@
             <div class="carousel-item">
                 <img src="assets/caro1.jpg" alt="Chicago" width="1100" height="500">
                 <div class="carousel-caption">
-                   <!--  <h3>Chicago</h3>
+                    <!--  <h3>Chicago</h3>
                     <p>Thank you, Chicago!</p> -->
                 </div>
             </div>
@@ -28,10 +28,10 @@
                 </div>
             </div>
         </div>
-        <a class="carousel-control-prev" href="#demo" data-slide="prev">
+        <a class="carousel-control-prev caro-icons" href="#demo" data-slide="prev">
             <span class="carousel-control-prev-icon"></span>
         </a>
-        <a class="carousel-control-next" href="#demo" data-slide="next">
+        <a class="carousel-control-next caro-icons1" href="#demo" data-slide="next">
             <span class="carousel-control-next-icon"></span>
         </a>
     </div>
@@ -83,10 +83,12 @@
                         <div class="bar-price1" *ngFor="let bar of product.barsList; let j = index">
                             <p>{{ bar.type }}&nbsp;<span>&#8211;</span>&nbsp;</p>
                             <p><span>&#8377;&nbsp;</span>{{ bar.value }}&nbsp;<span>&#215;&nbsp;</span></p>
-                            <input type="number" value="" (input)="barsQuntity(bar, $event.target.value, k, j, product.prod_bar_company_id)"
+                            <input type="number" value=""
+                                (input)="barsQuntity(bar, $event.target.value, k, j, product.prod_bar_company_id)"
                                 placeholder="quantity" />
                             <span>&nbsp;&#61;&nbsp;</span>
-                            <input type="text" class="bars-input-name" name="total" readonly value="{{ bar.totalPrice }}">
+                            <input type="text" class="bars-input-name" name="total" readonly
+                                value="{{ bar.totalPrice }}">
 
                         </div>
                     </div>
@@ -102,4 +104,3 @@
         </div>
     </div>
 </div>
-
