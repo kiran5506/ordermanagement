@@ -1,13 +1,11 @@
 .sidenav-wrapper {
-  position: absolute;
-  width: 240px;
-  height: 91vh;
-  left: 0px;
-  top: 72px;
+  width: 230px;
+  height: 100%;
   z-index: 20;
-  padding-top: 70px;
-  background: #1f2a2c;
+  padding-top: 27px;
+  background: #222d32;
   box-shadow: 1px 0px 20px rgba(0, 0, 0, 0.08);
+  margin-left: -15px;
   // @include mobile {
   //   width: 70px;
   // }
@@ -16,8 +14,5 @@
   // }
 }
 .main-wrapper {
-  margin-left: 240px;
-  height: calc(100vh - 64px);
   position: relative;
-  overflow: auto;
 }

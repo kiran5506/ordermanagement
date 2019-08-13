@@ -1,6 +1,12 @@
-<div class="sidebar">
-  <a [routerLink]="['profile']"><h5 class="fa fa-user" id>Profile</h5></a>
-  <a [routerLink]="['myOrders']"
-    ><h5 class="fa fa-shopping-cart">My Orders</h5></a
-  >
-</div>
+<div>
+  <div class="sidebar">
+    <ul>
+      <li routerLinkActive="isActive">
+        <a [routerLink]="['profile']"><i class="fa fa-user"></i>Profile</a>
+      </li>
+      <li routerLinkActive="isActive">
+        <a [routerLink]="['myOrders']"><i class="fa fa-shopping-cart"></i>My Orders</a>
+      </li>    
+    </ul>    
+  </div>
+</div>  

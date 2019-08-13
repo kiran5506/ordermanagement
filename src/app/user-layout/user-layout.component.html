@@ -1,14 +1,16 @@
 <div class="container-fluid">
-  <div class="">
-    <!-- <div class="col col-md-2"> -->
-    <div class="sidenav-wrapper">
-      <app-sidebar></app-sidebar>
+  <div class="row">
+    <div class="col-md-2">
+      <div class="sidenav-wrapper">
+        <app-sidebar></app-sidebar>
+      </div>  
     </div>
-    <!-- <div class="col col-md-10"> -->
-    <div class="main-wrapper">
-      <div class="container-fluid">
-        <router-outlet></router-outlet>
+    <div class="col-md-10">
+      <div class="main-wrapper">
+        <div class="container-fluid">
+          <router-outlet></router-outlet>
+        </div>
       </div>
-    </div>
+    </div>  
   </div>
 </div>

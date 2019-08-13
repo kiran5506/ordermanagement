@@ -1,16 +1,37 @@
 .sidebar {
-  position: relative;
-  left: 40px;
-  display: grid;
+  ul { 
+    padding: 0px;
+    li {
+      list-style: none;
+      padding-left: 10px;
+      color: #b8c7ce !important;
+      font-size: 14px;
+      height: 40px;
+      padding-top: 10px;
+      a {
+        color: #b8c7ce;
+        text-decoration: none
+      }
+      &:hover a {
+        color: #fff;
+      } 
+      &:hover li {
+        background: #1e282c;
+      }
+    }
+  }
 }
-
+.isActive {
+  border-left: 3px solid #3c8dbc;
+  background: #1e282c;
+  a {
+    color: #fff !important;
+  }
+}
 .fa-user:before {
   padding-right: 15px;
 }
 
 .fa-shopping-cart:before {
   padding-right: 15px;
-}
-a {
-  color: white;
 }
