@@ -5,92 +5,98 @@
     </div>
     <div class="col-sm-12">
       <div class="row">
-        <form [formGroup]="profileForm" (ngSubmit)="update()">
-          <div class="form-row">
-            <div class="col-md-6">
-              <div class="form-group">
-                <label>ShopName</label>
-                <input class="form-control" type="text" formControlName="shop_name" />
+        <div class="profile-form margin">
+          <form [formGroup]="profileForm" (ngSubmit)="update()">
+            <div class="form-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>ShopName</label>
+                  <input class="form-control" type="text" formControlName="shop_name" />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>OwnerName</label>
+                  <input class="form-control" type="text" formControlName="owner_name" />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>GST Number</label>
+                  <input class="form-control" type="text" formControlName="gst_number" />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>MobileNumber</label>
+                  <input class="form-control" formControlName="mobile_number" readonly />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Email</label>
+                  <input class="form-control" formControlName="email" readonly />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Address</label>
+                  <input class="form-control" type="text" formControlName="address" />
+                </div>
               </div>
             </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label>OwnerName</label>
-                <input class="form-control" type="text" formControlName="owner_name" />
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label>GST Number</label>
-                <input class="form-control" type="text" formControlName="gst_number" />
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label>MobileNumber</label>
-                <input class="form-control" formControlName="mobile_number" readonly />
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label>Email</label>
-                <input class="form-control" formControlName="email" readonly />
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label>Address</label>
-                <input class="form-control" type="text" formControlName="address" />
-              </div>
-            </div>
-          </div>
-        </form>
+          </form>
+        </div>  
       </div>
     </div>
     <section>
       <div class="col-md-12">
         <div class="row">
           <div class="col-md-6">
-            <div class="button1">
-              <button class="btn btn-primary" (click)="addNewDeliveryAddress()">+ Address</button>
-            </div>
-            <div class="typeofaddress" *ngIf="showhideuseraddressForm">
-              <form class="address" [formGroup]="addressForm" (ngSubmit)="address(addUpdateFormvalue)">
-                <div class="form-group">
-                  <label>Select Type</label>
-                  <select class="form-control" name="Type" forsmControleName = "userType" (change)="addressTypeChange($event.target.value)" >
-                    <option value="type" hidden >Select</option>
-                    <option value="{{userType.address_type_id}}" *ngFor="let userType of addressTypes">{{userType.type_name}}</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label>Address</label>
-                  <textarea class="form-control textarea" placeholder="Enter Address..." cols="50"
-                    formControlName="userAddress"></textarea>
-                </div>
-                <div class="submit-btn">
-                  <button class="btn btn-md btn-primary" type="submit">Submit</button>
-                  <div *ngIf="addressFormCancel">
-                  <button class="btn btn-md btn-danger">Cancel</button>
-                 </div>
-                </div>
-              </form>
-            </div>
+            <div class="profile-form margin1">
+              <div class="button1">
+                <button class="btn btn-primary" (click)="addNewDeliveryAddress()">+ Address</button>
+              </div>
+              <div class="typeofaddress" *ngIf="showhideuseraddressForm">
+                <form class="address" [formGroup]="addressForm" (ngSubmit)="address(addUpdateFormvalue)">
+                  <div class="form-group">
+                    <label>Select Type</label>
+                    <select class="form-control" name="Type" forsmControleName = "userType" (change)="addressTypeChange($event.target.value)" >
+                      <option value="type" hidden >Select</option>
+                      <option value="{{userType.address_type_id}}" *ngFor="let userType of addressTypes">{{userType.type_name}}</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>Address</label>
+                    <textarea class="form-control textarea" placeholder="Enter Address..." cols="50"
+                      formControlName="userAddress"></textarea>
+                  </div>
+                  <div class="submit-btn d-flex">
+                    <button class="btn btn-md btn-primary" type="submit">Submit</button>
+                    <div *ngIf="addressFormCancel">
+                    <button class="btn btn-md btn-danger">Cancel</button>
+                  </div>
+                  </div>
+                </form>
+              </div>
+            </div>  
           </div>
           <div class="col-md-6">
-            <div class="address-text">
-              <p><b>Address</b></p>
-            </div>
-            <div class="col-md-12 profile-address" *ngFor = "let address of addressList">
-              <p class="address-type">{{address.type_name}}</p>
-              <div class="edit-buttons">
-                <button type="button" class="btn btn-sm btn-success" name="edit" (click) = 'updateDeliveryAddress(address)' ><i class="fa fa-pencil"></i></button>
-                <button type="button" class="btn btn-sm btn-danger" name="delete" (click) = 'deleteDeliveryAddress(address.address_id)'><i class="fa fa-trash"></i></button>
+            <div class="profile-form margin1">
+              <div class="address-text">
+                <p><b>Address</b></p>
               </div>
-              <div>
-                <p>{{address.address}}</p>
+              <div class="col-md-12 profile-address" *ngFor = "let address of addressList">
+                <p class="address-type">{{address.type_name}}</p>
+                <div class="edit-buttons">
+                  <button type="button" class="btn btn-sm btn-success" name="edit" (click) = 'updateDeliveryAddress(address)' ><i class="fa fa-pencil"></i></button>
+                  <button type="button" class="btn btn-sm btn-danger" name="delete" (click) = 'deleteDeliveryAddress(address.address_id)'><i class="fa fa-trash"></i></button>
+                </div>
+                <div>
+                  <p>{{address.address}}</p>
+                </div>
               </div>
-            </div>
+            </div>  
           </div>
         </div>
       </div>
