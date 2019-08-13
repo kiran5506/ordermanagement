@@ -12,9 +12,12 @@ export class ProfileComponent implements OnInit {
   addressForm: FormGroup;
   currentUser: any;
   addressList: any;
-  addressType: any;
+  addressTypeId: any;
   showhideuseraddressForm: boolean = false;
+  addressFormCancel: boolean = false;
   addressTypes: any;
+  addUpdateFormvalue: number;
+  updateAddressId: number;
   constructor(private userService: UserService, private fb: FormBuilder) {
     this.loadingProfileForm(fb);
     this.loadingAddressForm(fb);
@@ -62,7 +65,6 @@ export class ProfileComponent implements OnInit {
   }
 
   update() {
-    console.log("update");
     let updateForm = {
       user_id: this.currentUser.user_id,
       shop_name: this.profileForm.value.shop_name,
@@ -80,21 +82,7 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  getUserAddresstypes() {
-    this.userService.getUserAddressTypes().subscribe(resp => {
-      console.log("addressTypes", resp);
-
-      this.addressTypes = resp.result;
-    });
-  }
-
-  addNewDeliveryAddress() {
-    this.showhideuseraddressForm = true;
-  }
-
-  addressTypeChange(value) {
-    this.addressType = value;
-  }
+  /*          user Address Services Integration           */
 
   public loadingAddressForm(fb) {
     this.addressForm = fb.group({
@@ -103,40 +91,82 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  createNewAddress() {
-    this.showhideuseraddressForm = false;
-    console.log("createAddress");
-    let addressObj = {
-      user_id: this.currentUser.user_id,
-      address_type_id: this.addressType,
-      address: this.addressForm.value.userAddress
-    };
-    console.log("addressObj", addressObj);
-    // this.userService.userCreateAddress(addressObj).subscribe(resp => {
-    //   console.log("addressObj", resp);
-    //   this.userAddress();
-    // });
+  addressTypeChange(value) {
+    console.log("userType", value);
+    // this.addressTypeId = value;
+
+    /* this.cityName.setValue(value, {
+      onlySelf: true
+    }) 
+  }*/
   }
 
-  userUpdateAddress(id, type, add) {
+  addNewDeliveryAddress() {
     this.showhideuseraddressForm = true;
-
+    this.addressFormCancel = false;
+    this.addUpdateFormvalue = 1;
     this.addressForm.patchValue({
-      userType: type,
-      userAddress: add
+      userType: null,
+      userAddress: null
     });
-    let updateObj = {
-      address_id: id,
-      address_type_id: 1,
-      address: "Visakhaptanam"
-    };
-    console.log("updateObj", updateObj);
-    // this.userService.userUpdateAddress(updateObj).subscribe(resp => {
-    //   console.log("addressUpdate", resp);
-    // });
+  }
+  updateDeliveryAddress(updateAddress) {
+    console.log("updateaddressType", updateAddress);
+    this.updateAddressId = updateAddress.address_id;
+    this.showhideuseraddressForm = true;
+    this.addressFormCancel = true;
+    this.addUpdateFormvalue = 2;
+
+    this.addressForm.get("userAddress").setValue(updateAddress.address);
+    //this.addressForm.get("userType").setValue(2);
+
+    /* this.addressForm.patchValue({
+      userType: 2,
+      userAddress: updateAddress.address
+    }); */
+
+    this.addressTypeId = updateAddress.address_type_id;
+    console.log("addressId", this.addressTypeId);
+    console.log("addressForm", this.addressForm.value);
   }
 
-  userDeleteAddress(id) {
+  address(address) {
+    if (address == 1) {
+      /* add New Delivery Address  */
+
+      let addressObj = {
+        user_id: this.currentUser.user_id,
+        address_type_id: this.addressTypeId,
+        address: this.addressForm.value.userAddress
+      };
+      console.log("addressObj", addressObj);
+      this.userService.userCreateAddress(addressObj).subscribe(resp => {
+        console.log("addressObj", resp);
+        if (resp.status == 200) {
+          this.userAddress();
+          this.showhideuseraddressForm = false;
+        }
+      });
+    } else {
+      /* Update Delivery Address */
+
+      let updateObj = {
+        address_id: this.updateAddressId,
+        address_type_id: this.addressTypeId,
+        address: this.addressForm.value.userAddress
+      };
+      console.log("updateObj", updateObj);
+      this.userService.userUpdateAddress(updateObj).subscribe(resp => {
+        console.log("addressUpdate", resp);
+        if (resp.status == 200) {
+          this.userAddress();
+          this.showhideuseraddressForm = false;
+        }
+      });
+    }
+  }
+
+  deleteDeliveryAddress(id) {
     let deleteObj = {
       address_id: id
     };
@@ -144,8 +174,16 @@ export class ProfileComponent implements OnInit {
     console.log("deleteObj", deleteObj);
 
     this.userService.userDeleteAddress(deleteObj).subscribe(resp => {
-      console.log("deleteObj", resp);
+      console.log("deleteresponse", resp);
       this.userAddress();
+    });
+  }
+
+  getUserAddresstypes() {
+    this.userService.getUserAddressTypes().subscribe(resp => {
+      console.log("addressTypes", resp);
+
+      this.addressTypes = resp.result;
     });
   }
 
