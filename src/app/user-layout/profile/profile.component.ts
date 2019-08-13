@@ -93,15 +93,12 @@ export class ProfileComponent implements OnInit {
 
   addressTypeChange(value) {
     console.log("userType", value);
-    // this.addressTypeId = value;
-
-    /* this.cityName.setValue(value, {
-      onlySelf: true
-    }) 
-  }*/
+    this.addressTypeId = value;
   }
 
   addNewDeliveryAddress() {
+    this.getUserAddresstypes();
+    console.log("getUserAddresstypes", this.getUserAddresstypes());
     this.showhideuseraddressForm = true;
     this.addressFormCancel = false;
     this.addUpdateFormvalue = 1;
@@ -117,16 +114,26 @@ export class ProfileComponent implements OnInit {
     this.addressFormCancel = true;
     this.addUpdateFormvalue = 2;
 
-    this.addressForm.get("userAddress").setValue(updateAddress.address);
+    let addressObject = this.addressTypes.find(
+      i => i.address_type_id == updateAddress.address_type_id
+    );
+
+    this.addressTypes = [addressObject];
+
+    console.log("addressTypes", this.addressTypes);
+
+    console.log("addressObject", addressObject);
+
+    //  this.addressForm.get("userAddress").setValue(updateAddress.address);
     //this.addressForm.get("userType").setValue(2);
 
-    /* this.addressForm.patchValue({
+    this.addressForm.patchValue({
       userType: 2,
       userAddress: updateAddress.address
-    }); */
+    });
 
     this.addressTypeId = updateAddress.address_type_id;
-    console.log("addressId", this.addressTypeId);
+    // console.log("addressId", this.addressTypeId);
     console.log("addressForm", this.addressForm.value);
   }
 

@@ -60,7 +60,7 @@
                   <label>Select Type</label>
                   <select class="form-control" name="Type" forsmControleName = "userType" (change)="addressTypeChange($event.target.value)" >
                     <option value="type" hidden >Select</option>
-                    <option value="{{userType}}" *ngFor="let userType of addressTypes">{{userType.type_name}}</option>
+                    <option value="{{userType.address_type_id}}" *ngFor="let userType of addressTypes">{{userType.type_name}}</option>
                   </select>
                 </div>
                 <div class="form-group">
