@@ -24,19 +24,26 @@ img {
     text-align: center;
 }
 
+.hr-line {
+    width: 249px !important;
+    margin-right: 0px !important;
+}
 .total-value {
-    text-align:end;
+    text-align: end;
+    p {
+        font-size: 16px;
+        margin-right: 51px;
+    }
 }
 
-.total-value p {
-    font-size: 20px;
-    margin-right: 51px;
-}
 /*--------Expansion panel styles starts ---------*/
 
 .card {
     margin-bottom: 20px;
-    .card-header {
+    margin-top: 20px;
+    .card-header { 
+        background-color: #d1eea9 !important;
+        height: 57px;
         button {
             width: 100%;
             p {
@@ -45,5 +52,9 @@ img {
                 color: #000;
             }
         }
+    }
+    .details {
+        padding-left: 100px;
+        padding-bottom: 60px;
     }
 }

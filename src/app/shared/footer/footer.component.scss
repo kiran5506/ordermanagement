@@ -7,21 +7,30 @@
 
 .data {
     padding:30px 10px 10px 10px;
-    .footer-content {
-        text-align: center;
-    }
+    // .footer-content {
+    //     // text-align: center;
+    // }
 }
 .company-name {
     font-size: 24px;
 }
-.footer-links {
-    font-size:24px;
-    text-decoration: none;
-    font-weight: 600;
+.company-desc {
+    padding-right: 42px;
 }
-
+.footer-content { 
+    .footer-links {
+        // text-align: center;
+        font-size:24px;
+        text-decoration: none;
+        font-weight: 600;
+        color: #82ae46 !important;
+        &:hover {
+            color: #000 !important;
+        }
+    }
+}
 .footer-widget a {
-    color:#000;
+    color: #000;
     &:hover {
         color: #82ae46;
     }
@@ -37,6 +46,7 @@
 
 .list1 {
     padding:0px;
+    margin-top: 18px !important;
 }
 
 .list1 li {

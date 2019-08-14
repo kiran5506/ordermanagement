@@ -10,10 +10,12 @@
       padding-top: 10px;
       a {
         color: #b8c7ce;
-        text-decoration: none
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 16px;
       }
       &:hover a {
-        color: #fff;
+        color: #82ae46;
       } 
       &:hover li {
         background: #1e282c;
@@ -25,7 +27,7 @@
   border-left: 3px solid #3c8dbc;
   background: #1e282c;
   a {
-    color: #fff !important;
+    color: #82ae46 !important;
   }
 }
 .fa-user:before {
