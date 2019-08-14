@@ -1,12 +1,13 @@
 .header-widget {
-  background-color: #f7f6f2;
+  background-color: #82ae46;
   font-family: lato, Roboto, "Helvetica Neue", sans-serif;
 }
 
 .logo-text h2 {
-  color: #82ae46;
+  color: #fff;
   font-size: 22px;
-  font-weight: 600;
+  font-weight: 700;
+  text-shadow: 0px 1px black;
   &:hover {
     color: #000;
   }
@@ -22,7 +23,8 @@
   // text-transform: uppercase;
   font-weight: bold;
   font-size: 16px;
-  color: #82ae46;
+  color: #fff;
+  text-shadow: 1px 1px black;
   &:hover {
     color: #000;
   }

@@ -61,7 +61,7 @@
                 <form class="address" [formGroup]="addressForm" (ngSubmit)="address(addUpdateFormvalue)">
                   <div class="form-group">
                     <label>Select Type</label>
-                    <select class="form-control" name="Type" forsmControleName = "userType" (change)="addressTypeChange($event.target.value)" >
+                    <select class="form-control" name="Type" formControlName = "userType" (change)="addressTypeChange($event.target.value)" >
                       <option value="type" hidden >Select</option>
                       <option value="{{userType.address_type_id}}" *ngFor="let userType of addressTypes">{{userType.type_name}}</option>
                     </select>
@@ -89,8 +89,9 @@
               <div class="col-md-12 profile-address" *ngFor = "let address of addressList">
                 <p class="address-type">{{address.type_name}}</p>
                 <div class="edit-buttons">
-                  <button type="button" class="btn btn-sm btn-success" name="edit" (click) = 'updateDeliveryAddress(address)' ><i class="fa fa-pencil"></i></button>
-                  <button type="button" class="btn btn-sm btn-danger" name="delete" (click) = 'deleteDeliveryAddress(address.address_id)'><i class="fa fa-trash"></i></button>
+                  <button type="button" class="btn btn-sm btn-primary" name="edit" (click) = 'updateDeliveryAddress(address)' ><i class="fa fa-pencil"></i></button>
+                  
+                  <!-- <button type="button" class="btn btn-sm btn-danger" name="delete" (click) = 'deleteDeliveryAddress(address.address_id)'><i class="fa fa-trash"></i></button> -->
                 </div>
                 <div>
                   <p>{{address.address}}</p>
