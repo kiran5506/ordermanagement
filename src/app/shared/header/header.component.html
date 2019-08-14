@@ -13,8 +13,7 @@
       data-target="#menu"
       aria-controls="navbarSupportedContent"
       aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
+      aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse justify-content-end" id="menu">
@@ -23,10 +22,7 @@
           <a class="nav-link active" [routerLink]="['home']"><i class="fa fa-home cart-custom"> Home</i></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['cart']"
-            ><i class="fa fa-shopping-cart  cart-custom"> Cart</i></a
-          >
-
+          <a class="nav-link" [routerLink]="['cart']"><i class="fa fa-shopping-cart  cart-custom"> Cart</i></a>
         </li>
         <li class="nav-item" *ngIf="!isShowhide">
           <a class="nav-link" [routerLink]="['login']"><i class="fa fa-sign-in cart-custom"> SignIn</i></a>
@@ -40,10 +36,7 @@
             class="nav-link dropdown-toggle"
             data-toggle="dropdown"
             data-target="dropdown_target"
-            href="#"
-          >
-            USER
-          </a>
+            href="#">USER</a>
           <div class="dropdown-menu dropdown-menu-left drop1" aria-labelledby="dropdown_target">
             <div class="image1">
               <div>

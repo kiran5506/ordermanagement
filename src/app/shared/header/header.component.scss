@@ -1,10 +1,15 @@
 .header-widget {
-  background-color: blue;
+  background-color: #f7f6f2;
   font-family: lato, Roboto, "Helvetica Neue", sans-serif;
 }
 
 .logo-text h2 {
-  color: #ffffff;
+  color: #82ae46;
+  font-size: 22px;
+  font-weight: 600;
+  &:hover {
+    color: #000;
+  }
 }
 
 .navbar ul li {
@@ -17,7 +22,10 @@
   // text-transform: uppercase;
   font-weight: bold;
   font-size: 16px;
-  color: #ffffff;
+  color: #000;
+  &:hover {
+    color: #82ae46;
+  }
 }
 
 .navbar-toggler {
@@ -83,10 +91,20 @@ hr {
 
 .drop-button {
   text-align: center;
+  button {
+    border-radius: 25px;
+    &:hover {
+      background-color: #82ae46;
+      border: #82ae46; 
+    }  
+  }
 }
 .dd {
   color: black !important;
   font-size: 13px !important;
+  &:hover {
+    color: #82ae46 !important;
+  }
 }
 @media screen and (max-width: 480px) {
   .drop1 a {
