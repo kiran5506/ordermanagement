@@ -44,7 +44,7 @@ export class SignupComponent implements OnInit {
         ]
       ],
       password: [null, Validators.required],
-      gst_number: [null],
+      gst_number: [""],
       owner_name: [null, Validators.required],
       address: [null, Validators.required],
       pincode: [null, Validators.required]
@@ -64,10 +64,12 @@ export class SignupComponent implements OnInit {
       pincode: this.signUpForm.value.pincode
     };
 
+    console.log("formData", formData);
+
     this.authService.signUp(formData).subscribe((response: any) => {
       console.log("SignUp", response);
       if (response.status == 200) {
-        localStorage.setItem("isOMlogin", "true");
+        localStorage.setItem("user", JSON.stringify(response.result));
         this.broadCastService.isShowhide.emit(true);
         this.toastrService.success("sign up successfully");
         this.router.navigateByUrl("home");

@@ -1,3 +1,4 @@
+import { DatabroadcastService } from "./../../services/databroadcast.service";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { UserService } from "./../../services/user.service";
 import { Component, OnInit } from "@angular/core";
@@ -18,7 +19,11 @@ export class ProfileComponent implements OnInit {
   addressTypes: any;
   addUpdateFormvalue: number;
   updateAddressId: number;
-  constructor(private userService: UserService, private fb: FormBuilder) {
+  constructor(
+    private userService: UserService,
+    private fb: FormBuilder,
+    private databroadcastService: DatabroadcastService
+  ) {
     this.loadingProfileForm(fb);
     this.loadingAddressForm(fb);
   }
@@ -29,6 +34,7 @@ export class ProfileComponent implements OnInit {
 
     this.userAddress();
     this.getUserAddresstypes();
+    this.databroadcastService.isShowhide.emit(true);
   }
 
   public loadingProfileForm(fb) {
@@ -82,7 +88,7 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  /*          user Address Services Integration           */
+  /*                                 user Address Services Integration                                           */
 
   public loadingAddressForm(fb) {
     this.addressForm = fb.group({
@@ -91,14 +97,7 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  addressTypeChange(value) {
-    console.log("userType", value);
-    this.addressTypeId = value;
-  }
-
   addNewDeliveryAddress() {
-    this.getUserAddresstypes();
-    console.log("getUserAddresstypes", this.getUserAddresstypes());
     this.showhideuseraddressForm = true;
     this.addressFormCancel = false;
     this.addUpdateFormvalue = 1;
@@ -107,34 +106,17 @@ export class ProfileComponent implements OnInit {
       userAddress: null
     });
   }
+
   updateDeliveryAddress(updateAddress) {
-    console.log("updateaddressType", updateAddress);
     this.updateAddressId = updateAddress.address_id;
     this.showhideuseraddressForm = true;
     this.addressFormCancel = true;
     this.addUpdateFormvalue = 2;
 
-    let addressObject = this.addressTypes.find(
-      i => i.address_type_id == updateAddress.address_type_id
-    );
-
-    this.addressTypes = [addressObject];
-
-    console.log("addressTypes", this.addressTypes);
-
-    console.log("addressObject", addressObject);
-
-    //  this.addressForm.get("userAddress").setValue(updateAddress.address);
-    //this.addressForm.get("userType").setValue(2);
-
     this.addressForm.patchValue({
-      userType: 2,
+      userType: updateAddress.address_type_id,
       userAddress: updateAddress.address
     });
-
-    this.addressTypeId = updateAddress.address_type_id;
-    // console.log("addressId", this.addressTypeId);
-    console.log("addressForm", this.addressForm.value);
   }
 
   address(address) {
@@ -143,12 +125,12 @@ export class ProfileComponent implements OnInit {
 
       let addressObj = {
         user_id: this.currentUser.user_id,
-        address_type_id: this.addressTypeId,
+        address_type_id: this.addressForm.value.userType,
         address: this.addressForm.value.userAddress
       };
       console.log("addressObj", addressObj);
       this.userService.userCreateAddress(addressObj).subscribe(resp => {
-        console.log("addressObj", resp);
+        console.log("addressObjresponse", resp);
         if (resp.status == 200) {
           this.userAddress();
           this.showhideuseraddressForm = false;
@@ -159,7 +141,7 @@ export class ProfileComponent implements OnInit {
 
       let updateObj = {
         address_id: this.updateAddressId,
-        address_type_id: this.addressTypeId,
+        address_type_id: this.addressForm.value.userType,
         address: this.addressForm.value.userAddress
       };
       console.log("updateObj", updateObj);
@@ -171,6 +153,10 @@ export class ProfileComponent implements OnInit {
         }
       });
     }
+  }
+
+  formCancel() {
+    this.showhideuseraddressForm = false;
   }
 
   deleteDeliveryAddress(id) {

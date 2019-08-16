@@ -12,8 +12,6 @@ import { Router } from "@angular/router";
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
-  // isError: boolean = false;
-  // errorMessage: string;
 
   constructor(
     private loginService: AuthenticationService,
@@ -35,7 +33,6 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    console.log("login");
     let formData = {
       email: this.loginForm.value.userName,
       password: this.loginForm.value.password
@@ -46,7 +43,6 @@ export class LoginComponent implements OnInit {
       if (response.status === 200) {
         this.databroadcastService.isShowhide.emit(true);
         localStorage.setItem("user", JSON.stringify(response.userdata));
-        localStorage.setItem("isOMlogin", "true");
         this.toastrService.success("login successfully");
         this.router.navigateByUrl("/home");
       } else if (response.status === 404) {

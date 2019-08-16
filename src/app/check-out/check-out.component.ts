@@ -106,26 +106,26 @@ export class CheckOutComponent implements OnInit {
   }
 
   confirmOrder() {
-    if (this.address_id == undefined) {
-      this.toastrService.error("please  selecet a address");
-    } else {
-      let orderObj = {
-        user_id: this.userDetails.user_id,
-        address_id: this.address_id,
-        total_amout: this.grandTotal,
-        paymeny_type_id: 1,
-        cart_items: this.cartIds
-      };
-      console.log("orderObj", orderObj);  
+    // if (this.address_id == undefined) {
+    //   this.toastrService.error("please  selecet a address");
+    // } else {
+    let orderObj = {
+      user_id: this.userDetails.user_id,
+      address_id: 1,
+      total_amout: this.grandTotal,
+      paymeny_type_id: 1,
+      cart_items: this.cartIds
+    };
+    console.log("orderObj", orderObj);
 
-      this.productService.userConfirmOrder(orderObj).subscribe(resp => {
-        console.log("confirmOrder", resp.result);
-        if (resp.status == 200) {
-          localStorage.removeItem("grandtotal");
+    this.productService.userConfirmOrder(orderObj).subscribe(resp => {
+      console.log("confirmOrder", resp.result);
+      if (resp.status == 200) {
+        localStorage.removeItem("grandtotal");
 
-          this.router.navigateByUrl("thankYou");
-        }
-      });
-    }
+        this.router.navigateByUrl("thankYou");
+      }
+    });
+    // }
   }
 }

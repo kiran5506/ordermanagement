@@ -3,6 +3,7 @@ import { Router } from "@angular/router";
 import { ProductsService } from "./../services/products.service";
 import { Component, OnInit } from "@angular/core";
 import { ToastrService } from "ngx-toastr";
+import { DatabroadcastService } from "../services/databroadcast.service";
 
 @Component({
   selector: "app-home",
@@ -16,19 +17,31 @@ export class HomeComponent implements OnInit {
   storeQuntity: any;
   barProductItems = [];
   barCompanyId: any;
-
+  user: any;
   cementQuantity: any;
 
   constructor(
     private productService: ProductsService,
     private userService: UserService,
     private toastrService: ToastrService,
-    private router: Router
+    private router: Router,
+    private databroadcastService: DatabroadcastService
   ) {}
   ngOnInit() {
+    this.user = JSON.parse(localStorage.getItem("user"));
+
     this.cementProducts;
+    this.loadHomepage();
     this.cementProductsList();
     this.barsproductsList();
+  }
+
+  public loadHomepage() {
+    if (this.user != null) {
+      this.databroadcastService.isShowhide.emit(true);
+    } else {
+      this.databroadcastService.isShowhide.emit(false);
+    }
   }
 
   cementProductsList() {
@@ -100,14 +113,14 @@ export class HomeComponent implements OnInit {
   }
 
   itemAddToCart(cartIndex, cartType) {
-    let user = JSON.parse(localStorage.getItem("user"));
+    // let user = JSON.parse(localStorage.getItem("user"));
 
     let barsQuntity = JSON.parse(localStorage.getItem("barsQTY"));
     let barsList = JSON.parse(localStorage.getItem("barsList"));
     console.log("barsList", barsList);
 
-    let login = localStorage.getItem("isOMlogin");
-    if (login == null) {
+    // let login = localStorage.getItem("isOMlogin");
+    if (this.user == null) {
       this.router.navigateByUrl("login");
     } else {
       if (cartType == 2) {
@@ -127,7 +140,7 @@ export class HomeComponent implements OnInit {
               this.toastrService.info("please enter valid quantity");
             } else {
               let barsDetails = {
-                user_id: user.user_id,
+                user_id: this.user.user_id,
                 type_id: cartType,
                 prod_type_id: this.barCompanyId,
                 quantity: 0,
@@ -160,7 +173,7 @@ export class HomeComponent implements OnInit {
                   this.toastrService.info("please enter valid quantity");
                 } else {
                   var cartDetails = {
-                    user_id: user.user_id,
+                    user_id: this.user.user_id,
                     type_id: cartType,
                     prod_type_id: this.cementQuantity.cementProductId,
                     quantity: this.cementQuantity.quantityEvent,
@@ -173,7 +186,6 @@ export class HomeComponent implements OnInit {
                   this.userService.addToCart(cartDetails).subscribe(resp => {
                     console.log("cartResp", resp);
                     this.toastrService.success("item add into cart");
-      
                   });
                 }
               }

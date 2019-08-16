@@ -61,8 +61,8 @@
                 <form class="address" [formGroup]="addressForm" (ngSubmit)="address(addUpdateFormvalue)">
                   <div class="form-group">
                     <label>Select Type</label>
-                    <select class="form-control" name="Type" formControlName = "userType" (change)="addressTypeChange($event.target.value)" >
-                      <option value="type" hidden >Select</option>
+                    <select class="form-control" name="Type" formControlName = "userType">
+                      <option value="type" disabled >Select</option>
                       <option value="{{userType.address_type_id}}" *ngFor="let userType of addressTypes">{{userType.type_name}}</option>
                     </select>
                   </div>
@@ -72,12 +72,12 @@
                       formControlName="userAddress"></textarea>
                   </div>
                   <div class="submit-btn d-flex">
-                    <button class="btn btn-md btn-primary" type="submit">Submit</button>
-                    <div *ngIf="addressFormCancel">
-                    <button class="btn btn-md btn-danger">Cancel</button>
-                  </div>
+                    <button class="btn btn-md btn-primary" type="submit">Submit</button>  
                   </div>
                 </form>
+                <div *ngIf="addressFormCancel">
+                    <button class="btn btn-md btn-danger" (click) = "formCancel()">Cancel</button>
+                  </div>
               </div>
             </div>  
           </div>

@@ -2,6 +2,7 @@ import { ToastrService } from "ngx-toastr";
 import { UserService } from "./../services/user.service";
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
+import { DatabroadcastService } from "../services/databroadcast.service";
 
 @Component({
   selector: "app-cart",
@@ -19,68 +20,82 @@ export class CartComponent implements OnInit {
   updateCart: any;
   cartItemsLength: boolean = false;
 
-
   constructor(
     private cartService: UserService,
     private toasterService: ToastrService,
-    private router: Router
+    private router: Router,
+    private databroadcastService: DatabroadcastService
   ) {}
 
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem("user"));
+
+    this.loadCartPage();
     this.cartItems();
     console.log("cartItems", this.cartItems.length);
   }
 
+  public loadCartPage() {
+    if (this.user != null) {
+      this.databroadcastService.isShowhide.emit(true);
+    } else {
+      this.databroadcastService.isShowhide.emit(false);
+    }
+  }
+
   cartItems() {
     this.totGrandamount = 0;
-    let userId = {
-      user_id: this.user.user_id
-    };
-    this.cartService.userCartList(userId).subscribe(resp => {
-      this.cartProducts = resp.result;
+    if (this.user == null) {
+      console.log("please login");
+    } else {
+      let userId = {
+        user_id: this.user.user_id
+      };
+      this.cartService.userCartList(userId).subscribe(resp => {
+        this.cartProducts = resp.result;
 
-      if (this.cartProducts.length < 1) {
-        this.cartItemsLength = false;
-      } else {
-        this.cartItemsLength = true;
+        if (this.cartProducts.length < 1) {
+          this.cartItemsLength = false;
+        } else {
+          this.cartItemsLength = true;
 
-        for (var j = 0; j < this.cartProducts.length; j++) {
-          console.log("length", this.cartProducts.length);
+          for (var j = 0; j < this.cartProducts.length; j++) {
+            console.log("length", this.cartProducts.length);
 
-          let itemTotalPrice =
-            this.cartProducts[j].quantity * this.cartProducts[j].price;
-          if (this.cartProducts[j].type_id == 1) {
-            this.totCementamount = this.totCementamount + itemTotalPrice;
-            resp.result[j]["totalPrice"] = this.totCementamount;
-            this.totGrandamount = this.totGrandamount + this.totCementamount;
-            console.log("cement-->", this.totCementamount);
-            this.totCementamount = 0;
-          }
-          if (this.cartProducts[j].type_id == 2) {
-            if (this.cartProducts[j].bar_products.length > 0) {
-              for (
-                let k = 0;
-                k < this.cartProducts[j].bar_products.length;
-                k++
-              ) {
-                this.totBaramount =
-                  this.totBaramount +
-                  this.cartProducts[j].bar_products[k].quantity *
-                    this.cartProducts[j].bar_products[k].value;
+            let itemTotalPrice =
+              this.cartProducts[j].quantity * this.cartProducts[j].price;
+            if (this.cartProducts[j].type_id == 1) {
+              this.totCementamount = this.totCementamount + itemTotalPrice;
+              resp.result[j]["totalPrice"] = this.totCementamount;
+              this.totGrandamount = this.totGrandamount + this.totCementamount;
+              console.log("cement-->", this.totCementamount);
+              this.totCementamount = 0;
+            }
+            if (this.cartProducts[j].type_id == 2) {
+              if (this.cartProducts[j].bar_products.length > 0) {
+                for (
+                  let k = 0;
+                  k < this.cartProducts[j].bar_products.length;
+                  k++
+                ) {
+                  this.totBaramount =
+                    this.totBaramount +
+                    this.cartProducts[j].bar_products[k].quantity *
+                      this.cartProducts[j].bar_products[k].value;
+                }
+                console.log("totBaramount", this.totBaramount);
+                resp.result[j]["barTotal"] = this.totBaramount;
+                this.totGrandamount = this.totGrandamount + this.totBaramount;
+                console.log("bar-->", this.totBaramount);
+                this.totBaramount = 0;
               }
-              console.log("totBaramount", this.totBaramount);
-              resp.result[j]["barTotal"] = this.totBaramount;
-              this.totGrandamount = this.totGrandamount + this.totBaramount;
-              console.log("bar-->", this.totBaramount);
-              this.totBaramount = 0;
             }
           }
         }
-      }
-      console.log("grand tot-->", this.totGrandamount);
-      localStorage.setItem("grandtotal", JSON.stringify(this.totGrandamount));
-    });
+        console.log("grand tot-->", this.totGrandamount);
+        localStorage.setItem("grandtotal", JSON.stringify(this.totGrandamount));
+      });
+    }
   }
 
   chageCartValue(cartItem, bars, quantity, typeId) {
