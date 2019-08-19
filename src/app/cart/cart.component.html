@@ -1,94 +1,91 @@
 
 <div *ngIf="cartItemsLength">
-<section class="cart-section">
-  <div class="container">
-    <div class=" empty-cart">
-      <button type="button" class="btn btn-primary" (click)="deleteCarItem(1,0)">
-        Empty Cart
-      </button>
-    </div>
-    <h1>Cart Items</h1>
-
-    <div class="shopping-cart">
-      <div class="product" *ngFor="let cart of cartProducts; let i = index">
-        <div *ngIf="cart.type_id == 1">
-          <div class="product-image">
-            <img src="assets/cement.jpg" />
-          </div>
-          <div class="product-details">
-            <div class="product-title">{{ cart.company_name }}</div>
-          </div>
-          <div class="product-price">
-            <p>&#8360; {{ cart.price }}</p>
-          </div>
-          <div class="product-quantity">
-            <input type="number" value="{{ cart.quantity }}" (input)="chageCartValue( cart, 0, $event.target.value, 1)" />
-          </div>
-          <div class="product-line-price">
-              <p>&#8360; {{ cart.totalPrice }}</p>
-            </div>
-          <div class="product-removal">
-            <button class="btn btn-danger btn-xs" (click)="deleteCarItem(0, cart.cart_id)">
-              <i class="fa fa-trash"></i>
-            </button>
-          </div>
-         
-        </div>
-        <!-- bar data -->
-        <div *ngIf="cart.type_id == 2">
-          <div class="product-image">
-            <img src="assets/cement.jpg" />
-          </div>
-          <div class="product-details">
-            <div class="product-title">{{ cart.company_name }}</div>
-          </div>
-          <div class="product-price">
-            <p *ngFor="let bars of cart.bar_products">&nbsp;{{bars.type}}<span>&#8211;</span>&nbsp;
-              <span>&#8377;&nbsp;</span> {{ bars.value }}&nbsp;<span>&#215;&nbsp;</span></p>
-          </div>
-
-          <div class="product-quantity">
-            <div *ngFor="let bars of cart.bar_products">
-              <input type="number" class="bottom" value="{{bars.quantity}}" (input)="chageCartValue( cart, bars, $event.target.value, 2)" /> 
-            </div>
-            <!-- <div>
-                <p class="total"> Total Amount =
-                  &#8360; {{cart.barTotal}}</p>
-              </div> -->
-          </div>
-          
-
-          <div class=" product-line-price" >
-             <p *ngFor="let bars of cart.bar_products"> &#8360; {{ bars.value*bars.quantity }}</p>
-              <!-- <p>&#8360; {{ cart.barTotal }}</p> -->
-            </div>
-          <div class="product-removal">
-            <button class="btn btn-danger btn-xs" (click)="deleteCarItem(0, cart.cart_id)">
-              <i class="fa fa-trash"></i>
-            </button>
-          </div>
-          
-        </div>
+  <section class="cart-section">
+    <div class="container">
+      <div class="empty-cart">
+        <button type="button" class="btn btn-primary" (click)="deleteCarItem(1,0)">Delete All</button>
       </div>
-      <div class="totals">
-          <div class="totals-item totals-item-total">
-            <label>Grand Total:</label>
-            <div class="totals-value" id="cart-total">
-              <p>&#8360; {{ totGrandamount }}</p>
+      <h1>Cart Items</h1>
+
+      <div class="shopping-cart">
+        <div class="product" *ngFor="let cart of cartProducts; let i = index">
+          <div *ngIf="cart.type_id == 1">
+            <div class="product-image">
+              <img src="assets/cement.jpg" />
+            </div>
+            <div class="product-details">
+              <div class="product-title">{{ cart.company_name }}</div>
+            </div>
+            <div class="product-price">
+              <p>&#8360; {{ cart.price }}</p>
+            </div>
+            <div class="product-quantity">
+              <input type="number" value="{{ cart.quantity }}" (input)="chageCartValue( cart, 0, $event.target.value, 1)" />
+            </div>
+            <div class="product-line-price">
+                <p>&#8360; {{ cart.totalPrice }}</p>
+              </div>
+            <div class="product-removal">
+              <div (click)="deleteCarItem(0, cart.cart_id)">
+                <i class="fa fa-times"></i>
+              </div>
+            </div>
+          
+          </div>
+          <!-- bar data -->
+          <div *ngIf="cart.type_id == 2">
+            <div class="product-image">
+              <img src="assets/cement.jpg" />
+            </div>
+            <div class="product-details">
+              <div class="product-title">{{ cart.company_name }}</div>
+            </div>
+            <div class="product-price">
+              <p *ngFor="let bars of cart.bar_products">&nbsp;{{bars.type}}<span>&#8211;</span>&nbsp;
+                <span>&#8360;&nbsp;</span> {{ bars.value }}&nbsp;<span>&#215;&nbsp;</span></p>
+            </div>
+
+            <div class="product-quantity">
+              <div *ngFor="let bars of cart.bar_products">
+                <input type="number" class="bottom" value="{{bars.quantity}}" (input)="chageCartValue( cart, bars, $event.target.value, 2)" /> 
+              </div>
+              <!-- <div> 
+                  <p class="total"> Total Amount =
+                    &#8360; {{cart.barTotal}}</p>
+                </div> -->
+            </div>
+            
+
+            <div class=" product-line-price" >
+              <p *ngFor="let bars of cart.bar_products"> &#8360; {{ bars.value*bars.quantity }}</p>
+                <!-- <p>&#8360; {{ cart.barTotal }}</p> -->
+              </div>
+            <div>
+              <div class="product-removal" (click)="deleteCarItem(0, cart.cart_id)">
+                <i class="fa fa-times"></i>
+              </div>
             </div>
           </div>
         </div>
+        <div class="totals">
+            <div class="totals-item totals-item-total">
+              <label>Grand Total:</label>
+              <div class="totals-value" id="cart-total">
+                <p>&#8360; {{ totGrandamount }}</p>
+              </div>
+            </div>
+          </div>
+      </div>
     </div>
-  </div>
-</section>
-<div class=" empty-cart">
-<button type="button" class="btn btn-success" (click) = "checkOut()">
-  CheckOut
-</button>
-</div>
+    <div class="container">
+      <div class="empty-cart">
+        <button type="button" class="btn btn-success" (click) = "checkOut()">CheckOut</button>
+      </div>
+    </div>  
+  </section>
 </div>
 <div *ngIf="!cartItemsLength">
   <div class="container empty_cart">
    <h1>No Cart Items available</h1>
   </div>
-  </div>
+</div> 

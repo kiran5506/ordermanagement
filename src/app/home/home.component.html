@@ -41,18 +41,20 @@
     <div class="cement-widget">
         <p class="section-heading">Ce<span class="style">ment Compa</span>ny</p>
         <div class="row">
-            <div class="col-sm-3" *ngFor="let item of cementProducts; let i = index">
+            <div class="pull-center" *ngFor="let item of cementProducts; let i = index">
                 <div class=" cement-showcase">
                     <img src="assets/cement.jpg" alt="photo">
                     <div>
                         <p><b>{{item.comp_name}}</b></p>
                     </div>
                     <div class="cement-value">
-                        <div class="cement-price">
-                            <p><b>Price</b></p>
-                            <p><b>Qty</b></p>
-                            <p><b>&nbsp;&nbsp;Total</b></p>
-                        </div>
+                        <div class="pull-center">
+                            <div class="cement-price">
+                                <p><b>Price</b></p>
+                                <p><b>Qty</b></p>
+                                <p><b>&nbsp;&nbsp;Total</b></p>
+                            </div>
+                        </div>    
                         <div class="cement-price1">
                             <p><span>&#8377;</span>{{item.price}}<span>&#215;</span></p>
                             <input type="text" name="qty" (input)="productValue(item, $event.target.value, i)">
@@ -73,8 +75,8 @@
     <div class="bar-widget">
         <p class="section-heading">Bars</p>
         <div class="row">
-            <div class="col-sm-4" *ngFor="let product of barsProducts; let k = index">
-                <div class=" bar-showcase">
+            <div class="" *ngFor="let product of barsProducts; let k = index">
+                <div class="bar-showcase">
                     <img src="assets/cement.jpg" alt="photo">
                     <div>
                         <p><b>{{ product.bar_cmp_name }}</b></p>
@@ -90,7 +92,7 @@
                             <input type="text" class="bars-input-name" name="total" readonly
                                 value="{{ bar.totalPrice }}">
 
-                        </div>
+                        </div> 
                     </div>
                     <div>
                         <label for="total-price">Total Price&nbsp;&nbsp;</label>

@@ -43,7 +43,9 @@
   float: left;
   width: 12%;
   text-align: right;
-  
+  i {
+    color: rgb(224, 19, 19) !important; 
+  }
 }
 
 .container-fluid{
@@ -296,7 +298,9 @@ label {
   .product-removal {
     float: right;
     width: 70px;
-    
+    i {
+      color: rgb(224, 19, 19) !important;
+    } 
   }
 
   .product-line-price {

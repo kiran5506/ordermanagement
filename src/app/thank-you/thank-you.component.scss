@@ -23,6 +23,15 @@
   
   .cart-data {
     margin-top:25px;
+    .orderId {
+      display: flex;
+      p {
+        border: solid 1px currentColor;
+        margin-left: 8px;
+        padding: 2px;
+        background-color: #b0df80;
+      }
+    }
   }
   
   .mycontainer {

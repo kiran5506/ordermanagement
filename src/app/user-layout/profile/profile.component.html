@@ -75,9 +75,9 @@
                     <button class="btn btn-md btn-primary" type="submit">Submit</button>  
                   </div>
                 </form>
-                <div *ngIf="addressFormCancel">
-                    <button class="btn btn-md btn-danger" (click) = "formCancel()">Cancel</button>
-                  </div>
+                <div class="cancel-btn" *ngIf="addressFormCancel">
+                  <button class="btn btn-md btn-danger" (click) = "formCancel()">Cancel</button>
+                </div>
               </div>
             </div>  
           </div>
@@ -89,13 +89,13 @@
               <div class="col-md-12 profile-address" *ngFor = "let address of addressList">
                 <p class="address-type">{{address.type_name}}</p>
                 <div class="edit-buttons">
-                  <button type="button" class="btn btn-sm btn-primary" name="edit" (click) = 'updateDeliveryAddress(address)' ><i class="fa fa-pencil"></i></button>
-                  
+                  <div class="edit" name="edit" (click) = 'updateDeliveryAddress(address)' ><i class="fa fa-pencil"></i></div>
+                  <div class="delete" name="delete" (click) = 'deleteDeliveryAddress(address.address_id)'><i class="fa fa-times" aria-hidden="true"></i></div>
                   <!-- <button type="button" class="btn btn-sm btn-danger" name="delete" (click) = 'deleteDeliveryAddress(address.address_id)'><i class="fa fa-trash"></i></button> -->
                 </div>
-                <div>
+                <!-- <div> -->
                   <p>{{address.address}}</p>
-                </div>
+                <!-- </div> -->
               </div>
             </div>  
           </div>
