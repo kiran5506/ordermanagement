@@ -1,5 +1,5 @@
 import { UserService } from "./../../services/user.service";
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
 import { DatabroadcastService } from "src/app/services/databroadcast.service";
 
 @Component({

@@ -1,6 +1,6 @@
 import { ToastrService } from "ngx-toastr";
 import { UserService } from "./../services/user.service";
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Output, EventEmitter } from "@angular/core";
 import { Router } from "@angular/router";
 import { DatabroadcastService } from "../services/databroadcast.service";
 
@@ -19,7 +19,7 @@ export class CartComponent implements OnInit {
   totGrandamount = 0;
   updateCart: any;
   cartItemsLength: boolean = false;
-
+  @Output() totalEvent = new EventEmitter<any>();
   constructor(
     private cartService: UserService,
     private toasterService: ToastrService,
@@ -93,7 +93,6 @@ export class CartComponent implements OnInit {
           }
         }
         console.log("grand tot-->", this.totGrandamount);
-        localStorage.setItem("grandtotal", JSON.stringify(this.totGrandamount));
       });
     }
   }
@@ -157,6 +156,8 @@ export class CartComponent implements OnInit {
 
   checkOut() {
     if (this.cartProducts.length > 0) {
+      console.log("totGrandamount", this.totGrandamount);
+      this.databroadcastService.updataGrandTotal(this.totGrandamount);
       this.router.navigateByUrl("checkOut");
     } else {
     }

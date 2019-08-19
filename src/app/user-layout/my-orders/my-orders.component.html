@@ -1,123 +1,29 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-12">
-            <!-- <div class="card"> -->
-            <!-- <div class="card-body p-0"> -->
-            <!-- <div>
-                <button class="btn btn-md btn-primary" (click)="showTable();">Click me</button>
-            </div> -->
             <div class="accordion" id="expansion-panel" >
-                <div class="card" id="panel-heading" *ngFor="let orderlist of ordersList">
-                    <div class="card-header pointerCursor" (click) = "isHidden = !isHidden">
-                        <!-- <div> -->
-                            <!-- <button class="btn btn-link" type="button"  data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"> -->
-                            <button class="btn btn-link" type="button" (click) = "orderChange(orderlist.order_txn,2)">
-                                <p class="pull-left">OrderId:{{orderlist.order_txn}}</p>
-                                <p class="pull-right">Date: {{orderlist.order_txn_date}}</p>
-                            </button>     
-                        <!-- </div>     -->
+                <div class="card"  *ngFor="let orders of ordersList; let i = index">
+                    <div class="card-header pointerCursor" id="panel-heading">
+                            <button class="btn btn-link" type="button"  data-toggle="collapse" [attr.data-target]="'#' + orders.order_txn" aria-expanded="true" aria-controls="i">                           
+                                <p class="pull-left">OrderId:{{orders.order_txn}}</p>
+                                <p class="pull-right">Date: {{orders.order_txn_date}}</p>
+                            </button>
                     </div>
-                </div>
-                    <!-- <div id="collapseOne" class="collapse show" aria-labelledby="panel-heading" data-parent="#expansion-panel"> -->
-                        <!-- <div class="card-body" [hidden] = "isHidden">
-                            <div class="row">
-                                        <div class="col-md-4 details">
-                                            <p class="font-weight-bold mb-4">Order Details</p>
-                                            <p class="mb-1"><span class="text-muted">OrderId: </span> 518</p>
-                                            <p class="mb-1"><span class="text-muted">OrderDate: </span> 03/11/2019</p>
-                                            <p class="mb-1"><span class="text-muted">Order Status: </span> Inprogress</p>
-                                        </div>
-                        
-                                        <div class="col-md-4">
-                                            <p class="font-weight-bold mb-4">User Details</p>
-                                            <p class="mb-1"><span class="text-muted">Name: </span> sai</p>
-                                            <p class="mb-1"><span class="text-muted">Email: </span> sai@gmail.com</p>
-                                            <p class="mb-1"><span class="text-muted">Phone No: </span> 9966332211</p>
-                                        </div>
-                        
-                                        <div class="col-md-4">
-                                            <p class="font-weight-bold mb-4">Payment Details</p>
-                                            <p class="mb-1"><span class="text-muted">VAT: </span> 1425782</p>
-                                            <p class="mb-1"><span class="text-muted">VAT ID: </span> 10253642</p>
-                                            <p class="mb-1"><span class="text-muted">Payment Type: </span> Root</p>
-                                            <p class="mb-1"><span class="text-muted">Name: </span> John Doe</p>
-                                        </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <table class="table">
-                                                    <thead>
-                                                        <tr>
-                                                            <th class="border-0 text-uppercase small font-weight-bold">IMAGE</th>
-                                                            <th class="border-0 text-uppercase small font-weight-bold">Description</th>
-                                                            <th class="border-0 text-uppercase small font-weight-bold">Price</th>
-                                                            <th class="border-0 text-uppercase small font-weight-bold">Quantity</th>
-                                                            <th class="border-0 text-uppercase small font-weight-bold">Total</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td><img src="assets/cement.jpg" alt="image"></td>
-                                                            <td>company1</td>
-                                                            <td><span>&#8360;</span>&nbsp;150.00</td>
-                                                            <td>2</td>
-                                                            <td><span>&#8360;</span>&nbsp;450.00</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td><img src="assets/cement.jpg" alt="image"></td>
-                                                            <td>Maha Gold</td>
-                                                            <td><span>&#8360;</span>&nbsp;250.00</td>
-                                                            <td>2</td>
-                                                            <td><span>&#8360;</span>&nbsp;750.00</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td><img src="assets/cement.jpg" alt="image"></td>
-                                                            <td>Maha Gold</td>
-                                                            <td>
-                                                                <div>&nbsp;10mm<span>&#8211;</span>&nbsp;
-                                                                    <span>&#8377;&nbsp;</span>200&nbsp;</div>
-                                                                <div>&nbsp;10mm<span>&#8211;</span>&nbsp;
-                                                                    <span>&#8377;&nbsp;</span>200&nbsp;</div>
-                                                            </td>
-                                                            <td>
-                                                                <div>2</div>
-                                                                <div>2</div>
-                                                            </td>
-                                                            <td>
-                                                                <div><span>&#8360;</span>&nbsp;450.00</div>
-                                                                <div><span>&#8360;</span>&nbsp;450.00</div>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                    </table>
-                                    <hr>
-                                    <div class="total-value">
-                                        <p>Total Amount : <span>&#8360;</span>&nbsp;750.00</p>
-                                    </div>
-                                    <div class="total-value">
-                                        <p>Extra Charges : <span>&#8360;</span>&nbsp;150.00</p>
-                                    </div>
-                                    <hr class="hr-line">
-                                    <div class="total-value">
-                                        <p>Grand Total : <span>&#8360;</span>&nbsp;750.00</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> -->
-                        <div class="card-body" [hidden] = "isHidden">
-                                <!-- <div class="row">
+                    <div id="{{orders.order_txn}}" class="collapse" aria-labelledby="panel-heading" data-parent="#expansion-panel">
+                        <div class="card-body" >
+                                 <div class="row">
                                             <div class="col-md-4 details">
                                                 <p class="font-weight-bold mb-4">Order Details</p>
-                                                <p class="mb-1"><span class="text-muted">OrderId: </span> 518</p>
-                                                <p class="mb-1"><span class="text-muted">OrderDate: </span> 03/11/2019</p>
-                                                <p class="mb-1"><span class="text-muted">Order Status: </span> Inprogress</p>
+                                                <p class="mb-1"><span class="text-muted">OrderId: </span> {{orders.order_txn}}</p>
+                                                <p class="mb-1"><span class="text-muted">OrderDate: </span> {{orders.order_txn_date}}</p>
+                                                <p class="mb-1"><span class="text-muted">Order Status: </span> {{orders.order_status}}</p>
                                             </div>
                             
                                             <div class="col-md-4">
                                                 <p class="font-weight-bold mb-4">User Details</p>
-                                                <p class="mb-1"><span class="text-muted">Name: </span> sai</p>
-                                                <p class="mb-1"><span class="text-muted">Email: </span> sai@gmail.com</p>
-                                                <p class="mb-1"><span class="text-muted">Phone No: </span> 9966332211</p>
+                                                <p class="mb-1"><span class="text-muted">Name: </span> {{user.owner_name}}</p>
+                                                <p class="mb-1"><span class="text-muted">Email: </span> {{user.email}}</p>
+                                                <p class="mb-1"><span class="text-muted">Phone No: </span>{{user.mobile_number}}</p>
                                             </div>
                             
                                             <div class="col-md-4">
@@ -127,8 +33,8 @@
                                                 <p class="mb-1"><span class="text-muted">Payment Type: </span> Root</p>
                                                 <p class="mb-1"><span class="text-muted">Name: </span> John Doe</p>
                                             </div>
-                                </div> -->
-                                <div class="row" *ngFor="let order of orderID">
+                                </div> 
+                                <div class="row">
                                     <div class="col-md-12">
                                         <table class="table">
                                                         <thead>
@@ -141,77 +47,48 @@
                                                             </tr>
                                                         </thead>
                                                      
-                                                        <tbody *ngFor="let item of order.items">
-                                                            <tr>
+                                                        <tbody *ngFor="let item of orders.items; let j = index">
+                                                            <tr *ngIf="item.type_id == 1" >
                                                                 <td><img src="assets/cement.jpg" alt="image"></td>
                                                                 <td>{{item.company_name}}</td>
                                                                 <td><span>&#8360;</span>&nbsp;{{item.price}}</td>
                                                                 <td>{{item.quantity}}</td>
                                                                 <td><span>&#8360;</span>&nbsp;{{item.price * item.quantity}}</td>
                                                             </tr>
-                                                            <!-- <tr>
-                                                                <td><img src="assets/cement.jpg" alt="image"></td>
-                                                                <td>Maha Gold</td>
-                                                                <td><span>&#8360;</span>&nbsp;250.00</td>
-                                                                <td>2</td>
-                                                                <td><span>&#8360;</span>&nbsp;750.00</td>
-                                                            </tr> -->
-                                                            <tr *ngFor="let barItem of item">
-                                                                <td><img src="assets/cement.jpg" alt="image"></td>
-                                                                <td>Maha Gold</td>
-                                                                <td>
-                                                                    <div>&nbsp;10mm<span>&#8211;</span>&nbsp;
-                                                                        <span>&#8377;&nbsp;</span>200&nbsp;</div>
-                                                                    <!-- <div>&nbsp;10mm<span>&#8211;</span>&nbsp;
-                                                                        <span>&#8377;&nbsp;</span>200&nbsp;</div> -->
+                                                            <tr *ngIf="item.type_id == 2 ">
+                                                                    <td><img src="assets/cement.jpg" alt="image"></td>
+                                                                    <td>{{item.company_name}}</td>
+                                                                <td >
+                                                                    <div *ngFor="let barItem of item.bar_products">&nbsp;{{barItem.type}}<span>&#8211;</span>&nbsp;
+                                                                        <span>&#8360;&nbsp;</span>{{barItem.value}}&nbsp;</div>
                                                                 </td>
                                                                 <td>
-                                                                    <div>2</div>
-                                                                    <!-- <div>2</div> -->
+                                                                    <div *ngFor="let barItem of item.bar_products">{{barItem.quantity}}</div>
                                                                 </td>
                                                                 <td>
-                                                                    <div><span>&#8360;</span>&nbsp;450.00</div>
-                                                                    <!-- <div><span>&#8360;</span>&nbsp;450.00</div> -->
+                                                                    <div *ngFor="let barItem of item.bar_products"><span>&#8360;</span>&nbsp;{{barItem.value * barItem.quantity}}</div>
                                                                 </td>
                                                             </tr>
+                                                       
                                                         </tbody>
                                         </table>
                                         <hr>
                                         <div class="total-value">
-                                            <p>Total Amount : <span>&#8360;</span>&nbsp;{{order.total_amout}}</p>
+                                            <p>Total Amount : <span>&#8360;</span>&nbsp;{{orders.total_amout}}</p>
                                         </div>
                                         <div class="total-value">
                                             <p>Extra Charges : <span>&#8360;</span>&nbsp;0.00</p>
                                         </div>
                                         <hr class="hr-line">
                                         <div class="total-value">
-                                            <p>Grand Total : <span>&#8360;</span>&nbsp;{{order.total_amout}}</p>
+                                            <p>Grand Total : <span>&#8360;</span>&nbsp;{{orders.total_amout}}</p>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
                         </div>
-                    <!-- </div> -->
-                <!-- </div> -->
+                    </div>
+                </div>
             </div>
-            
-            <!-- <div class="d-flex flex-row-reverse bg-dark text-white p-4">
-                        <div class="py-3 px-5 text-right">
-                            <div class="mb-2">Grand Total</div>
-                            <div class="h2 font-weight-light">$234,234</div>
-                        </div>
-
-                        <div class="py-3 px-5 text-right">
-                            <div class="mb-2">Discount</div>
-                            <div class="h2 font-weight-light">10%</div>
-                        </div>
-
-                        <div class="py-3 px-5 text-right">
-                            <div class="mb-2">Sub - Total amount</div>
-                            <div class="h2 font-weight-light">$32,432</div>
-                        </div>
-                    </div> -->
-            <!-- </div> -->
-            <!-- </div> -->
         </div>
-    </div>
+     </div>
+</div>

@@ -30,7 +30,6 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem("user"));
 
-    this.cementProducts;
     this.loadHomepage();
     this.cementProductsList();
     this.barsproductsList();
@@ -113,13 +112,10 @@ export class HomeComponent implements OnInit {
   }
 
   itemAddToCart(cartIndex, cartType) {
-    // let user = JSON.parse(localStorage.getItem("user"));
-
     let barsQuntity = JSON.parse(localStorage.getItem("barsQTY"));
     let barsList = JSON.parse(localStorage.getItem("barsList"));
     console.log("barsList", barsList);
 
-    // let login = localStorage.getItem("isOMlogin");
     if (this.user == null) {
       this.router.navigateByUrl("login");
     } else {
@@ -186,6 +182,7 @@ export class HomeComponent implements OnInit {
                   this.userService.addToCart(cartDetails).subscribe(resp => {
                     console.log("cartResp", resp);
                     this.toastrService.success("item add into cart");
+                    this.cartItemsLength();
                   });
                 }
               }
@@ -196,5 +193,16 @@ export class HomeComponent implements OnInit {
         }
       }
     }
+  }
+
+  public cartItemsLength() {
+    let userId = {
+      user_id: this.user.user_id
+    };
+    this.userService.userCartList(userId).subscribe(resp => {
+      let length = resp.result.length;
+      console.log("length", length);
+      this.databroadcastService.cartLength(resp.result.length);
+    });
   }
 }

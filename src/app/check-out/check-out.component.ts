@@ -1,10 +1,11 @@
+import { DatabroadcastService } from "./../services/databroadcast.service";
 import { ToastrService } from "ngx-toastr";
 import { Router } from "@angular/router";
 import { FormBuilder, Validators } from "@angular/forms";
 import { FormGroup } from "@angular/forms";
 import { ProductsService } from "./../services/products.service";
 import { UserService } from "./../services/user.service";
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Output, EventEmitter } from "@angular/core";
 
 @Component({
   selector: "app-check-out",
@@ -27,7 +28,8 @@ export class CheckOutComponent implements OnInit {
     private productService: ProductsService,
     private fb: FormBuilder,
     private router: Router,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
+    private databroadcastService: DatabroadcastService
   ) {
     this.loadingAddressForm(fb);
   }
@@ -36,7 +38,11 @@ export class CheckOutComponent implements OnInit {
     let user = JSON.parse(localStorage.getItem("user"));
     this.userDetails = user;
     console.log("userDetails ---> ", this.userDetails.user_id);
-    this.grandTotal = JSON.parse(localStorage.getItem("grandtotal"));
+
+    this.databroadcastService.shareGrandTotal.subscribe(
+      data => (this.grandTotal = data)
+    );
+    console.log(this.grandTotal);
 
     this.cartItems();
     this.getUserAddress();
@@ -78,12 +84,8 @@ export class CheckOutComponent implements OnInit {
     let addressObj = {
       user_id: this.userDetails.user_id
     };
-
-    console.log("addressObj", addressObj);
-
     this.userService.userGetAddress(addressObj).subscribe(resp => {
       this.addressList = resp.result;
-
       console.log("addressList", this.addressList);
     });
   }
@@ -106,26 +108,25 @@ export class CheckOutComponent implements OnInit {
   }
 
   confirmOrder() {
-    // if (this.address_id == undefined) {
-    //   this.toastrService.error("please  selecet a address");
-    // } else {
-    let orderObj = {
-      user_id: this.userDetails.user_id,
-      address_id: 1,
-      total_amout: this.grandTotal,
-      paymeny_type_id: 1,
-      cart_items: this.cartIds
-    };
-    console.log("orderObj", orderObj);
+    if (this.address_id == undefined) {
+      this.toastrService.error("please  selecet a address");
+    } else {
+      let orderObj = {
+        user_id: this.userDetails.user_id,
+        address_id: 1,
+        total_amout: this.grandTotal,
+        paymeny_type_id: 1,
+        cart_items: this.cartIds
+      };
+      console.log("orderObj", orderObj);
 
-    this.productService.userConfirmOrder(orderObj).subscribe(resp => {
-      console.log("confirmOrder", resp.result);
-      if (resp.status == 200) {
-        localStorage.removeItem("grandtotal");
-
-        this.router.navigateByUrl("thankYou");
-      }
-    });
-    // }
+      this.productService.userConfirmOrder(orderObj).subscribe(resp => {
+        console.log("confirmOrder", resp.result);
+        if (resp.status == 200) {
+          this.databroadcastService.orderId(resp.result);
+          this.router.navigateByUrl("thankYou");
+        }
+      });
+    }
   }
 }
