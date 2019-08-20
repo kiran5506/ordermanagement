@@ -162,4 +162,7 @@ export class CartComponent implements OnInit {
     } else {
     }
   }
+  addItem() {
+    this.router.navigateByUrl("home");
+  }
 }

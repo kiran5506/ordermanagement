@@ -1,58 +1,63 @@
 .footer-widget {
-    font-family: lato,Roboto,"Helvetica Neue",sans-serif;
-    background-color:#82ae46;
-    color:#000;
-    text-align: justify;
+  font-family: lato, Roboto, "Helvetica Neue", sans-serif;
+  background-color: #82ae46;
+  color: #000;
+  text-align: justify;
 }
 
 .data {
-    padding:30px 10px 10px 10px;
-    // .footer-content {
-    //     // text-align: center;
-    // }
+  padding: 30px 10px 10px 10px;
+  // .footer-content {
+  //     // text-align: center;
+  // }
 }
 .company-name {
-    font-size: 24px;
+  font-size: 24px;
 }
 .company-desc {
-    padding-right: 42px;
+  padding-right: 42px;
 }
-.footer-content { 
-    .footer-links {
-        // text-align: center;
-        font-size:24px;
-        text-decoration: none;
-        font-weight: 600;
-        color: #fff !important;
-        text-shadow: 1px 1px #000;
-        &:hover {
-            color: #000 !important;
-        }
+.social-icons {
+  i {
+    margin: 10px;
+    font-size: 26px;
+  }
+}
+.footer-content {
+  .footer-links {
+    // text-align: center;
+    font-size: 24px;
+    text-decoration: none;
+    font-weight: 600;
+    color: #fff !important;
+    text-shadow: 1px 1px #000;
+    &:hover {
+      color: #000 !important;
     }
+  }
 }
 .footer-widget a {
-    color: #000;
+  color: #000;
 }
 
 .list li {
-    list-style-type: none;
-    margin-bottom: 8px;
-    a {
-        text-decoration: none;
-    }
+  list-style-type: none;
+  margin-bottom: 8px;
+  a {
+    text-decoration: none;
+  }
 }
 
 .list1 {
-    padding:0px;
-    margin-top: 18px !important;
+  padding: 0px;
+  margin-top: 18px !important;
 }
 
 .list1 li {
-    list-style-type: none;
-    margin-bottom: 8px;
+  list-style-type: none;
+  margin-bottom: 8px;
 }
 
 .list1 li a {
-    text-decoration: none;
+  text-decoration: none;
 }
-

@@ -8,6 +8,7 @@
   font-size: 22px;
   font-weight: 700;
   text-shadow: 0px 1px black;
+  padding: 7px;
   &:hover {
     color: #000;
   }
@@ -37,10 +38,13 @@
 .navbar-toggler-icon {
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(242,88,29)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
 }
-// .active {
-//   border-bottom-color:1px solid black;
-// }
-
+.active {
+  // border-bottom-color:1px solid black;
+  color: #000;
+}
+.active-dropdown {
+  color: #82ae46;
+}
 .user-image {
   float: left;
   width: 25px;
@@ -67,9 +71,10 @@ hr {
 // }
 
 .drop1 {
-  min-width: 9.5rem!important;
+  min-width: 9.5rem !important;
   a {
     text-align: center;
+    background-color: #fff !important;
   }
 }
 
@@ -96,9 +101,9 @@ hr {
   button {
     border-radius: 25px;
     // &:hover {
-      background-color: #82ae46;
-      border: #82ae46; 
-    // }  
+    background-color: #82ae46;
+    border: #82ae46;
+    // }
   }
 }
 .dd {

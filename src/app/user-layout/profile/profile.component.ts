@@ -2,6 +2,7 @@ import { DatabroadcastService } from "./../../services/databroadcast.service";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { UserService } from "./../../services/user.service";
 import { Component, OnInit } from "@angular/core";
+import { Console } from "@angular/core/src/console";
 
 @Component({
   selector: "app-profile",
@@ -108,8 +109,10 @@ export class ProfileComponent implements OnInit {
   }
 
   updateDeliveryAddress(updateAddress) {
+    console.log("hiii===", updateAddress);
     this.updateAddressId = updateAddress.address_id;
     this.showhideuseraddressForm = true;
+    console.log("status==", this.showhideuseraddressForm);
     this.addressFormCancel = true;
     this.addUpdateFormvalue = 2;
 
@@ -117,6 +120,8 @@ export class ProfileComponent implements OnInit {
       userType: updateAddress.address_type_id,
       userAddress: updateAddress.address
     });
+
+    console.log("hello===", this.addressForm.value);
   }
 
   address(address) {
@@ -160,16 +165,18 @@ export class ProfileComponent implements OnInit {
   }
 
   deleteDeliveryAddress(id) {
-    let deleteObj = {
-      address_id: id
-    };
+    if (this.showhideuseraddressForm == false) {
+      let deleteObj = {
+        address_id: id
+      };
 
-    console.log("deleteObj", deleteObj);
+      console.log("deleteObj", deleteObj);
 
-    this.userService.userDeleteAddress(deleteObj).subscribe(resp => {
-      console.log("deleteresponse", resp);
-      this.userAddress();
-    });
+      this.userService.userDeleteAddress(deleteObj).subscribe(resp => {
+        console.log("deleteresponse", resp);
+        this.userAddress();
+      });
+    }
   }
 
   getUserAddresstypes() {

@@ -3,7 +3,7 @@
   button {
     border-radius: 30px;
   }
-} 
+}
 .profile {
   margin-top: 60px;
   margin-bottom: 40px;
@@ -89,7 +89,6 @@
     font-weight: 633;
   }
   .edit-buttons {
-    
     button {
       float: right;
       margin-left: 13px;
@@ -98,6 +97,8 @@
       position: absolute;
       top: -4px;
       right: 23px;
+      cursor: pointer;
+
       i {
         color: rgb(43, 43, 146);
       }
@@ -109,11 +110,11 @@
       top: -5px;
       // left: -7px;
       right: -11px;
-      i{
+      cursor: pointer;
+      i {
         color: rgb(202, 23, 23);
       }
     }
-
   }
   p {
     padding: 0px;

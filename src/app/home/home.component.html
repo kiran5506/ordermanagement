@@ -63,7 +63,7 @@
                         </div>
                     </div>
                     <div>
-                        <button type="button" class="btn cart-btn" (click)="itemAddToCart(i , 1)">Add To Cart</button>
+                        <button type="button" class="btn cart-btn" (click)="itemAddToCart(i , 1)"><i class="fa fa-shopping-cart"></i>Add To Cart</button>
                     </div>
                 </div>
             </div>
@@ -73,7 +73,7 @@
 
 <div class="container bar-section">
     <div class="bar-widget">
-        <p class="section-heading">Bars</p>
+        <p class="section-heading"><span class="style">Bars</span></p>
         <div class="row">
             <div class="" *ngFor="let product of barsProducts; let k = index">
                 <div class="bar-showcase">
@@ -99,7 +99,7 @@
                         <input type="text" name="total" readonly value="{{ product.totalCartPrice }}" />
                     </div>
                     <div>
-                        <button type="button" class="btn cart-btn" (click)="itemAddToCart(k , 2)">Add To Cart</button>
+                        <button type="button" class="btn cart-btn" (click)="itemAddToCart(k , 2)"><i class="fa fa-shopping-cart"></i>Add To Cart</button>
                     </div>
                 </div>
             </div>

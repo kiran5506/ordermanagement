@@ -1,59 +1,57 @@
 .carouesl1 {
-    padding: 0px !important;
+  padding: 0px !important;
 }
 .carousel-inner img {
-    height:100%;
-    width:100%;
+  height: 100%;
+  width: 100%;
 }
 
 .carousel-inner .carousel-item img {
-    width:100%;
-    height:400px;
+  width: 100%;
+  height: 400px;
 }
 
 .caro-icons {
-    background-color: black;
-    position: absolute;
-    top: 50%;
-    left: 36px;
-    border-radius: 50%;
-    height: 50px;
-    width: 50px;
+  background-color: black;
+  position: absolute;
+  top: 50%;
+  left: 36px;
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
 }
 
 .caro-icons1 {
-    background-color: black;
-    position: absolute;
-    top: 50%;
-    right: 36px;
-    border-radius: 50%;
-    height: 50px;
-    width: 50px;
+  background-color: black;
+  position: absolute;
+  top: 50%;
+  right: 36px;
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
 }
 
-.style{
-    border-bottom: 2px solid blue;
-
+.style {
+  border-bottom: 2px solid #82ae46;
 }
 
 .cement-section {
-    margin-top:40px;
-    font-family: lato,Roboto,"Helvetica Neue",sans-serif;
-
+  margin-top: 40px;
+  font-family: lato, Roboto, "Helvetica Neue", sans-serif;
 }
 
 .cement-widget {
-    margin-top:10px;
+  margin-top: 10px;
 }
 
-.cement-widget  {
-    padding-bottom:25px;
+.cement-widget {
+  padding-bottom: 25px;
 }
 
 .section-heading {
-    text-align: center;
-    margin-bottom:32px;
-    font-size:39px;
+  text-align: center;
+  margin-bottom: 32px;
+  font-size: 39px;
 }
 
 // .cement-widget h2 {
@@ -62,80 +60,83 @@
 // }
 
 .underline {
-    border-bottom: 2px solid currentColor;
-
+  border-bottom: 2px solid currentColor;
 }
 
-.cement-showcase  {
-    margin-bottom:20px;
-    text-align: center;
-    padding: 10px;
-    /* box-shadow: 0px 2px 5px 0px; */
-    box-shadow: 0 2px 5px 0 rgba(0,0,0,.12);
-    margin: 0 8px 9px;
+.cement-showcase {
+  margin-bottom: 20px;
+  text-align: center;
+  padding: 10px;
+  /* box-shadow: 0px 2px 5px 0px; */
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.12);
+  margin: 0 8px 9px;
 }
 
 .cement-showcase img {
-    height:125px;
-    width:125px;
+  height: 125px;
+  width: 125px;
 }
 
-.pull-center { 
-    text-align: center;
-    .cement-price {
-        // justify-content:center;
-        display: flex;
-    }
+.pull-center {
+  text-align: center;
+  .cement-price {
+    // justify-content:center;
+    display: flex;
+  }
 }
 .cement-price p {
-    margin:5px;
-    padding:0px 15px 0px 0px;
+  margin: 5px;
+  padding: 0px 15px 0px 0px;
 }
 
 .cement-price1 {
-    // justify-content:center;
-    display: flex;
+  // justify-content:center;
+  display: flex;
 }
 
 .cement-price1 input {
-    height:32px;
-    width:42px;
+  height: 32px;
+  width: 42px;
 }
 
 .cement-price1 .cement-input {
-    width:100px;
+  width: 100px;
 }
 .cart-btn {
-    background-color: #34e65d;
-    color: #ffffff;
-    padding: 8px 13px;
-    border-radius: 15px;
+  background-color: #82ae46;
+  color: #ffffff;
+  padding: 8px 13px;
+  border-radius: 15px;
+
+  i {
+    margin-right: 4px;
+  }
 }
 
 .cement-widget textarea {
-    resize:none;
+  resize: none;
 }
 
 // -------------------------------------------------------------------------------
 // ==================================================================
 
 .bar-section {
-    margin-top:40px;
-    font-family: lato,Roboto,"Helvetica Neue",sans-serif;
+  margin-top: 40px;
+  font-family: lato, Roboto, "Helvetica Neue", sans-serif;
 }
 
 .bar-widget {
-    margin-top:10px;
+  margin-top: 10px;
 }
 
-.bar-widget  {
-    padding-bottom:25px;
+.bar-widget {
+  padding-bottom: 25px;
 }
 
 .section-heading {
-    text-align: center;
-    margin-bottom:32px;
-    font-size:39px;
+  text-align: center;
+  margin-bottom: 32px;
+  font-size: 39px;
 }
 
 // .cement-widget h2 {
@@ -144,43 +145,41 @@
 // }
 
 .underline {
-    border-bottom: 2px solid currentColor;
-
+  border-bottom: 2px solid currentColor;
 }
 
-.bar-showcase  {
-    margin-bottom:20px;
-    text-align: center;
-    padding: 10px;
-    /* box-shadow: 0px 2px 5px 0px; */
-    box-shadow: 0 2px 5px 0 rgba(0,0,0,.12);
-    margin: 0 8px;
+.bar-showcase {
+  margin-bottom: 20px;
+  text-align: center;
+  padding: 10px;
+  /* box-shadow: 0px 2px 5px 0px; */
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.12);
+  margin: 0 8px;
 }
 
 .bar-showcase img {
-    height:125px;
-    width:125px;
+  height: 125px;
+  width: 125px;
 }
 
-
 .bar-price {
-    // justify-content:center;
-    display: flex;
+  // justify-content:center;
+  display: flex;
 }
 
 .bar-price p {
-    margin:5px;
-    padding:0px 15px 0px 0px;
+  margin: 5px;
+  padding: 0px 15px 0px 0px;
 }
 
 .bar-price1 {
-    // justify-content:center;
-    display: flex;
+  // justify-content:center;
+  display: flex;
 }
 
 .bar-price1 input {
-    height:32px;
-    width:61px;
+  height: 32px;
+  width: 61px;
 }
 
 // .bars-input-name {
@@ -188,19 +187,22 @@
 //     width:120px !important;
 // }
 
-
 .bar-price1 .cement-input {
-    width:100px;
+  width: 100px;
 }
 .cart-btn {
-    background-color: #34e65d;
-    color: #ffffff;
-    padding: 8px 13px;
-    border-radius: 25px;
-    font-size: 12px;
-    font-weight: 600;
+  background-color: #82ae46;
+  color: #ffffff;
+  padding: 6px 7px;
+  border-radius: 0px;
+  font-size: 11px;
+  font-weight: 600;
+
+  i {
+    margin-right: 4px;
+  }
 }
 
 .bar-widget textarea {
-    resize:none;
+  resize: none;
 }

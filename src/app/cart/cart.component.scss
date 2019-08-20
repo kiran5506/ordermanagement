@@ -1,19 +1,58 @@
-.empty_cart{
-  padding-top: 100px;
-  padding-bottom: 400px;
+.empty_cart {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+  margin: 2px 1px 85px 1px;
+  p {
+    color: #82ae46;
+    font-size: 16px;
+  }
+  .no-cart-btn {
+    border: solid 1px black;
+  }
+}
+.style {
+  border-bottom: solid 2px #82ae46;
 }
 .cart-section {
   padding: 15px;
   margin-top: 30px;
+  margin-bottom: 30px;
+  h1 {
+    margin-bottom: 73px;
+    text-align: center;
+  }
 }
 
 .empty-cart {
   margin-bottom: 10px;
   text-align: end;
-}
-
-.cart-section h1 {
-  margin-bottom: 50px;
+  .del-btn {
+    border-radius: 25px;
+    color: #fff;
+    background-color: #f5061a;
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    &:hover {
+      border: 1px solid #f5061a;
+      background: 0 0;
+      color: #f5061a;
+    }
+  }
+  .checkout-btn {
+    border-radius: 25px;
+    color: #fff;
+    background-color: #82ae46;
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    &:hover {
+      border: 1px solid #82ae46;
+      background: 0 0;
+      color: #82ae46;
+    }
+  }
 }
 
 .product-image {
@@ -26,7 +65,6 @@
   width: 20%;
 }
 
-
 .product-price {
   float: left;
   width: 15%;
@@ -37,34 +75,31 @@
   width: 15%;
 }
 
-
-
 .product-removal {
   float: left;
   width: 12%;
   text-align: right;
   i {
-    color: rgb(224, 19, 19) !important; 
+    color: #fff !important;
+    font-size: 18px;
   }
 }
 
-.container-fluid{
+.container-fluid {
   position: relative;
   right: 200px;
 }
 
-
 .product-line-price {
   float: left;
   width: 9%;
-  
 }
 
-.total{
+.total {
   float: right;
   width: 133%;
   position: relative;
-  top:10px;
+  top: 10px;
 }
 
 .bottom {
@@ -145,8 +180,8 @@ label {
 /* Product entries */
 .product {
   margin-bottom: 20px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid #eee;
+  padding: 10px;
+  border: 1px solid #eee;
 }
 
 .btn-sm {
@@ -299,8 +334,9 @@ label {
     float: right;
     width: 70px;
     i {
-      color: rgb(224, 19, 19) !important;
-    } 
+      color: #fff !important;
+      font-size: 18px;
+    }
   }
 
   .product-line-price {

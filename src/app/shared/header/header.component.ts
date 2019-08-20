@@ -13,6 +13,7 @@ export class HeaderComponent implements OnInit {
 
   cartList: any;
   cartLegth: number = 0;
+  user: any;
 
   constructor(
     private authService: AuthenticationService,
@@ -30,6 +31,9 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.user = JSON.parse(localStorage.getItem("user"));
+    console.log("user", this.user);
+
     this.cart();
 
     // let login = localStorage.getItem("isOMlogin");
