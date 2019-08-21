@@ -15,10 +15,11 @@ export class HomeComponent implements OnInit {
   cementQty: any;
   barsProducts: any;
   storeQuntity: any;
-  barProductItems = [];
+  barProductItems :any;
   barCompanyId: any;
   user: any;
   cementQuantity: any;
+  barProductsObject =[];
 
   constructor(
     private productService: ProductsService,
@@ -83,7 +84,7 @@ export class HomeComponent implements OnInit {
   }
 
   barsQuntity(bar, quantityEvent, itemIndex, barsIndex, prod_bar_company_id) {
-    console.log("prod_bar_company_id--->", prod_bar_company_id);
+  //  console.log("prod_bar_company_id--->", prod_bar_company_id);
     let barsTotalPrice = quantityEvent * bar.value;
     let barsProducts = this.barsProducts;
 
@@ -94,104 +95,171 @@ export class HomeComponent implements OnInit {
         barsList[barsIndex]["quantity"] = quantityEvent;
       }
     }
-    this.barCompanyId = prod_bar_company_id;
-    let barProdObj = {
-      bar_id: bar.prod_bar_id,
-      quantity: quantityEvent
-    };
-    this.barProductItems.push(barProdObj);
-
-    console.log("barsList--->", this.barProductItems);
     var totalCartPrice = barsList.reduce((a, b) => a + b.totalPrice, 0);
     barsProducts[itemIndex]["totalCartPrice"] = totalCartPrice;
-    localStorage.setItem(
-      "barsQTY",
-      JSON.stringify([{ quantityEvent, itemIndex, barsIndex }])
-    );
-    localStorage.setItem("barsList", JSON.stringify(this.barsProducts));
+
+    this.barCompanyId = prod_bar_company_id;
+
+     this.barProductItems = barsList
+    
+    console.log('products' , this.barsProducts)
+    // let barProdObj = {
+    //   bar_id: bar.prod_bar_id,
+    //   quantity: quantityEvent
+    // };
+    //  this.barProductItems.push(barProdObj);
+
+   // console.log("barsList--->", this.barProductItems);
+   
+    // localStorage.setItem(
+    //   "barsQTY",
+    //   JSON.stringify([{ quantityEvent, itemIndex, barsIndex }])
+    // );
+    // localStorage.setItem("barsList", JSON.stringify(this.barsProducts));
   }
 
   itemAddToCart(cartIndex, cartType) {
-    let barsQuntity = JSON.parse(localStorage.getItem("barsQTY"));
-    let barsList = JSON.parse(localStorage.getItem("barsList"));
-    console.log("barsList", barsList);
+    // let barsQuntity = JSON.parse(localStorage.getItem("barsQTY"));
+    // let barsList = JSON.parse(localStorage.getItem("barsList"));
+    // console.log("barsList", barsList);
 
     if (this.user == null) {
       this.router.navigateByUrl("login");
     } else {
-      if (cartType == 2) {
-        if (barsQuntity == null) {
-          this.toastrService.info("please enter  quntity");
+      if(cartType ==1){
+         
+        
+
+      console.log(this.cementQuantity);
+      if (this.cementQuantity == undefined ) {
+        this.toastrService.info("please enter quantity");
+      }else{
+      if (this.cementQuantity.index == cartIndex) {
+        if (this.cementQuantity.quantityEvent == "") {
+          this.toastrService.info("please enter quantity");
         } else {
-          for (var p = 0; p < barsQuntity.length; p++) {
-            var barsItemIndex = barsQuntity[p].itemIndex;
-            var bars = barsQuntity[p].quantityEvent;
-            console.log("bars", bars);
-            var barIndex = barsQuntity[p].barsIndex;
-          }
-          if (cartIndex == barsItemIndex) {
-            console.log("cartInex", cartIndex);
-            if (bars < 1) {
-              console.log("bars", bars);
+          if (this.cementQuantity.index == cartIndex) {
+            if (this.cementQuantity.quantityEvent < 1) {
               this.toastrService.info("please enter valid quantity");
             } else {
-              let barsDetails = {
+              var cartDetails = {
+                user_id: this.user.user_id,
+                type_id: cartType,
+                prod_type_id: this.cementQuantity.cementProductId,
+                quantity: this.cementQuantity.quantityEvent,
+                bar_products: []
+              };
+
+              console.log("cartDetails", cartDetails);
+
+              this.cementQuantity = null;
+              this.userService.addToCart(cartDetails).subscribe(resp => {
+                console.log("cartResp", resp);
+                this.toastrService.success("item add into cart");
+                this.cartItemsLength();
+              });
+            }
+          }
+        }
+      } else {
+        this.toastrService.info("please enter quantity");
+      }
+    }  
+  }else{
+
+    for(var j=0;  j < this.barsProducts.length; j++){
+
+      var barCartTotalPrice = this.barsProducts[cartIndex].totalCartPrice;
+      console.log('barCartTotalPrice' , barCartTotalPrice)
+    }
+    console.log( this.barsProducts, 'total')
+
+  if(this.barProductItems == undefined){
+    this.toastrService.info('please enter quntity')
+  }else{
+
+      if(barCartTotalPrice == 0 ||  barCartTotalPrice == ""){
+        this.toastrService.info('please enter valid quntity')
+      }else{
+     console.log('barProductItems' , this.barProductItems)
+     for(var k=0 ; k <this.barProductItems.length ; k++){
+      var quntity =  this.barProductItems[k].quantity
+      //console.log('quntity' , quntity)
+    var typeId= this.barProductItems[k].prod_bar_id
+    //console.log('typeId',typeId)
+  
+    // console.log('object' , {quntity ,typeId })
+   //  this.barProductsObject.push({quntity ,typeId }) 
+     let barProdObj = {
+      bar_id: typeId,
+      quantity: quntity
+    };
+     this.barProductsObject.push(barProdObj);
+  console.log('barProdObj' , barProdObj)
+  console.log('barProductsObject' , this.barProductsObject)
+
+     }
+
+
+    let barsDetails = {
                 user_id: this.user.user_id,
                 type_id: cartType,
                 prod_type_id: this.barCompanyId,
                 quantity: 0,
-                bar_products: this.barProductItems
+                bar_products: this.barProductsObject
               };
 
-              console.log("barsObject-->", barsDetails);
-              this.userService.addToCart(barsDetails).subscribe(resp => {
+              console.log('barsDetails' , barsDetails)
+
+             this.userService.addToCart(barsDetails).subscribe(resp => {
                 console.log("cartResp", resp);
                 this.toastrService.success("item add into cart");
-                localStorage.removeItem("barsList");
-                localStorage.removeItem("barsQTY");
               });
-            }
-          } else {
-            this.toastrService.info("please enter quantity");
-          }
-        }
-      } else {
-        console.log(this.cementQuantity);
-        if (this.cementQuantity == undefined) {
-          this.toastrService.info("please enter quantity");
-        } else {
-          if (this.cementQuantity.index == cartIndex) {
-            if (this.cementQuantity.quantityEvent == "") {
-              this.toastrService.info("please enter quantity");
-            } else {
-              if (this.cementQuantity.index == cartIndex) {
-                if (this.cementQuantity.quantityEvent < 1) {
-                  this.toastrService.info("please enter valid quantity");
-                } else {
-                  var cartDetails = {
-                    user_id: this.user.user_id,
-                    type_id: cartType,
-                    prod_type_id: this.cementQuantity.cementProductId,
-                    quantity: this.cementQuantity.quantityEvent,
-                    bar_products: []
-                  };
+            }  
 
-                  console.log("cartDetails", cartDetails);
+          }       
+        
+  }
+    
+      // if (cartType == 2) {
+      //   if (barsQuntity == null) {
+      //     this.toastrService.info("please enter  quntity");
+      //   } else {
+      //     for (var p = 0; p < barsQuntity.length; p++) {
+      //       var barsItemIndex = barsQuntity[p].itemIndex;
+      //       var bars = barsQuntity[p].quantityEvent;
+      //       console.log("bars", bars);
+      //       var barIndex = barsQuntity[p].barsIndex;
+      //     }
+      //     if (cartIndex == barsItemIndex) {
+      //       console.log("cartInex", cartIndex);
+      //       if (bars < 1) {
+      //         console.log("bars", bars);
+      //         this.toastrService.info("please enter valid quantity");
+      //       } else {
+      //         let barsDetails = {
+      //           user_id: this.user.user_id,
+      //           type_id: cartType,
+      //           prod_type_id: this.barCompanyId,
+      //           quantity: 0,
+      //           bar_products: this.barProductItems
+      //         };
 
-                  this.cementQuantity = null;
-                  this.userService.addToCart(cartDetails).subscribe(resp => {
-                    console.log("cartResp", resp);
-                    this.toastrService.success("item add into cart");
-                    this.cartItemsLength();
-                  });
-                }
-              }
-            }
-          } else {
-            this.toastrService.info("please enter quantity");
-          }
-        }
-      }
+      //         console.log("barsObject-->", barsDetails);
+      //         // this.userService.addToCart(barsDetails).subscribe(resp => {
+      //         //   console.log("cartResp", resp);
+      //         //   this.toastrService.success("item add into cart");
+      //         //   localStorage.removeItem("barsList");
+      //         //   localStorage.removeItem("barsQTY");
+      //         // });
+      //       }
+      //     } else {
+      //       this.toastrService.info("please enter quantity");
+      //     }
+      //   }
+      // } else {
+        
+      
     }
   }
 
