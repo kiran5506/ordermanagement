@@ -1,7 +1,7 @@
 <div class="container-fluid header-widget">
   <nav class="navbar navbar-expand-md navbar-fixed-top">
     <a href="#" class="navbar navbar-brand logo-text">
-      <h2>Order Management</h2> 
+      <h2>Order Management</h2>
     </a>
     <button
       class="navbar-toggler navbar-toggler-right"
@@ -10,22 +10,35 @@
       data-target="#menu"
       aria-controls="navbarSupportedContent"
       aria-expanded="false"
-      aria-label="Toggle navigation">
+      aria-label="Toggle navigation"
+    >
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse justify-content-end" id="menu">
       <ul class="navbar-nav">
-        <li class="nav-item" [routerLinkActive]="active">
-          <a class="nav-link" [routerLink]="['home']"><i class="fa fa-home cart-custom"> Home</i></a>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            routerLink=""
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            ><i class="fa fa-home cart-custom"> Home</i></a
+          >
         </li>
-        <li class="nav-item" [routerLinkActive]="active">
-          <a class="nav-link" [routerLink]="['cart']"><i class="fa fa-shopping-cart  cart-custom"> Cart</i></a>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="cart" routerLinkActive="active"
+            ><i class="fa fa-shopping-cart  cart-custom"> Cart</i></a
+          >
         </li>
-        <li class="nav-item" *ngIf="!isShowhide" [routerLinkActive]="active">
-          <a class="nav-link" [routerLink]="['login']"><i class="fa fa-sign-in cart-custom"> SignIn</i></a>
+        <li class="nav-item" *ngIf="!isShowhide">
+          <a class="nav-link" routerLink="login" routerLinkActive="active"
+            ><i class="fa fa-sign-in cart-custom"> SignIn</i></a
+          >
         </li>
-        <li class="nav-item" *ngIf="!isShowhide" [routerLinkActive]="active">
-          <a class="nav-link" [routerLink]="['signUp']"><i class="fa fa-user-plus cart-custom"> SignUp</i></a>
+        <li class="nav-item" *ngIf="!isShowhide">
+          <a class="nav-link" routerLink="signUp" routerLinkActive="active"
+            ><i class="fa fa-user-plus cart-custom"> SignUp</i></a
+          >
         </li>
         <li class="nav-item dropdown custom-dropdown" *ngIf="isShowhide">
           <img src="assets/user.jpg" alt="image" class="user-image" />
@@ -33,18 +46,25 @@
             class="nav-link dropdown-toggle"
             data-toggle="dropdown"
             data-target="dropdown_target"
-            href="#">{{user.owner_name | uppercase}}</a>
-          <div class="dropdown-menu dropdown-menu-left drop1" aria-labelledby="dropdown_target">
+            href="#"
+            >{{ user.owner_name | uppercase }}</a
+          >
+          <div
+            class="dropdown-menu dropdown-menu-left drop1"
+            aria-labelledby="dropdown_target"
+          >
             <div class="image1">
-                <p>{{user.owner_name}}</p>
+              <p>{{ user.owner_name }}</p>
             </div>
-            <hr/>
-            <a class="dropdown-item dd" [routerLink]="['user/profile']">My Profile</a>
-            <hr/>
+            <hr />
+            <a class="dropdown-item dd" [routerLink]="['user/profile']"
+              >My Profile</a
+            >
+            <hr />
             <a class="dropdown-item dd" [routerLink]="['user/myOrders']"
               >My Orders</a
             >
-            <hr/>
+            <hr />
             <div class="drop-button">
               <button type="button" class="btn btn-primary" (click)="logout()">
                 <i class="fa fa-sing-out cart-custom"> Logout</i>

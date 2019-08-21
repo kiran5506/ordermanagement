@@ -9,9 +9,9 @@ import { DatabroadcastService } from "src/app/services/databroadcast.service";
 })
 export class MyOrdersComponent implements OnInit {
   ordersList: any;
-  orderID: any;
+  // orderID: any;
   user: any;
-  isHidden: boolean = true;
+  //  isHidden: boolean = true;
   constructor(
     private userService: UserService,
     private databroadcastService: DatabroadcastService
@@ -20,9 +20,9 @@ export class MyOrdersComponent implements OnInit {
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem("user"));
     console.log("user", this.user);
-    this.orders();
-
     this.databroadcastService.isShowhide.emit(true);
+
+    this.orders();
   }
 
   orders() {
@@ -30,7 +30,6 @@ export class MyOrdersComponent implements OnInit {
       user_id: this.user.user_id,
       type_id: 1
     };
-
     console.log("ordersObj", ordersObj);
     this.userService.getUserOrders(ordersObj).subscribe(resp => {
       console.log("ordersResponse--->", resp.result);
@@ -40,17 +39,17 @@ export class MyOrdersComponent implements OnInit {
     });
   }
 
-  orderChange(orderId, type) {
-    let ordersObj = {
-      order_id: orderId,
-      type_id: type
-    };
-    console.log("ordersObj", ordersObj);
-    this.userService.getUserOrders(ordersObj).subscribe(resp => {
-      console.log("orderIDResponse--->", resp.result);
+  // orderChange(orderId, type) {
+  //   let ordersObj = {
+  //     order_id: orderId,
+  //     type_id: type
+  //   };
+  //   console.log("ordersObj", ordersObj);
+  //   this.userService.getUserOrders(ordersObj).subscribe(resp => {
+  //     console.log("orderIDResponse--->", resp.result);
 
-      this.orderID = resp.result;
-      console.log("orderId", this.orderID);
-    });
-  }
+  //     this.orderID = resp.result;
+  //     console.log("orderId", this.orderID);
+  //   });
+  // }
 }

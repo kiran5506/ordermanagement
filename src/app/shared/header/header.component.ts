@@ -11,37 +11,23 @@ import { Component, OnInit } from "@angular/core";
 export class HeaderComponent implements OnInit {
   isShowhide: boolean = false;
 
-  cartList: any;
-  cartLegth: number = 0;
   user: any;
 
   constructor(
     private authService: AuthenticationService,
-    private broadcastService: DatabroadcastService,
-    private cartService: UserService
+    private broadcastService: DatabroadcastService
   ) {}
-
-  public cart() {
-    this.broadcastService.sharedCartLength.subscribe(data => {
-      console.log("data", data);
-      this.cartLegth = data;
-    });
-
-    console.log("cartLength", this.cartLegth);
-  }
 
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem("user"));
     console.log("user", this.user);
 
-    this.cart();
-
-    // let login = localStorage.getItem("isOMlogin");
-    // if (login == "true") {
-    //   this.isShowhide = true;
-    // } else {
-    //   this.isShowhide = false;
-    // }
+    let login = localStorage.getItem(this.user);
+    if (login != null) {
+      this.isShowhide = true;
+    } else {
+      this.isShowhide = false;
+    }
   }
 
   logout() {
@@ -50,6 +36,7 @@ export class HeaderComponent implements OnInit {
 
   ngAfterViewInit() {
     this.broadcastService.isShowhide.subscribe((data: any) => {
+      console.log(data);
       if (data == true) {
         this.isShowhide = true;
       } else {
