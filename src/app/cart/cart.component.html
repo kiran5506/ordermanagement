@@ -1,6 +1,15 @@
 
-<div *ngIf="cartItemsLength">
+
   <section class="cart-section">
+      <div *ngIf="cartProducts.length == 0">
+          <div class="empty_cart">
+            <img src="../../assets/empty_cart.jpg" alt="No cart items are selected">
+            <h4>Unfortunately, your cart is empty</h4>
+            <p>Please add something into your cart</p>
+            <button type="button" class="btn btn-md no-cart-btn" (click)="addItem()">Continue Shopping</button>
+          </div>
+        </div> 
+    <div *ngIf="cartProducts.length != 0">
     <div class="container">
       <div class="empty-cart">
         <button type="button" class="btn btn-danger del-btn" (click)="deleteCarItem(1,0)">Delete All</button>
@@ -83,14 +92,7 @@
       <div class="empty-cart">
         <button type="button" class="btn btn-md checkout-btn" (click) = "checkOut()">CheckOut</button>
       </div>
+    </div>
     </div>  
   </section>
-</div>
-<div *ngIf="!cartItemsLength">
-  <div class="empty_cart">
-    <img src="../../assets/empty_cart.jpg" alt="No cart items are selected">
-    <h4>Unfortunately, your cart is empty</h4>
-    <p>Please add something into your cart</p>
-    <button type="button" class="btn btn-md no-cart-btn" (click)="addItem()">Continue Shopping</button>
-  </div>
-</div> 
+

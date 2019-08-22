@@ -53,12 +53,6 @@ export class CartComponent implements OnInit {
       };
       this.cartService.userCartList(userId).subscribe(resp => {
         this.cartProducts = resp.result;
-
-        if (this.cartProducts.length < 1) {
-          this.cartItemsLength = false;
-        } else {
-          this.cartItemsLength = true;
-
           for (var j = 0; j < this.cartProducts.length; j++) {
             console.log("length", this.cartProducts.length);
 
@@ -89,7 +83,6 @@ export class CartComponent implements OnInit {
                 console.log("bar-->", this.totBaramount);
                 this.totBaramount = 0;
               }
-            }
           }
         }
         console.log("grand tot-->", this.totGrandamount);
