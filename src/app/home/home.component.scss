@@ -11,7 +11,7 @@
   height: 400px;
 }
 
-.caro-icons {
+.caro-icons { 
   background-color: black;
   position: absolute;
   top: 50%;
@@ -31,28 +31,38 @@
   width: 50px;
 }
 
-.style {
-  border-bottom: 2px solid #82ae46;
-}
-
 .cement-section {
   margin-top: 40px;
   font-family: lato, Roboto, "Helvetica Neue", sans-serif;
 }
 
-.cement-widget {
+.widget {
   margin-top: 10px;
-}
-
-.cement-widget {
   padding-bottom: 25px;
+  .section-heading {
+    text-align: center;
+    padding-top: 35px;
+    font-size: 40px;
+    font-weight: 600;
+    color: #000;
+    font-family: poppins,Arial,sans-serif;
+    margin-top: 70px;
+  }
+  p {
+    // color: gray;
+    text-align: center;
+    font-family: poppins,Arial,sans-serif;
+    font-size: 15px;
+    line-height: 1.8;
+    font-weight: 400;
+  }
+  .description {
+    color: gray;
+    padding-bottom: 20px;
+  }
 }
 
-.section-heading {
-  text-align: center;
-  margin-bottom: 32px;
-  font-size: 39px;
-}
+
 
 // .cement-widget h2 {
 //     text-align:center;
@@ -69,13 +79,14 @@
   padding: 10px;
   /* box-shadow: 0px 2px 5px 0px; */
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.12);
-  margin: 0 8px 9px;
+  margin: 0 8px 20px;
+  img {
+    height: 125px;
+    width: 125px;
+  }
 }
 
-.cement-showcase img {
-  height: 125px;
-  width: 125px;
-}
+
 
 .pull-center {
   text-align: center;
@@ -92,11 +103,10 @@
 .cement-price1 {
   // justify-content:center;
   display: flex;
-}
-
-.cement-price1 input {
-  height: 32px;
-  width: 42px;
+  input {
+    height: 32px;
+    width: 42px;
+  }
 }
 
 .cement-price1 .cement-input {
@@ -119,36 +129,21 @@
 
 // -------------------------------------------------------------------------------
 // ==================================================================
+.bars {
+  background-color: #f7f6f2;
 
-.bar-section {
-  margin-top: 40px;
-  font-family: lato, Roboto, "Helvetica Neue", sans-serif;
+  .bar-section {
+    margin-top: 40px;
+    font-family: lato, Roboto, "Helvetica Neue", sans-serif;
+  }
 }
-
-.bar-widget {
-  margin-top: 10px;
-}
-
-.bar-widget {
-  padding-bottom: 25px;
-}
-
-.section-heading {
-  text-align: center;
-  margin-bottom: 32px;
-  font-size: 39px;
-}
-
-// .cement-widget h2 {
-//     text-align:center;
-//     margin-bottom: 32px;
-// }
 
 .underline {
   border-bottom: 2px solid currentColor;
 }
 
 .bar-showcase {
+  background-color: #fff;
   margin-bottom: 20px;
   text-align: center;
   padding: 10px;
@@ -205,4 +200,60 @@
 
 .bar-widget textarea {
   resize: none;
+}
+
+/*=========CustomerReport===============*/
+
+.customer-report {
+  text-align: center;
+  .customer-profile {
+    img {
+      height: 100px;
+      width: 100px;
+      border-radius: 50%;
+    }  
+  }
+  .customer-desc {
+    margin-bottom: 30px;
+    margin-top: 35px;
+  }
+  .customer-data {
+    h4 {
+      font-size: 18px;
+      font-weight: 400;
+      color: rgba(0,0,0,.8);
+    }
+    p {
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 2px;
+      color: rgba(0,0,0,.8);
+    }
+  }
+}
+
+/*============ START SUBSCRIBE SECTION================*/
+
+.subscribe{
+  background-color: #f7f6f2;
+  padding: 50px;
+  .subscribe-text { 
+    h2 {
+      color: #000;
+    }
+    p {
+      color: gray !important;
+    }
+  }
+  .subscribe-form {
+    .form-group {
+      display: flex;
+      .form-control {
+        height: 52px;
+      }
+      input[type="submit"] {
+        background-color: #82ae46 !important;
+      }
+     }
+  }
 }
