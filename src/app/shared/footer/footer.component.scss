@@ -6,7 +6,7 @@
 }
 
 .data {
-  padding: 30px 10px 10px 10px;
+  padding: 130px 10px 10px 10px;
   // .footer-content {
   //     // text-align: center;
   // }
@@ -62,4 +62,56 @@
 }
 .copyright-text {
   text-align: center;
+  margin: 70px 0px 70px 0px;
+}
+
+/*============ START SUBSCRIBE SECTION================*/
+.position {
+  position: relative;
+  margin-top: 70px;
+  .subscribe{
+    background-color: #f7f6f2;
+    padding: 50px;
+    .subscribe-text { 
+      h2 {
+        color: #000;
+      }
+      p {
+        color: gray !important;
+      }
+    }
+    .subscribe-form {
+      .form-group {
+        display: flex;
+        input {
+          border: 1px solid transparent;
+        }
+        .form-control {
+          height: 52px;
+        }
+        input[type="submit"] {
+          background-color: #82ae46 !important;
+          color: #fff;
+        }
+      }
+    }
+  }
+
+  .navigate-top {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    background-color: #82ae46;
+    position: absolute;
+    top: 164px;
+    left: 48%;
+    color: #fff;
+    font-size: 28px;
+    text-align: center;
+    animation: 1.6s ease infinite wheel-up-down !important;
+    i {
+      
+      color: #fff;
+    }
+  }
 }

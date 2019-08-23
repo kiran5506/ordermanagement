@@ -1,9 +1,15 @@
 
 <div class="container-fluid header-widget">
     <div class="row header-top">
-      <p class="col-md-4"><i class="fa fa-phone" aria-hidden="true"></i>+ 8886543210</p>
-      <p class="col-md-4"><i class="fa fa-paper-plane" aria-hidden="true"></i>OrederManagement@info.in</p>
-      <p class="col-md-4">Fast Delivery & Free Retuns</p>
+      <div class="col-md-6 top-text">
+        <p class=""><i class="fa fa-phone" aria-hidden="true"></i>+ 8886543210</p>
+        <p class=""><i class="fa fa-paper-plane" aria-hidden="true"></i>OrederManagement@info.in</p>
+      </div>  
+      <div class="col-md-6 social-icons">
+        <i class="fa fa-twitter"></i>
+        <i class="fa fa-facebook-f"></i>
+        <i class="fa fa-instagram"></i>
+      </div>
     </div>
   <nav class="navbar navbar-expand-md navbar-fixed-top">
     <a href="#" class="navbar navbar-brand logo-text">
@@ -38,7 +44,8 @@
           >
         </li>
         <li class="nav-item dropdown custom-dropdown" *ngIf="isShowhide">
-          <img src="assets/user.jpg" alt="image" class="user-image" />
+          <!-- <img src="assets/user.jpg" alt="image" class="user-image" /> -->
+          <i class="fa fa-user user-image" aria-hidden="true"></i>
           <a
             class="nav-link dropdown-toggle"
             data-toggle="dropdown"

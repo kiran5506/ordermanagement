@@ -75,8 +75,8 @@ export class HomeComponent implements OnInit {
 
         for (var j = 0; j < barsList.length; j++) {
           barsList[j]["quantity"] = "";
-          barsList[j]["totalPrice"] = "";
-          response.product[i]["totalCartPrice"] = "";
+          barsList[j]["totalPrice"] = "0.00";
+          response.product[i]["totalCartPrice"] = "0.00";
         }
       }
       this.barsProducts = response.product;

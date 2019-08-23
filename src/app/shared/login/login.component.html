@@ -1,64 +1,37 @@
-<div class="container pt-3">
-  <div class="row justify-content-sm-center login">
-    <div class="col-sm-6 col-md-4">
-      <div class="card border-info text-center">
-        <div class="card-header">
-          Sign in to continue
-        </div>
-        <div class="card-body">
-          <form
-            class="form-signin"
-            [formGroup]="loginForm"
-            (ngSubmit)="login()"
-          >
-            <div class="form-group">
-              <input
-                type="text"
-                class="form-control mb-2"
-                placeholder="Email or Phone"
-                formControlName="userName"
-                [ngClass]="{
-                  'is-invalid img':
-                    loginForm.get('userName').touched &&
-                    loginForm.get('userName').invalid
-                }"
-              />
-              <div class="invalid-feedback invalid-txt">
-                Email or PhoneNumber is required
+<section class="signin">
+  <div class="container">
+    <div class="row justify-content-sm-center login">
+      <div class="">
+        <div class="card text-center">
+          <div class="card-header">
+            Sign in to continue
+          </div>
+          <div class="card-body">
+            <form class="form-signin" [formGroup]="loginForm" (ngSubmit)="login()">
+              <div class="form-group">
+                <input type="text" class="form-control mb-2" placeholder="Email or Phone" formControlName="userName"
+                  [ngClass]="{'is-invalid img':
+                      loginForm.get('userName').touched &&
+                      loginForm.get('userName').invalid}"/>
+                <div class="invalid-feedback invalid-txt">
+                  Email or PhoneNumber is required
+                </div>
               </div>
-            </div>
-            <div class="form-group">
-              <input
-                type="password"
-                class="form-control mb-2"
-                placeholder="Password"
-                formControlName="password"
-                [ngClass]="{
-                  'is-invalid img':
-                    loginForm.get('password').touched &&
-                    loginForm.get('password').invalid
-                }"
-              />
-              <div class="invalid-feedback invalid-txt">
-                Password is required
+              <div class="form-group">
+                <input type="password" class="form-control mb-2" placeholder="Password" formControlName="password"
+                  [ngClass]="{'is-invalid img':
+                      loginForm.get('password').touched &&
+                      loginForm.get('password').invalid}"/>
+                <div class="invalid-feedback invalid-txt">
+                  Password is required
+                </div>
               </div>
-            </div>
-            <button
-              class="btn btn-lg btn-block mb-1"
-              type="submit"
-              [disabled]="loginForm.invalid"
-            >
-              Sign in
-            </button>
-            <!-- <label class="checkbox float-left">
-              <input type="checkbox" value="remember-me" />
-              Remember me
-            </label> -->
-            <!-- <a href="#" class="float-right">Need help?</a> -->
-          </form>
+              <button class="btn btn-lg btn-block mb-1" type="submit" [disabled]="loginForm.invalid">Sign in</button>
+            </form>
+          </div>
         </div>
+        <a class="float-right" [routerLink]="['/signUp']">Create an account </a>
       </div>
-      <a class="float-right" [routerLink]="['/signUp']">Create an account </a>
     </div>
   </div>
-</div>
+</section>

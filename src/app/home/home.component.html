@@ -51,13 +51,13 @@
                             </div>    
                             <div class="cement-price1 form-group">
                                 <p><span>&#8377;</span>{{item.price}}<span>&#215;</span></p>
-                                <input class="form-control" type="text" name="qty" (input)="productValue(item, $event.target.value, i)">
+                                <input class="form-control" type="text" name="qty" placeholder="0" (input)="productValue(item, $event.target.value, i)">
                                 <span>&#61;</span>
-                                <input class="form-control" type="text" class="cement-input" name="total" readonly value="{{ item.totalPrice }}">
+                                <label type="text" class="cement-input" name="total" value="0" readonly>{{ item.totalPrice }}</label>
                             </div>
                         </div>
                         <div>
-                            <button type="button" class="btn cart-btn" (click)="itemAddToCart(i , 1)"><i class="fa fa-shopping-cart"></i>Add To Cart</button>
+                            <button type="button" class="btn btn-block cart-btn" (click)="itemAddToCart(i , 1)"><i class="fa fa-shopping-cart"></i>Add To Cart</button>
                         </div>
                     </div>
                 </div>
@@ -72,31 +72,37 @@
             <h2 class="section-heading">Bars</h2>
             <p class="description">We source Bars from the certified vendors of industry, who manufacture these Steel Bars using premium quality raw materials.</p>
             <div class="row">
-                <div class="col-md-4" *ngFor="let product of barsProducts; let k = index">
+                <div class="col-md-3" *ngFor="let product of barsProducts; let k = index">
                     <div class="bar-showcase">
                         <img src="assets/cement.jpg" alt="photo">
                         <div>
                             <p><b>{{ product.bar_cmp_name }}</b></p>
                         </div>
                         <div class="bar-value">
+                            <div class="pull-center">
+                                <div class="cement-price">
+                                    <p><b>MM</b></p>
+                                    <p><b>Price</b></p>
+                                    <p><b>Qty</b></p>
+                                    <p><b>&nbsp;&nbsp;Total</b></p>
+                                </div>
+                            </div>  
                             <div class="bar-price1 form-group" *ngFor="let bar of product.barsList; let j = index">
                                 <p>{{ bar.type }}&nbsp;<span>&#8211;</span>&nbsp;</p>
                                 <p><span>&#8377;&nbsp;</span>{{ bar.value }}&nbsp;<span>&#215;&nbsp;</span></p>
-                                <input class="form-control" type="" value=""
-                                    (input)="barsQuntity(bar, $event.target.value, k, j, product.prod_bar_company_id)"
-                                    placeholder="quantity" />
+                                <input class="form-control" type="" placeholder="0"
+                                    (input)="barsQuntity(bar, $event.target.value, k, j, product.prod_bar_company_id)"/>
                                 <span>&nbsp;&#61;&nbsp;</span>
-                                <input class="form-control bars-input-name" type="text" class="" name="total" readonly
-                                    value="{{ bar.totalPrice }}">
+                                <label class="bars-input-name" type="text" name="total" value="0" readonly>{{ bar.totalPrice }}</label>
 
                             </div> 
                         </div>
                         <div class="form-group">
-                            <label for="total-price">Total Price&nbsp;&nbsp;</label>
-                            <input class="form-control" type="text" name="total" readonly value="{{ product.totalCartPrice }}" />
+                            <label for="total-price"><b>Total Amount : &nbsp;&nbsp;</b></label>
+                            <label name="total" readonly>{{ product.totalCartPrice }}</label>
                         </div>
                         <div>
-                            <button type="button" class="btn cart-btn" (click)="itemAddToCart(k , 2)"><i class="fa fa-shopping-cart"></i>Add To Cart</button>
+                            <button type="button" class="btn btn-block cart-btn" (click)="itemAddToCart(k , 2)"><i class="fa fa-shopping-cart"></i>Add To Cart</button>
                         </div>
                     </div>
                 </div>
@@ -152,21 +158,3 @@
     </div>
 </div>
 
-<div class="container-fluid subscribe">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 subscribe-text">
-                <h2>Subscribe to Our Newsletter</h2>
-                <p>Get-email updates about our latest shops and special offers</p>
-            </div>
-            <div class="col-md-6 subscribe-form">
-                <form>
-                    <div class="form-group">
-                        <input class="form-control" type="text" placeholder="Enter email address">
-                        <input type="submit" value="Subccribe">
-                    </div>    
-                </form>
-            </div>
-        </div>    
-    </div>
-</div>
