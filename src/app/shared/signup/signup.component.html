@@ -1,13 +1,13 @@
-<div class="container pt-3">
+<div class="container-fluid signup-form">
   <div class="row justify-content-sm-center signUp">
     <div class="col-sm-6 col-md-4">
-      <div class="card border-info text-center">
+      <div class="card text-center">
         <div class="card-header">
           Sign Up to continue  
         </div>
         <div class="card-body">
           <form
-            class="form-signUp"
+            class="form"
             [formGroup]="signUpForm"
             (ngSubmit)="onSignUp()"
           >
@@ -57,7 +57,7 @@
             </div>
             <div class="form-group">
               <input
-                type="number"
+                type=""
                 class="form-control mb-2"
                 placeholder="MobileNumber"
                 formControlName="mobile_number"
