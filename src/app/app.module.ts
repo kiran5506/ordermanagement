@@ -21,6 +21,8 @@ import {
 } from "@angular/common";
 import { CheckOutComponent } from "./check-out/check-out.component";
 import { ThankYouComponent } from "./thank-you/thank-you.component";
+import { AboutComponent } from './about/about.component';
+import { ContactComponent } from './contact/contact.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +31,9 @@ import { ThankYouComponent } from "./thank-you/thank-you.component";
     FooterComponent,
     CartComponent,
     CheckOutComponent,
-    ThankYouComponent
+    ThankYouComponent,
+    AboutComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,

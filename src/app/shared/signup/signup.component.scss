@@ -34,5 +34,14 @@
 
 .btn-block {
   background-color: #82ae46;
-  color: #000;
+  color: #fff;
+  border-radius: 50px; 
+  font-size: 17px;
+  padding: 6px 0px 10px 0px;
+  &:hover {
+    background-color: #fff;
+    border: 1px solid #82ae46;
+    color: #82ae46;
+    font-weight: 600;
+  }
 }
