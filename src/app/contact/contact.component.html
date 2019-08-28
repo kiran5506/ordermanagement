@@ -1,3 +1,63 @@
-<p>
-  contact works!
-</p>
+<section>
+  <div class="contact">
+    <div class="container">
+      <div class="row d-flex mb-5">
+        <!-- <div class="w-100"></div> -->
+        <div class="col-md-3 d-flex">
+          <div class="contact-details p-4">
+            <p>Address:<span>Railway New Colony,Visakhapatnam</span></p>
+          </div>
+        </div>
+        <div class="col-md-3 d-flex">
+          <div class="contact-details p-4">
+            <p>Phone:<span> 8885692314</span></p>
+          </div>
+        </div>
+        <div class="col-md-3 d-flex">
+          <div class="contact-details p-4">
+            <p>Email:<span> management@gmail.com</span></p>
+          </div>
+        </div>
+        <div class="col-md-3 d-flex">
+          <div class="contact-details p-4">
+            <p>Website:<span> Ordermanagement.com</span></p>
+          </div>
+        </div>
+      </div>
+      <div class="fill-details">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="map-layer"> 
+              <agm-map [latitude]='lat' [longitude]='lng' [zoom]='zoom'>
+                <agm-marker [latitude]='lat' [longitude]='lng'></agm-marker>
+              </agm-map>
+            </div>
+          </div>
+          <!-- <div class="form-fields"> -->
+            <div class="col-md-6 form-fields p-5">
+              <div class="form">
+                <form>
+                  <div class="form-group">
+                    <input class="form-control" type="text" placeholder="Your Name">
+                  </div>
+                  <div class="form-group">
+                    <input class="form-control" type="text" placeholder="Your Email">
+                  </div>  
+                  <div class="form-group">
+                    <input class="form-control" type="text" placeholder="Subject">
+                  </div>  
+                  <div class="form-group">
+                    <textarea type="text" class="p-3 w-100" placeholder="Message" cols="30" rows="7"></textarea>
+                  </div>  
+                  <div class="send-msg-btn">
+                    <input class="btn px-5 py-3 button-style" type="submit" value="Send Message">
+                  </div>
+                </form>
+              </div>
+            </div>
+          <!-- </div>   -->
+        </div>
+      </div>  
+    </div>
+  </div>  
+</section>
