@@ -19,8 +19,10 @@ export class HomeComponent implements OnInit {
   barCompanyId: any;
   user: any;
   cementQuantity: any;
+  barsItemIndex:any;
   barProductsObject = [];
   cementList = [];
+  cementIndex = [];
 
   constructor(
     private productService: ProductsService,
@@ -66,8 +68,9 @@ export class HomeComponent implements OnInit {
 
     let cementProductId = item.prod_cement_id;
     this.cementQuantity = { quantityEvent, index, cementProductId };
-
-    console.log("productId", cementProductId);
+    this.cementIndex.push({ quantityEvent, index, cementProductId });
+    console.log('cementIndex' , this.cementIndex)
+  //  console.log("productId", cementProductId);
   }
 
   /*                                 Bars Integration                                       */
@@ -91,7 +94,7 @@ export class HomeComponent implements OnInit {
     //  console.log("prod_bar_company_id--->", prod_bar_company_id);
     let barsTotalPrice = quantityEvent * bar.value;
     let barsProducts = this.barsProducts;
-
+  
     for (var k = 0; k < barsProducts.length; k++) {
       var barsList = barsProducts[itemIndex].barsList;
       for (var m = 0; m < barsList.length; m++) {
@@ -105,6 +108,7 @@ export class HomeComponent implements OnInit {
     this.barCompanyId = prod_bar_company_id;
 
     this.barProductItems = barsList;
+    this.barsItemIndex = itemIndex;
 
     console.log("products", this.barsProducts);
   }
@@ -116,88 +120,60 @@ export class HomeComponent implements OnInit {
       this.router.navigateByUrl("login");
     } else {
       if (cartType == 1) {
-        console.log("CementQuntityObject", this.cementQuantity);
-
+        console.log("CementQuntityObject", this.cementIndex);
+        console.log()
         if (this.cementQuantity == undefined) {
           this.toastrService.info("please enter quantity");
-          // this.cementList = [];
         } else {
-          this.cementList.push(this.cementQuantity);
+          if (this.cementQuantity.index == cartIndex) {
+            if (this.cementQuantity.quantityEvent == "") {
+              this.toastrService.info("please enter quantity");
+            } else {
+              if (this.cementQuantity.index == cartIndex) {
+                if (this.cementQuantity.quantityEvent < 1) {
+                  this.toastrService.info("please enter valid quantity");
+                } else {
+                  var cartDetails = {
+                    user_id: this.user.user_id,
+                    type_id: cartType,
+                    prod_type_id: this.cementQuantity.cementProductId,
+                    quantity: this.cementQuantity.quantityEvent,
+                    bar_products: []
+                  };
 
-          console.log("camentList", this.cementList);
-          for (var m = 0; m < this.cementList.length; m++) {
-            var quntityCement = this.cementList[m].index;
-            var quntityEvents = this.cementList[m].quantityEvent;
-            console.log("camentListQuntity", quntityCement);
-            console.log("quntityEvents", quntityEvents);
-          }
-          console.log("cartIndex", cartIndex);
-          if (quntityCement == cartIndex) {
-            if (quntityEvents < 1) {
-              this.toastrService.info("please enter  valid quantity");
+                  console.log("cartDetails", cartDetails);
+
+                  this.cementQuantity = null;
+                  this.userService.addToCart(cartDetails).subscribe(resp => {
+                    console.log("cartResp", resp);
+                    this.toastrService.success("item add into cart");
+                    // this.cartItemsLength();
+                  });
+                }
+              }
             }
+          } else {
+            this.toastrService.info("please enter quantity");
           }
-
-          // this.toastrService.info("please enter quantity index not equel");
         }
-        // this.cementQuantity = null;
-
-        // if (this.cementQuantity == undefined) {
-        //   this.toastrService.info("please enter quantity");
-        // } else {
-        //   if (this.cementQuantity.index == cartIndex) {
-        //     if (this.cementQuantity.quantityEvent == "") {
-        //       this.toastrService.info("please enter quantity");
-        //     } else {
-        //       if (this.cementQuantity.index == cartIndex) {
-        //         if (this.cementQuantity.quantityEvent < 1) {
-        //           this.toastrService.info("please enter valid quantity");
-        //         } else {
-        //           var cartDetails = {
-        //             user_id: this.user.user_id,
-        //             type_id: cartType,
-        //             prod_type_id: this.cementQuantity.cementProductId,
-        //             quantity: this.cementQuantity.quantityEvent,
-        //             bar_products: []
-        //           };
-
-        //           console.log("cartDetails", cartDetails);
-
-        //           //this.cementQuantity = null;
-        //           // this.userService.addToCart(cartDetails).subscribe(resp => {
-        //           //   console.log("cartResp", resp);
-        //           //   this.toastrService.success("item add into cart");
-        //           //   // this.cartItemsLength();
-        //           // });
-        //         }
-        //       }
-        //     }
-        //   } else {
-        //     this.toastrService.info("please enter quantity");
-        //   }
-        // }
       } else {
         for (var j = 0; j < this.barsProducts.length; j++) {
           var barCartTotalPrice = this.barsProducts[cartIndex].totalCartPrice;
-          console.log("barCartTotalPrice", barCartTotalPrice);
         }
-        console.log(this.barsProducts, "total");
-
+   
         if (this.barProductItems == undefined) {
           this.toastrService.info("please enter quntity");
         } else {
+         
           if (barCartTotalPrice == 0 || barCartTotalPrice == "") {
             this.toastrService.info("please enter valid quntity");
           } else {
             console.log("barProductItems", this.barProductItems);
+            if(this.barsItemIndex == cartIndex){
             for (var k = 0; k < this.barProductItems.length; k++) {
               var quntity = this.barProductItems[k].quantity;
-              //console.log('quntity' , quntity)
               var typeId = this.barProductItems[k].prod_bar_id;
-              //console.log('typeId',typeId)
-
-              // console.log('object' , {quntity ,typeId })
-              //  this.barProductsObject.push({quntity ,typeId })
+    
               let barProdObj = {
                 bar_id: typeId,
                 quantity: quntity
@@ -221,47 +197,14 @@ export class HomeComponent implements OnInit {
               console.log("cartResp", resp);
               this.toastrService.success("item add into cart");
             });
+          }else{
+            this.toastrService.info("please enter quntity");
+          }
           }
         }
       }
 
-      // if (cartType == 2) {
-      //   if (barsQuntity == null) {
-      //     this.toastrService.info("please enter  quntity");
-      //   } else {
-      //     for (var p = 0; p < barsQuntity.length; p++) {
-      //       var barsItemIndex = barsQuntity[p].itemIndex;
-      //       var bars = barsQuntity[p].quantityEvent;
-      //       console.log("bars", bars);
-      //       var barIndex = barsQuntity[p].barsIndex;
-      //     }
-      //     if (cartIndex == barsItemIndex) {
-      //       console.log("cartInex", cartIndex);
-      //       if (bars < 1) {
-      //         console.log("bars", bars);
-      //         this.toastrService.info("please enter valid quantity");
-      //       } else {
-      //         let barsDetails = {
-      //           user_id: this.user.user_id,
-      //           type_id: cartType,
-      //           prod_type_id: this.barCompanyId,
-      //           quantity: 0,
-      //           bar_products: this.barProductItems
-      //         };
-
-      //         console.log("barsObject-->", barsDetails);
-      //         // this.userService.addToCart(barsDetails).subscribe(resp => {
-      //         //   console.log("cartResp", resp);
-      //         //   this.toastrService.success("item add into cart");
-      //         //   localStorage.removeItem("barsList");
-      //         //   localStorage.removeItem("barsQTY");
-      //         // });
-      //       }
-      //     } else {
-      //       this.toastrService.info("please enter quantity");
-      //     }
-      //   }
-      // } else {
+      
     }
   }
 

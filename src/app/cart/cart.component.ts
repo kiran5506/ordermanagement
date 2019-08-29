@@ -51,7 +51,6 @@ export class CartComponent implements OnInit {
       console.log("CartProducts", this.cartItemsLength);
       console.log("CartProductslogin", this.cartProducts);
 
-      console.log("please login");
     } else {
       let userId = {
         user_id: this.user.user_id
@@ -149,7 +148,7 @@ export class CartComponent implements OnInit {
     this.cartService.userCartDelete(this.cartItemObj).subscribe(resp => {
       if (resp.status == 200) {
         this.cartItems();
-        this.toasterService.error("All items deleted");
+        this.toasterService.error(resp.message);  
       }
     });
   }
