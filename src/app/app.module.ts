@@ -13,6 +13,7 @@ import { AuthGuard } from "./shared/security/auth.guard";
 import { HomeComponent } from "./home/home.component";
 import { CartComponent } from "./cart/cart.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { AgmCoreModule } from "@agm/core";
 import {
   LocationStrategy,
   HashLocationStrategy,
@@ -21,6 +22,8 @@ import {
 } from "@angular/common";
 import { CheckOutComponent } from "./check-out/check-out.component";
 import { ThankYouComponent } from "./thank-you/thank-you.component";
+import { AboutComponent } from './about/about.component';
+import { ContactComponent } from './contact/contact.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +32,9 @@ import { ThankYouComponent } from "./thank-you/thank-you.component";
     FooterComponent,
     CartComponent,
     CheckOutComponent,
-    ThankYouComponent
+    ThankYouComponent,
+    AboutComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,
@@ -40,6 +45,9 @@ import { ThankYouComponent } from "./thank-you/thank-you.component";
     ReactiveFormsModule,
     FormsModule,
     BrowserAnimationsModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyB5ezxvUQ4rgV68spt7XE6mdEGpOGZLb50'
+    }),
     ToastrModule.forRoot({
       timeOut: 2000,
       positionClass: "toast-top-right",

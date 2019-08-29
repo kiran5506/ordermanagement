@@ -30,14 +30,14 @@
   .del-btn {
     border-radius: 25px;
     color: #fff;
-    background-color: #f5061a;
+    background-color: #d01f2e;
     font-size: 17px;
     font-weight: 600;
     letter-spacing: 1px;
     &:hover {
-      border: 1px solid #f5061a;
+      border: 1px solid #d01f2e;
       background: 0 0;
-      color: #f5061a;
+      color: #d01f2e;
     }
   }
   .checkout-btn {
@@ -80,7 +80,7 @@
   width: 12%;
   text-align: right;
   i {
-    color: #fff !important;
+    color: rgb(224, 42, 42) !important;
     font-size: 18px;
   }
 }

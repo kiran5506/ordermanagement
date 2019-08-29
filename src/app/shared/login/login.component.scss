@@ -1,5 +1,7 @@
 .signin {
   background-color: #f7f6f2;
+  padding-top: 50px;
+  padding-bottom: 50px;
 }
 .card {
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
@@ -8,6 +10,13 @@
     font-size: 20px;
     font-weight: 600;
     background-color: #fff;
+  }
+  .card-body {
+    .form-signin {
+      input {
+        height: 52px !important;
+      }
+    }
   }
 }
 .img {  
@@ -21,7 +30,16 @@
 }
 .btn-block {
   background-color: #82ae46;
-  color: #000;
+  color: #fff;
+  border-radius: 50px;
+  font-size: 17px;
+  padding: 6px 0px 10px 0px;
+  &:hover { 
+    background-color: #fff;
+    border: 1px solid #82ae46;
+    color: #82ae46;
+    font-weight: 600;
+  }
 }
 .float-right {
   color: #000;
