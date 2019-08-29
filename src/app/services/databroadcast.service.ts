@@ -9,13 +9,13 @@ export class DatabroadcastService {
   public shareGrandTotal = this.grandTotal.asObservable();
   private userOrderId = new BehaviorSubject<any>(null);
   public shareOrderId = this.userOrderId.asObservable();
-  private cartlength = new BehaviorSubject<number>(0);
-  public sharedCartLength = this.cartlength.asObservable();
+  // private userName = new BehaviorSubject<any>("");
+  // public sharedName = this.userName.asObservable();
 
   constructor() {}
-  cartLength(number) {
-    this.cartlength.next(number);
-  }
+  // user(any) {
+  //   this.userName.next(any);
+  // }
   orderId(any) {
     this.userOrderId.next(any);
   }
@@ -23,4 +23,5 @@ export class DatabroadcastService {
     this.grandTotal.next(number);
   }
   isShowhide = new EventEmitter<any>();
+  userName = new EventEmitter<string>();
 }

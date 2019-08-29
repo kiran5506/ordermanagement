@@ -18,7 +18,7 @@ export class CartComponent implements OnInit {
   totCementamount = 0;
   totGrandamount = 0;
   updateCart: any;
-  cartItemsLength: boolean = false;
+  cartItemsLength: any;
   @Output() totalEvent = new EventEmitter<any>();
   constructor(
     private cartService: UserService,
@@ -32,7 +32,7 @@ export class CartComponent implements OnInit {
 
     this.loadCartPage();
     this.cartItems();
-    console.log("cartItems", this.cartItems.length);
+    //console.log("cartItems", this.cartItems.length);
   }
 
   public loadCartPage() {
@@ -46,6 +46,11 @@ export class CartComponent implements OnInit {
   cartItems() {
     this.totGrandamount = 0;
     if (this.user == null) {
+      this.cartItemsLength = 0;
+      this.cartProducts = 0;
+      console.log("CartProducts", this.cartItemsLength);
+      console.log("CartProductslogin", this.cartProducts);
+
       console.log("please login");
     } else {
       let userId = {
@@ -53,36 +58,38 @@ export class CartComponent implements OnInit {
       };
       this.cartService.userCartList(userId).subscribe(resp => {
         this.cartProducts = resp.result;
-          for (var j = 0; j < this.cartProducts.length; j++) {
-            console.log("length", this.cartProducts.length);
+        this.cartItemsLength = this.cartProducts.length;
+        console.log("CartProducts", this.cartItemsLength);
+        for (var j = 0; j < this.cartProducts.length; j++) {
+          console.log("length", this.cartProducts.length);
 
-            let itemTotalPrice =
-              this.cartProducts[j].quantity * this.cartProducts[j].price;
-            if (this.cartProducts[j].type_id == 1) {
-              this.totCementamount = this.totCementamount + itemTotalPrice;
-              resp.result[j]["totalPrice"] = this.totCementamount;
-              this.totGrandamount = this.totGrandamount + this.totCementamount;
-              console.log("cement-->", this.totCementamount);
-              this.totCementamount = 0;
-            }
-            if (this.cartProducts[j].type_id == 2) {
-              if (this.cartProducts[j].bar_products.length > 0) {
-                for (
-                  let k = 0;
-                  k < this.cartProducts[j].bar_products.length;
-                  k++
-                ) {
-                  this.totBaramount =
-                    this.totBaramount +
-                    this.cartProducts[j].bar_products[k].quantity *
-                      this.cartProducts[j].bar_products[k].value;
-                }
-                console.log("totBaramount", this.totBaramount);
-                resp.result[j]["barTotal"] = this.totBaramount;
-                this.totGrandamount = this.totGrandamount + this.totBaramount;
-                console.log("bar-->", this.totBaramount);
-                this.totBaramount = 0;
+          let itemTotalPrice =
+            this.cartProducts[j].quantity * this.cartProducts[j].price;
+          if (this.cartProducts[j].type_id == 1) {
+            this.totCementamount = this.totCementamount + itemTotalPrice;
+            resp.result[j]["totalPrice"] = this.totCementamount;
+            this.totGrandamount = this.totGrandamount + this.totCementamount;
+            console.log("cement-->", this.totCementamount);
+            this.totCementamount = 0;
+          }
+          if (this.cartProducts[j].type_id == 2) {
+            if (this.cartProducts[j].bar_products.length > 0) {
+              for (
+                let k = 0;
+                k < this.cartProducts[j].bar_products.length;
+                k++
+              ) {
+                this.totBaramount =
+                  this.totBaramount +
+                  this.cartProducts[j].bar_products[k].quantity *
+                    this.cartProducts[j].bar_products[k].value;
               }
+              console.log("totBaramount", this.totBaramount);
+              resp.result[j]["barTotal"] = this.totBaramount;
+              this.totGrandamount = this.totGrandamount + this.totBaramount;
+              console.log("bar-->", this.totBaramount);
+              this.totBaramount = 0;
+            }
           }
         }
         console.log("grand tot-->", this.totGrandamount);
@@ -142,7 +149,7 @@ export class CartComponent implements OnInit {
     this.cartService.userCartDelete(this.cartItemObj).subscribe(resp => {
       if (resp.status == 200) {
         this.cartItems();
-        this.toasterService.error(resp.message);
+        this.toasterService.error("All items deleted");
       }
     });
   }

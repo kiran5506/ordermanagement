@@ -11,7 +11,7 @@
   height: 400px;
 }
 
-.caro-icons { 
+.caro-icons {
   background-color: black;
   position: absolute;
   top: 50%;
@@ -45,7 +45,7 @@
     font-size: 40px;
     font-weight: 600;
     color: #000;
-    font-family: poppins,Arial,sans-serif;
+    font-family: poppins, Arial, sans-serif;
     margin-top: 70px;
   }
   p {
@@ -61,8 +61,6 @@
     padding-bottom: 20px;
   }
 }
-
-
 
 // .cement-widget h2 {
 //     text-align:center;
@@ -86,8 +84,6 @@
   }
 }
 
-
-
 .pull-center {
   text-align: center;
   .cement-price {
@@ -106,7 +102,7 @@
   input {
     height: 32px;
     width: 42px;
-    padding: 1px 3px 5px 1px;
+    padding: 1px 3px 5px 1px !important;
   }
 }
 .cart-btn {
@@ -170,21 +166,22 @@
   margin-bottom: 0.3rem;
   input {
     height: 32px;
-    width: 61px;
+    width: 40px;
     padding: 1px 3px 5px 1px;
   }
 }
-
-
 
 // .bars-input-name {
 //     height:32px !important;
 //     width:120px !important;
 // }
-
-.bar-price1 .cement-input {
-  width: 100px;
+.input {
+  border: none;
+  outline: none;
 }
+// .bar-price1 .cement-input {
+//   // width: 100px;
+// }
 .cart-btn {
   background-color: #82ae46;
   color: #ffffff;
@@ -211,7 +208,7 @@
       height: 100px;
       width: 100px;
       border-radius: 50%;
-    }  
+    }
   }
   .customer-desc {
     margin-bottom: 30px;
@@ -221,14 +218,13 @@
     h4 {
       font-size: 18px;
       font-weight: 400;
-      color: rgba(0,0,0,.8);
+      color: rgba(0, 0, 0, 0.8);
     }
     p {
       font-size: 12px;
       font-weight: 400;
       letter-spacing: 2px;
-      color: rgba(0,0,0,.8);
+      color: rgba(0, 0, 0, 0.8);
     }
   }
 }
-

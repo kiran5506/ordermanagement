@@ -1,7 +1,7 @@
 
 
   <section class="cart-section">
-      <div *ngIf="cartProducts.length == 0">
+      <div *ngIf="cartProducts.length == 0 || cartProducts == 0">
           <div class="empty_cart">
             <img src="../../assets/empty_cart.jpg" alt="No cart items are selected">
             <h4>Unfortunately, your cart is empty</h4>
