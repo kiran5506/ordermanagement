@@ -3,8 +3,8 @@
   padding-bottom: 10px;
   text-align: center;
   margin: 2px 1px 85px 1px;
-  p {
-    color: #82ae46;
+  p {  
+    color: #82ae46; 
     font-size: 16px;
   }
   .no-cart-btn {
@@ -18,9 +18,15 @@
   padding: 15px;
   margin-top: 30px;
   margin-bottom: 30px;
-  h1 {
-    margin-bottom: 73px;
+  .heading {
+    margin-bottom: 10px;
     text-align: center;
+    // padding-top: 35px;
+    font-size: 40px;
+    font-weight: 600;
+    color: #000;
+    font-family: poppins,Arial,sans-serif;
+    margin-top: 10px;
   }
 }
 
@@ -161,9 +167,9 @@ label {
   color: #aaa;
 }
 
-.shopping-cart {
-  margin-top: -45px;
-}
+// .shopping-cart {
+//   margin-top: -45px;
+// }
 
 /* Column headers */
 .column-labels label {
@@ -181,7 +187,7 @@ label {
 .product {
   margin-bottom: 20px;
   padding: 10px;
-  border: 1px solid #eee;
+  border-bottom: 1px solid #eee;
 }
 
 .btn-sm {
@@ -343,6 +349,13 @@ label {
     width: auto;
   }
 }
+.bg { 
+  background-color: #82ae46;
+  .center {
+   color: #fff;
+    padding: 10px 0px 0px 47px;
+  }
+}  
 /* Make more adjustments for phone */
 @media screen and (max-width: 350px) {
   .product-removal {

@@ -56,25 +56,22 @@
             data-toggle="dropdown"
             data-target="dropdown_target"
             href="#"
-            >{{ user.owner_name | uppercase }}</a
-          >
+            >{{ user.owner_name | uppercase }}
           <div
             class="dropdown-menu dropdown-menu-left drop1"
             aria-labelledby="dropdown_target">
             <a class="dropdown-item dd" [routerLink]="['user/profile']"
-              >My Profile</a
-            >
+              >My Profile</a>
             <hr />
             <a class="dropdown-item dd" [routerLink]="['user/myOrders']"
-              >My Orders</a
-            >
+              >My Orders</a>
             <hr />
             <div class="drop-button">
               <button type="button" class="btn btn-primary" (click)="logout()">
                 <i class="fa fa-sing-out cart-custom"> Logout</i>
               </button>
             </div>
-          </div>
+          </div></a>
         </li>
       </ul>
     </div>
