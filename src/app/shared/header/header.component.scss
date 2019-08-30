@@ -110,12 +110,12 @@ hr {
 // }
 
 .drop1 {
-  min-width: 9.5rem !important;
+  min-width: auto;
   a {
     text-align: center;
     background-color: #fff !important;
-    padding-bottom: 1rem !important;
-
+    padding-bottom: 10px !important;
+    padding-top: 10px;
   }
 }
 
