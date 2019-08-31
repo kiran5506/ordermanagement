@@ -1,8 +1,7 @@
 
 
   <section class="cart-section">
-<<<<<<< HEAD
-      <div *ngIf="cartProducts.length == 0 || cartProducts == 0">
+      <div *ngIf="cartProducts.length == 0 ">
           <div class="empty_cart">
             <img src="../../assets/empty_cart.jpg" alt="No cart items are selected">
             <h4>Unfortunately, your cart is empty</h4>
@@ -10,21 +9,7 @@
             <button type="button" class="btn btn-md no-cart-btn" (click)="addItem()">Continue Shopping</button>
           </div>
         </div> 
-    <div *ngIf="cartProducts.length != 0">
-    <div class="container">
-      <div class="empty-cart">
-        <button type="button" class="btn btn-danger del-btn" (click)="deleteCarItem(1,0)">Delete All</button>
-=======
-    <div *ngIf="cartProducts.length == 0">
-      <div class="empty_cart">
-        <img src="../../assets/empty_cart.jpg" alt="No cart items are selected">
-        <h4>Unfortunately, your cart is empty</h4>
-        <p>Please add something into your cart</p>
-        <button type="button" class="btn btn-md no-cart-btn" (click)="addItem()">Continue Shopping</button>
->>>>>>> 123dc4be30f7049d55d29152a7fce622bd74a82b
-      </div>
-    </div> 
-    <div *ngIf="cartProducts.length != 0">
+    <div *ngIf="cartProducts.length != 0 ">
       <div class="container">
         <div class="empty-cart">
           <h1 class="heading">Cart Items</h1>
@@ -115,11 +100,12 @@
           </div>
         </div>
       </div>
-    </div>    
+    <!-- </div>     -->
     <div class="container">
       <div class="empty-cart">
         <button type="button" class="btn btn-md checkout-btn" (click) = "checkOut()">CheckOut</button>
       </div>
+    </div>
     </div>
   </section>
 
