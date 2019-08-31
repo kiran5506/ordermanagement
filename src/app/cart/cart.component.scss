@@ -1,8 +1,14 @@
+@import "../../manual-Styles/custom-styles.scss";
 .empty_cart {
   padding-top: 10px;
   padding-bottom: 10px;
   text-align: center;
   margin: 2px 1px 85px 1px;
+  img {
+    @include mobile {
+      width: 333px;
+    }
+  }
   p {  
     color: #82ae46; 
     font-size: 16px;
@@ -35,15 +41,16 @@
   text-align: end;
   .del-btn {
     border-radius: 25px;
-    color: #fff;
-    background-color: #d01f2e;
+    color: #d01f2e;;
+    background-color: #fff;
+    border: 1px solid #d01f2e;
     font-size: 17px;
     font-weight: 600;
     letter-spacing: 1px;
     &:hover {
-      border: 1px solid #d01f2e;
+      background-color: #d01f2e !important;
       background: 0 0;
-      color: #d01f2e;
+      color: #fff;
     }
   }
   .checkout-btn {
