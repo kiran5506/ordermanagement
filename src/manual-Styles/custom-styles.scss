@@ -1,0 +1,25 @@
+
+// Media Queries for desktop
+$for-desktop: 1200px;
+
+@mixin desktop {
+  @media screen and (max-width: #{$for-desktop}) {
+    @content;
+  }
+}
+// Media Queries for Tablet
+$for-tab: 991px;
+
+@mixin tablet {
+  @media screen and (max-width: #{$for-tab}) {
+    @content;
+  }
+}
+// Media Queries for Mobile
+$for-mobile: 767px;
+
+@mixin mobile {
+  @media screen and (max-width: #{$for-mobile}) {
+    @content;
+  }
+}

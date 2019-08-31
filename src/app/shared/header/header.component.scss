@@ -1,8 +1,8 @@
-
+@import "../../../manual-Styles/custom-styles.scss";
 .header-widget {
   border-bottom: solid 1px #f0f0f0;
   background-color: #fff;
-  font-family: lato, Roboto, "Helvetica Neue", sans-serif;
+  // font-family: lato, Roboto, "Helvetica Neue", sans-serif;
   .header-top {
     background-color: #82ae46;
     height: 27px;
@@ -13,11 +13,25 @@
     letter-spacing: 1px;
     // vertical-align: middle;
     padding: 3px;
+    @include mobile {
+      text-align: none;
+      padding: 10px 0px 10px 0px;
+      height: 96px;
+      display: grid;
+      font-size: 10px;
+    }
     .top-text {
       padding-left: 37px;
       display: flex;
+      @include mobile {
+        padding-left: 24px;
+        display: grid;
+      }
       p {
         padding: 0px 3px 0px 23px;
+        @include mobile {
+          padding: 0px;
+        }
       }
       i {
         margin-right: 5px;
@@ -26,6 +40,10 @@
     .social-icons {
       display: flex;
       padding-left: 509px;
+      @include mobile {
+        padding-left: 0px;
+        display: block;
+      }
       i {
         padding: 0px 0px 0px 10px;
         font-size: 16px;
@@ -41,9 +59,21 @@
   text-transform: uppercase;
   // text-shadow: 0px 1px #000;
   padding: 14px;
+  @include mobile {
+    font-size: 15px !important;
+  }
   &:hover {
     color: #000 !important;
   }
+}
+
+.menu-btn {
+  @include mobile {
+    margin-left: 30px;
+  }
+}
+.menu-btn:active, .menu-btn:focus {
+  outline: none !important;
 }
 
 .navbar {
@@ -54,10 +84,6 @@
     right: 30px;
     a {
       font-size: 11px;
-      // padding-top: 0.7rem;
-      // padding-bottom: 1.5rem;
-      // padding-left: 20px;
-      // padding-right: 20px;
       font-weight: 400;
       color: #000;
       text-transform: uppercase;
@@ -75,7 +101,9 @@
 }
 
 .navbar-toggler-icon {
-  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(242,88,29)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+  i {
+    color: #82ae46;
+  }
 }
 .active {
   // border-bottom-color:1px solid black;
@@ -151,7 +179,7 @@ hr {
   color: black !important;
   font-size: 11px !important;
   &:hover {
-    color: #82ae46 !important;
+    color: #82ae46 !important; 
   }
 }
 @media screen and (max-width: 480px) {
