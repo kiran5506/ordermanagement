@@ -71,4 +71,8 @@ export class UserService {
   getUserAddressTypes(): Observable<any> {
     return this.http.get(this.baseUrl + "users/addressTypes", options);
   }
+
+  userReference(data: any): Observable<any> {
+    return this.http.post(this.baseUrl + "users/reference", data, options);
+  }
 }

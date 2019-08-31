@@ -1,8 +1,8 @@
 <div class="container">
   <div class="profile">
-    <div class="heading">
+    <!-- <div class="heading">
       <img src="assets/user.jpg" class="image"><button class="icon"><i class="fa fa-pencil"></i></button>
-    </div>
+    </div> -->
     <div class="col-sm-12">
       <div class="row">
         <div class="profile-form margin">
@@ -62,7 +62,7 @@
                   <div class="form-group">
                     <label>Select Type</label>
                     <select class="form-control" name="Type" formControlName = "userType">
-                      <option value="type" disabled >Select</option>
+                      <option value="type" hidden >Select</option>
                       <option value="{{userType.address_type_id}}" *ngFor="let userType of addressTypes">{{userType.type_name}}</option>
                     </select>
                   </div>

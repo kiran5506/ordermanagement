@@ -53,7 +53,7 @@
                                 <p><span>&#8377;</span>{{item.price}}<span>&#215;</span></p>
                                 <input class="form-control" type="text" name="qty" placeholder="0" (input)="productValue(item, $event.target.value, i)">
                                 <span>&#61;</span>
-                                <label type="text" class="cement-input" name="total" value="0" readonly>{{ item.totalPrice }}</label>
+                                <input class="input" placeholder="0.00" value="{{item.totalPrice }}" />
                             </div>
                         </div>
                         <div>
@@ -93,13 +93,13 @@
                                 <input class="form-control" type="" placeholder="0"
                                     (input)="barsQuntity(bar, $event.target.value, k, j, product.prod_bar_company_id)"/>
                                 <span>&nbsp;&#61;&nbsp;</span>
-                                <label class="bars-input-name" type="text" name="total" value="0" readonly>{{ bar.totalPrice }}</label>
+                                <input class="input" type="text" name="total" placeholder="0.00" readonly value="{{bar.totalPrice }}"/>
 
                             </div> 
                         </div>
                         <div class="form-group">
                             <label for="total-price"><b>Total Amount : &nbsp;&nbsp;</b></label>
-                            <label name="total" readonly>{{ product.totalCartPrice }}</label>
+                            <label name="total" readonly >{{product.totalCartPrice }} </label>
                         </div>
                         <div>
                             <button type="button" class="btn btn-block cart-btn" (click)="itemAddToCart(k , 2)"><i class="fa fa-shopping-cart"></i>Add To Cart</button>

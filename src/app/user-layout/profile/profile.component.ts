@@ -106,6 +106,7 @@ export class ProfileComponent implements OnInit {
       userType: null,
       userAddress: null
     });
+    console.log("addressForm" , this.addressForm.value)
   }
 
   updateDeliveryAddress(updateAddress) {
@@ -182,7 +183,6 @@ export class ProfileComponent implements OnInit {
   getUserAddresstypes() {
     this.userService.getUserAddressTypes().subscribe(resp => {
       console.log("addressTypes", resp);
-
       this.addressTypes = resp.result;
     });
   }
@@ -195,6 +195,7 @@ export class ProfileComponent implements OnInit {
       console.log("getAddreesObj", resp);
 
       this.addressList = resp.result;
+
     });
   }
 }

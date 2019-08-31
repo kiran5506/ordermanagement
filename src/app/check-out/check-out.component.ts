@@ -22,6 +22,8 @@ export class CheckOutComponent implements OnInit {
   showhideAddressForm: boolean = false;
   userAddress_type: any;
   address_id: any;
+  refNumber: any;
+  refName: any;
 
   constructor(
     private userService: UserService,
@@ -46,6 +48,29 @@ export class CheckOutComponent implements OnInit {
 
     this.cartItems();
     this.getUserAddress();
+  }
+
+  userReferences() {
+    let referenceObj = {
+      user_id: this.userDetails.user_id,
+      mobile_number: this.refNumber,
+      referece_name: this.refName,
+      amount: this.grandTotal
+    };
+
+    console.log("referenceObj", referenceObj);
+    this.userService.userReference(referenceObj).subscribe(resp => {
+      console.log("reference obj", resp);
+    });
+  }
+
+  referenceNumber(number) {
+    this.refNumber = number;
+    console.log("refernrenumber", this.refNumber);
+  }
+  referenceName(name) {
+    this.refName = name;
+    console.log("referenceName", this.refName);
   }
 
   public loadingAddressForm(fb) {
@@ -120,9 +145,11 @@ export class CheckOutComponent implements OnInit {
       };
       console.log("orderObj", orderObj);
 
+      
       this.productService.userConfirmOrder(orderObj).subscribe(resp => {
         console.log("confirmOrder", resp.result);
         if (resp.status == 200) {
+          this.userReferences();
           this.databroadcastService.orderId(resp.result);
           this.router.navigateByUrl("thankYou");
         }
