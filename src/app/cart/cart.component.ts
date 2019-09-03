@@ -121,14 +121,17 @@ export class CartComponent implements OnInit {
         bar_products: [bar_products]
       };
     }
-    // this.cartService.addToCart(this.updateCart).subscribe(resp => {
-    //   console.log("cartUpdate", resp);
-    //   this.cartItems();
-    //   // if (resp.status == 200) {
-    //   //   console.log("cartItems");
-    //   //   this.cartItems();
-    //   // }
-    // });
+
+    console.log("updateCart" , this.updateCart)
+    this.cartService.addToCart(this.updateCart).subscribe(resp => {
+      console.log("cartUpdate", resp);
+      this.cartItems();
+      this.toasterService.info("item Updated")
+      // if (resp.status == 200) {
+      //   console.log("cartItems");
+      //   this.cartItems();
+      // }
+    });
   }
 
   deleteCarItem(deleteVal, cartVal) {

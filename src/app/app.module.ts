@@ -22,8 +22,8 @@ import {
 } from "@angular/common";
 import { CheckOutComponent } from "./check-out/check-out.component";
 import { ThankYouComponent } from "./thank-you/thank-you.component";
-import { AboutComponent } from './about/about.component';
-import { ContactComponent } from './contact/contact.component';
+import { AboutComponent } from "./about/about.component";
+import { ContactComponent } from "./contact/contact.component";
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,7 +46,7 @@ import { ContactComponent } from './contact/contact.component';
     FormsModule,
     BrowserAnimationsModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyB5ezxvUQ4rgV68spt7XE6mdEGpOGZLb50'
+      apiKey: "AIzaSyB5ezxvUQ4rgV68spt7XE6mdEGpOGZLb50"
     }),
     ToastrModule.forRoot({
       timeOut: 2000,
@@ -57,7 +57,10 @@ import { ContactComponent } from './contact/contact.component';
   providers: [
     AuthGuard,
     AuthenticationService,
-    { provide: LocationStrategy, useClass: HashLocationStrategy }
+    {
+      provide: LocationStrategy,
+      useClass: HashLocationStrategy
+    }
   ],
   bootstrap: [AppComponent]
 })

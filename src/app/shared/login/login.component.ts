@@ -13,7 +13,7 @@ import { Router } from "@angular/router";
 export class LoginComponent implements OnInit {
   @Output()userNameEmit = new EventEmitter<string>();
   loginForm: FormGroup;
- 
+  loadheaderComponent = false;
   constructor(
     private loginService: AuthenticationService,
     private fb: FormBuilder,
@@ -43,13 +43,15 @@ export class LoginComponent implements OnInit {
       console.log("loginResponse", response);
       if (response.status === 200) {
         this.databroadcastService.isShowhide.emit(true);
-        this.userNameEmit.emit('sanjeevreddy')
+      this.loadheaderComponent= true;
+       // this.userNameEmit.emit('sanjeevreddy')
        // this.databroadcastService.userName.emit(response.userdata.owner_name);
         console.log("ownerName", response.userdata.owner_name);
         // this.databroadcastService.user(response.userdata.owner_name);
         localStorage.setItem("user", JSON.stringify(response.userdata));
         this.toastrService.success("login successfully");
         this.router.navigateByUrl("/home");
+
       } else if (response.status === 404) {
         this.toastrService.error("invalid credentials", "loginFailed");
       }

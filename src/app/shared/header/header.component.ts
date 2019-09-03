@@ -15,7 +15,8 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private authService: AuthenticationService,
-    private broadcastService: DatabroadcastService
+    private broadcastService: DatabroadcastService,
+    //private location: Location
   ) {}
 
   ngOnInit() {
@@ -28,7 +29,13 @@ export class HeaderComponent implements OnInit {
     } else {
       this.isShowhide = false;
     }
+
+   // this.pageRefresh();
   }
+
+  // pageRefresh() {
+  //   location.reload();
+  // }
 
   logout() {
     this.authService.logOut();

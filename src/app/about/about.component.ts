@@ -1,3 +1,4 @@
+import { DatabroadcastService } from './../services/databroadcast.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
  
@@ -8,10 +9,26 @@ import { Router } from '@angular/router';
 })
 export class AboutComponent implements OnInit {
  
-
-  constructor(private router: Router) { }
+  user : any;
+  constructor(private router: Router, private dataService:DatabroadcastService) { }
  
   ngOnInit() {
+
+this.user = localStorage.getItem("user")
+console.log("user" , this.user)
+
+this.loadAboutPage();
+  }
+
+ public loadAboutPage(){
+
+   if(this.user == null){
+
+       this.dataService.isShowhide.emit(false)
+     }else{
+       this.dataService.isShowhide.emit(true)
+   }
+
   }
 
   shopNow() {

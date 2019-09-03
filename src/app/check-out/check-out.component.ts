@@ -183,14 +183,14 @@ export class CheckOutComponent implements OnInit {
       };
       console.log("orderObj", orderObj);
 
-      // this.productService.userConfirmOrder(orderObj).subscribe(resp => {
-      //   console.log("confirmOrder", resp.result);
-      //   if (resp.status == 200) {
-      //     this.userReferences();
-      //     this.databroadcastService.orderId(resp.result);
-      //     this.router.navigateByUrl("thankYou");
-      //   }
-      // });
+      this.productService.userConfirmOrder(orderObj).subscribe(resp => {
+        console.log("confirmOrder", resp.result);
+        if (resp.status == 200) {
+          this.userReferences();
+          this.databroadcastService.orderId(resp.result);
+          this.router.navigateByUrl("thankYou");
+        }
+      });
     }
   }
 }
