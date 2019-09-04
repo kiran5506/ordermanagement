@@ -15,8 +15,8 @@
     padding: 3px;
     @include mobile {
       text-align: none;
-      padding: 10px 0px 10px 0px;
-      height: 96px;
+      // padding: 10px 0px 10px 0px;
+      height: 50px;
       display: grid;
       font-size: 10px;
     }
@@ -31,6 +31,7 @@
         padding: 0px 3px 0px 23px;
         @include mobile {
           padding: 0px;
+          margin-bottom: 0px;
         }
       }
       i {
@@ -47,6 +48,9 @@
       i {
         padding: 0px 0px 0px 10px;
         font-size: 16px;
+        @include mobile {
+          font-size: 12px;
+        }
       }
     }
   }
@@ -78,6 +82,12 @@
 
 .navbar {
   height: 67px;
+
+  @include mobile {
+    height: auto;
+    align-items: normal;
+  }
+
   ul li {
     padding: 0 7px;
     position: relative;
@@ -85,12 +95,12 @@
     a {
       font-size: 11px;
       font-weight: 400;
-      color: #000;
+      color: #82ae46;
       text-transform: uppercase;
       letter-spacing: 2px;
       opacity: 1 !important;
       &:hover {
-        color: #82ae46;
+        color: #000;
       }
     }  
   }  
@@ -113,6 +123,7 @@
   color: #82ae46;
 }
 .user-image {
+  color: #82ae46;
   float: left;
   // width: 25px;
   // height: 25px;

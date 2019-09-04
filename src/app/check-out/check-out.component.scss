@@ -1,3 +1,4 @@
+@import "../../manual-Styles/custom-styles.scss";
 .submit-btn {
   text-align: center;
   /*margin-left:300px;*/
@@ -14,6 +15,9 @@
 
 .userdata {
   padding: 8px;
+  @include mobile {
+    padding: 0px;
+  }
   /*padding-top: 37px;*/
   /*margin-left: 308px;*/
   /*padding-right: 175px;*/
@@ -45,7 +49,15 @@
   margin-top: 22px;
   margin-bottom: 20px;
   text-align: center;
-  /*margin-left: 390px;*/
+  .add-btn {
+    border-radius: 25px;
+    color: #fff;
+    background-color: #82ae46;
+    // border: 1px solid #82ae46;
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: 1px; 
+  }
 }
 
 .form {
@@ -59,13 +71,13 @@
   margin-top: 15px;
 }
 
-.container {
-  /*border: solid lightgray 1.5px;*/
-  margin-top: 45px;
-  /*margin-bottom:80px;*/
-  margin-left: 50px;
-  margin-right: 50px;
-}
+// .container {
+//   /*border: solid lightgray 1.5px;*/
+//   margin-top: 45px;
+//   /*margin-bottom:80px;*/
+//   margin-left: 50px;
+//   margin-right: 50px;
+// }
 
 #button {
   width: 100%;
@@ -76,10 +88,20 @@
   border: solid lightgray 1.5px;
 }
 
-.confirm {
-  border-radius: 20px;
+.confirm-btn {
+  // border-radius: 20px;
   margin-left: 78%;
   margin-bottom: 30px;
+  border-radius: 25px;
+  color: #fff;
+  background-color: #82ae46; 
+  // border: 1px solid #82ae46;
+  // font-size: 17px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  @include mobile {
+    margin-left: 56%;
+  }
 }
 
 .btn-sm {
