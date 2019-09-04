@@ -18,7 +18,7 @@ export class CartComponent implements OnInit {
   totCementamount = 0;
   totGrandamount = 0;
   updateCart: any;
-  cartItemsLength: any;
+  //cartItemsLength: any;
   @Output() totalEvent = new EventEmitter<any>();
   constructor(
     private cartService: UserService,
@@ -46,19 +46,18 @@ export class CartComponent implements OnInit {
   cartItems() {
     this.totGrandamount = 0;
     if (this.user == null) {
-      this.cartItemsLength = 0;
-      this.cartProducts = 0;
-      console.log("CartProducts", this.cartItemsLength);
+      // this.cartItemsLength = 0;
+      this.cartProducts = [];
+      //  console.log("CartProducts", this.cartItemsLength);
       console.log("CartProductslogin", this.cartProducts);
-
     } else {
       let userId = {
         user_id: this.user.user_id
       };
       this.cartService.userCartList(userId).subscribe(resp => {
         this.cartProducts = resp.result;
-        this.cartItemsLength = this.cartProducts.length;
-        console.log("CartProducts", this.cartItemsLength);
+        //this.cartItemsLength = this.cartProducts.length;
+        //console.log("CartProducts", this.cartItemsLength);
         for (var j = 0; j < this.cartProducts.length; j++) {
           console.log("length", this.cartProducts.length);
 
@@ -97,9 +96,9 @@ export class CartComponent implements OnInit {
   }
 
   chageCartValue(cartItem, bars, quantity, typeId) {
-    /* console.log("cart item--->", cartItem);
+    console.log("cart item--->", cartItem);
     console.log("cart qty--->", quantity);
-    console.log("bars--->", bars); */
+    console.log("bars--->", bars);
 
     if (typeId == 1) {
       this.updateCart = {
@@ -122,13 +121,14 @@ export class CartComponent implements OnInit {
         bar_products: [bar_products]
       };
     }
-    //console.log(this.updateCart);
-    this.cartService.addToCart(this.updateCart).subscribe(resp => {
-      //console.log("cartUpdate", resp);
-      if (resp.status == 200) {
-        this.cartItems();
-      }
-    });
+    // this.cartService.addToCart(this.updateCart).subscribe(resp => {
+    //   console.log("cartUpdate", resp);
+    //   this.cartItems();
+    //   // if (resp.status == 200) {
+    //   //   console.log("cartItems");
+    //   //   this.cartItems();
+    //   // }
+    // });
   }
 
   deleteCarItem(deleteVal, cartVal) {
@@ -148,7 +148,7 @@ export class CartComponent implements OnInit {
     this.cartService.userCartDelete(this.cartItemObj).subscribe(resp => {
       if (resp.status == 200) {
         this.cartItems();
-        this.toasterService.error(resp.message);  
+        this.toasterService.error(resp.message);
       }
     });
   }

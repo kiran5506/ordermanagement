@@ -16,15 +16,16 @@ export class CheckOutComponent implements OnInit {
   userId: any;
   cartIds: any;
   grandTotal: any;
-  userDetails: any;
+  user: any;
   addressList: any;
   addressForm: FormGroup;
   showhideAddressForm: boolean = false;
   userAddress_type: any;
   address_id: any;
-  refNumber: any;
-  refName: any;
-
+  refNumber = "";
+  refName: string = "";
+  refNumberMessage: string = "";
+  refNameMessage: string = "";
   constructor(
     private userService: UserService,
     private productService: ProductsService,
@@ -37,9 +38,9 @@ export class CheckOutComponent implements OnInit {
   }
 
   ngOnInit() {
-    let user = JSON.parse(localStorage.getItem("user"));
-    this.userDetails = user;
-    console.log("userDetails ---> ", this.userDetails.user_id);
+    this.user = JSON.parse(localStorage.getItem("user"));
+
+    console.log("userDetails ---> ", this.user.user_id);
 
     this.databroadcastService.shareGrandTotal.subscribe(
       data => (this.grandTotal = data)
@@ -48,11 +49,20 @@ export class CheckOutComponent implements OnInit {
 
     this.cartItems();
     this.getUserAddress();
+    this.loadCheckOutPage();
+  }
+
+  public loadCheckOutPage() {
+    if (this.user != null) {
+      this.databroadcastService.isShowhide.emit(true);
+    } else {
+      this.databroadcastService.isShowhide.emit(false);
+    }
   }
 
   userReferences() {
     let referenceObj = {
-      user_id: this.userDetails.user_id,
+      user_id: this.user.user_id,
       mobile_number: this.refNumber,
       referece_name: this.refName,
       amount: this.grandTotal
@@ -65,11 +75,22 @@ export class CheckOutComponent implements OnInit {
   }
 
   referenceNumber(number) {
+    // this.refNumber = null;
     this.refNumber = number;
+    if (this.refNumber != "") {
+      this.refNameMessage = "Name can't be empty";
+    } else {
+      this.refNameMessage = "";
+    }
     console.log("refernrenumber", this.refNumber);
   }
   referenceName(name) {
     this.refName = name;
+    if (this.refName != "") {
+      this.refNumberMessage = "Number can't be empty";
+    } else {
+      this.refNumberMessage = "";
+    }
     console.log("referenceName", this.refName);
   }
 
@@ -92,7 +113,7 @@ export class CheckOutComponent implements OnInit {
   createNewAddress() {
     this.showhideAddressForm = false;
     let addressObj = {
-      user_id: this.userDetails.user_id,
+      user_id: this.user.user_id,
       address_type_id: this.userAddress_type,
       address: this.addressForm.value.userAddress
     };
@@ -107,7 +128,7 @@ export class CheckOutComponent implements OnInit {
 
   getUserAddress() {
     let addressObj = {
-      user_id: this.userDetails.user_id
+      user_id: this.user.user_id
     };
     this.userService.userGetAddress(addressObj).subscribe(resp => {
       this.addressList = resp.result;
@@ -117,7 +138,7 @@ export class CheckOutComponent implements OnInit {
 
   cartItems() {
     let userIdObj = {
-      user_id: this.userDetails.user_id
+      user_id: this.user.user_id
     };
     console.log("userIdObj", userIdObj);
     this.userService.userCartList(userIdObj).subscribe(resp => {
@@ -133,11 +154,28 @@ export class CheckOutComponent implements OnInit {
   }
 
   confirmOrder() {
+    // if (this.refName != "" && this.refNumber != "") {
+    //   this.refNumberMessage = "";
+    //   this.refNameMessage = "";
+    // } else {
+    //   if (this.refNumber != "") {
+    //     if (this.refName == "") {
+    //       this.refNameMessage = "Name can't be empty";
+    //     }
+    //   } else {
+    //     this.refNameMessage = "";
+    //     if (this.refName != "") {
+    //       this.refNumberMessage = "Number can't be empty";
+    //     } else {
+    //       this.refNumberMessage = "";
+    //     }
+    //   }
+    // }
     if (this.address_id == undefined) {
       this.toastrService.error("please  selecet a address");
     } else {
       let orderObj = {
-        user_id: this.userDetails.user_id,
+        user_id: this.user.user_id,
         address_id: 1,
         total_amout: this.grandTotal,
         paymeny_type_id: 1,
@@ -145,15 +183,14 @@ export class CheckOutComponent implements OnInit {
       };
       console.log("orderObj", orderObj);
 
-      
-      this.productService.userConfirmOrder(orderObj).subscribe(resp => {
-        console.log("confirmOrder", resp.result);
-        if (resp.status == 200) {
-          this.userReferences();
-          this.databroadcastService.orderId(resp.result);
-          this.router.navigateByUrl("thankYou");
-        }
-      });
+      // this.productService.userConfirmOrder(orderObj).subscribe(resp => {
+      //   console.log("confirmOrder", resp.result);
+      //   if (resp.status == 200) {
+      //     this.userReferences();
+      //     this.databroadcastService.orderId(resp.result);
+      //     this.router.navigateByUrl("thankYou");
+      //   }
+      // });
     }
   }
 }

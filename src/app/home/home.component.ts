@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
   barCompanyId: any;
   user: any;
   cementQuantity: any;
-  barsItemIndex:any;
+  barsItemIndex: any;
   barProductsObject = [];
   cementList = [];
   cementIndex = [];
@@ -32,12 +32,12 @@ export class HomeComponent implements OnInit {
     private databroadcastService: DatabroadcastService
   ) {}
   ngOnInit() {
-    this.user = JSON.parse(localStorage.getItem("user"));
-    console.log("homeuser" , this.user.owner_name)
-
-    this.loadHomepage();
     this.cementProductsList();
     this.barsproductsList();
+    this.user = JSON.parse(localStorage.getItem("user"));
+    // console.log("homeuser", this.user.owner_name);
+
+    this.loadHomepage();
   }
 
   public loadHomepage() {
@@ -69,8 +69,8 @@ export class HomeComponent implements OnInit {
     let cementProductId = item.prod_cement_id;
     this.cementQuantity = { quantityEvent, index, cementProductId };
     this.cementIndex.push({ quantityEvent, index, cementProductId });
-    console.log('cementIndex' , this.cementIndex)
-  //  console.log("productId", cementProductId);
+    console.log("cementIndex", this.cementIndex);
+    //  console.log("productId", cementProductId);
   }
 
   /*                                 Bars Integration                                       */
@@ -94,7 +94,7 @@ export class HomeComponent implements OnInit {
     //  console.log("prod_bar_company_id--->", prod_bar_company_id);
     let barsTotalPrice = quantityEvent * bar.value;
     let barsProducts = this.barsProducts;
-  
+
     for (var k = 0; k < barsProducts.length; k++) {
       var barsList = barsProducts[itemIndex].barsList;
       for (var m = 0; m < barsList.length; m++) {
@@ -121,7 +121,7 @@ export class HomeComponent implements OnInit {
     } else {
       if (cartType == 1) {
         console.log("CementQuntityObject", this.cementIndex);
-        console.log()
+        console.log();
         if (this.cementQuantity == undefined) {
           this.toastrService.info("please enter quantity");
         } else {
@@ -160,51 +160,48 @@ export class HomeComponent implements OnInit {
         for (var j = 0; j < this.barsProducts.length; j++) {
           var barCartTotalPrice = this.barsProducts[cartIndex].totalCartPrice;
         }
-   
+
         if (this.barProductItems == undefined) {
           this.toastrService.info("please enter quntity");
         } else {
-         
           if (barCartTotalPrice == 0 || barCartTotalPrice == "") {
             this.toastrService.info("please enter valid quntity");
           } else {
             console.log("barProductItems", this.barProductItems);
-            if(this.barsItemIndex == cartIndex){
-            for (var k = 0; k < this.barProductItems.length; k++) {
-              var quntity = this.barProductItems[k].quantity;
-              var typeId = this.barProductItems[k].prod_bar_id;
-    
-              let barProdObj = {
-                bar_id: typeId,
-                quantity: quntity
+            if (this.barsItemIndex == cartIndex) {
+              for (var k = 0; k < this.barProductItems.length; k++) {
+                var quntity = this.barProductItems[k].quantity;
+                var typeId = this.barProductItems[k].prod_bar_id;
+
+                let barProdObj = {
+                  bar_id: typeId,
+                  quantity: quntity
+                };
+                this.barProductsObject.push(barProdObj);
+                console.log("barProdObj", barProdObj);
+                console.log("barProductsObject", this.barProductsObject);
+              }
+
+              let barsDetails = {
+                user_id: this.user.user_id,
+                type_id: cartType,
+                prod_type_id: this.barCompanyId,
+                quantity: 0,
+                bar_products: this.barProductsObject
               };
-              this.barProductsObject.push(barProdObj);
-              console.log("barProdObj", barProdObj);
-              console.log("barProductsObject", this.barProductsObject);
+
+              console.log("barsDetails", barsDetails);
+
+              this.userService.addToCart(barsDetails).subscribe(resp => {
+                console.log("cartResp", resp);
+                this.toastrService.success("item add into cart");
+              });
+            } else {
+              this.toastrService.info("please enter quntity");
             }
-
-            let barsDetails = {
-              user_id: this.user.user_id,
-              type_id: cartType,
-              prod_type_id: this.barCompanyId,
-              quantity: 0,
-              bar_products: this.barProductsObject
-            };
-
-            console.log("barsDetails", barsDetails);
-
-            this.userService.addToCart(barsDetails).subscribe(resp => {
-              console.log("cartResp", resp);
-              this.toastrService.success("item add into cart");
-            });
-          }else{
-            this.toastrService.info("please enter quntity");
-          }
           }
         }
       }
-
-      
     }
   }
 
