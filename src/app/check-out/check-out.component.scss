@@ -1,7 +1,19 @@
 @import "../../manual-Styles/custom-styles.scss";
+// .container-fluid {
+//   background-color: #f7f6f2;
+// }
 .submit-btn {
   text-align: center;
   /*margin-left:300px;*/
+  button {
+    border-radius: 25px;
+    color: #fff;
+    background-color: #82ae46;
+    // border: 1px solid #82ae46;
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: 1px; 
+  }
 }
 
 .btn {
@@ -13,23 +25,27 @@
   display: flex;
 }
 
-.userdata {
-  padding: 8px;
-  @include mobile {
-    padding: 0px;
+// .ref-fields {
+//   input:invalid {
+//     border: 1px solid red;
+//   }
+//   input:valid {
+//     border: 1px solid black;
+//   }
+// }
+.card { 
+  background-color: #f7f6f2;
+  border: none;
+  .userdata {
+    padding: 8px;
+    @include mobile {
+      padding: 0px;
+    }
   }
-  /*padding-top: 37px;*/
-  /*margin-left: 308px;*/
-  /*padding-right: 175px;*/
+}  
+.typeofaddress {
+  padding: 8px 8px 8px 26px;
 }
-
-/*.typeofaddress {
-  border: solid lightgray 1.5px;
-  margin-left: 108px;
-  margin-right: 88px;
-  padding-left: 104px;
-  padding-bottom: 20px;
-}*/
 
 .add {
   padding-top: 37px;
@@ -39,11 +55,11 @@
   border: solid lightgray 1.5px;
 }
 
-.address {
-  margin-top: 35px;
-  margin-left: 3px;
-  margin-right: 107px;
-}
+// .address {
+//   margin-top: 35px;
+//   margin-left: 3px;
+//   margin-right: 107px;
+// }
 
 .button {
   margin-top: 22px;
@@ -70,14 +86,6 @@
 .row {
   margin-top: 15px;
 }
-
-// .container {
-//   /*border: solid lightgray 1.5px;*/
-//   margin-top: 45px;
-//   /*margin-bottom:80px;*/
-//   margin-left: 50px;
-//   margin-right: 50px;
-// }
 
 #button {
   width: 100%;

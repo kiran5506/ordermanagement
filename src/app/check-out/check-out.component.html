@@ -1,67 +1,87 @@
-<section class="container">
-  <!-- <div class="col-md-12"> -->
+
+<section class="container-fluid">
+  <div class="container">
     <div class="row">
       <div class="col-md-6">
-          <div class="userdata">
-              <div class=" form-group form-fields">
-                  <label class="col-md-2">Name:</label>
-                  <input class="col-md-10 form-control" readonly value="{{ userDetails.owner_name }}"/>
-              </div>
-              <div class=" form-group form-fields">
-                  <label class="col-md-2">Email:</label>
-                  <input class="col-md-10 form-control"   readonly value="{{ userDetails.email }}" />
-              </div>
-              <div class=" form-group form-fields">
-                  <label class="col-md-2">Phone No:</label>
-                  <input class="col-md-10 form-control" readonly value="{{ userDetails.mobile_number }}" />
-              </div>
-              <div class=" form-group form-fields"> 
-                  <label class="col-md-2">Reference Number:</label>
-                  <input class="col-md-10 form-control"  value="" placeholder="(optional)" (input)="referenceNumber($event.target.value)">
-              </div>
-              <div class=" form-group form-fields"> 
-                <label class="col-md-2">Reference Name:</label>
-                <input class="col-md-10 form-control"  value="" placeholder="(optional)" (input)="referenceName($event.target.value)"/>
-            </div>
-            
-              <div class="button">
-                  <button class="btn add-btn" (click) = "addNewDeliveryAddress()">Add New Address</button>
-              </div>
-          </div>
-          <div class="typeofaddress" *ngIf="showhideAddressForm">
-              <form class="address" [formGroup]="addressForm"
-              (ngSubmit)="createNewAddress()">
-                  <div class="form-group">
-                      <label>Select Type</label>
-                      <select class="form-control" name="Type" (change)="onchange($event.target.value)">
-                          <option value="type">Select</option>
-                          <option value="Home">Home</option>
-                          <option value="Office">Office</option>
-                          <option value="Other">Other</option>
-                      </select>
-                  </div>
-                  <div class="form-group">
-                      <label>Address</label>
-                      <textarea class="form-control textarea" placeholder="Enter Address..." cols="50" formControlName="userAddress"></textarea>
-                  </div>
-                  <div class="submit-btn">
-                      <button class="btn btn-md btn-primary" type="submit">Submit</button>
-                  </div>
-              </form>
-          </div>
+        <div class="card">
+            <div class="card-body">
+                <div class="userdata">
+                    <div class=" form-group form-fields">
+                        <label class="col-md-3">Name:</label>
+                        <input class="col-md-9 form-control" readonly value="{{ user.owner_name }}"/>
+                    </div>
+                    <div class=" form-group form-fields">
+                        <label class="col-md-3">Email:</label>
+                        <input class="col-md-9 form-control"   readonly value="{{ user.email }}" />
+                    </div>
+                    <div class=" form-group form-fields">
+                        <label class="col-md-3">Phone No:</label>
+                        <input class="col-md-9 form-control" readonly value="{{ user.mobile_number }}" />
+                    </div>
+                    <div>
+                        <div class=" form-group form-fields ref-fields"> 
+                            <label class="col-md-3">Reference Number:</label>
+                            <input class="col-md-9 form-control"  value="" (input)="referenceNumber($event.target.value)"
+                                data-required-message="{{" data-msg-containerid="requiredError"/>
+                        </div>
+                        <div id="requiredError"></div>
+                    </div> 
+                    <div>
+                        <div class=" form-group form-fields ref-fields"> 
+                            <label class="col-md-3">Reference Name:</label>
+                            <input class="col-md-9 form-control"  value="" (input)="referenceName($event.target.value)" 
+                                data-required-message="" data-msg-containerid="requiredError"/>
+                        </div>
+                        <div id="requiredError"></div>
+                    </div>    
+                    <div class="button">
+                        <button class="btn add-btn" (click) = "addNewDeliveryAddress()"> + New Address</button>
+                    </div>
+                </div>
+                <div class="typeofaddress" *ngIf="showhideAddressForm">
+                    <form class="address" [formGroup]="addressForm"
+                        (ngSubmit)="createNewAddress()">
+                        <div class="form-group">
+                            <label>Select Type</label>
+                            <select class="form-control" name="Type" (change)="onchange($event.target.value)">
+                                <option value="type">Select</option>
+                                <option value="Home">Home</option>
+                                <option value="Office">Office</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Address</label>
+                            <textarea class="form-control textarea" placeholder="Enter Address..." cols="50" formControlName="userAddress"></textarea>
+                        </div>
+                        <div class="submit-btn">
+                            <button class="btn btn-md" type="submit">Submit</button>
+                        </div>
+                    </form>
+                </div>  
+            </div> 
+        </div>   
       </div>
       <div class="col-md-6">
-          <div class="margin">
-              <label class="con">Select Address:</label>
-              <div class="row">
-                  <div class="col-md-12 radio" *ngFor="let address of addressList">
-                      <label id="button"><input type="radio" name="address" (click) = "changeAddress(address.address_id)">TypeName : {{ address.type_name}}<br>   Address :{{ address.address }}</label>
-                  </div>
-              </div>
-          </div>
+        <div class="card">  
+            <div class="card-body">
+                <div class="sel-address">
+                    <label class="con"><b> Select Address:</b></label>
+                    <div class="row">
+                        <div class="col-md-12 radio" *ngFor="let address of addressList">
+                            <label id="button">
+                                <input type="radio" name="address" (click) = "changeAddress(address.address_id)">
+                                    TypeName : {{ address.type_name}}<br>  
+                                    Address :{{ address.address }}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>    
+        </div>    
       </div>
-  </div>
-<!-- </div> -->
+    </div>
+</div>
 </section>
 <div>
   <button class="confirm  btn-sm confirm-btn" (click) = "confirmOrder()">Confirm & Submit</button>

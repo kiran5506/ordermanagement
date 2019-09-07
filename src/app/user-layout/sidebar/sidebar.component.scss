@@ -4,12 +4,12 @@
     li {
       list-style: none;
       padding-left: 10px;
-      color: #b8c7ce !important;
+      color: #000 !important;
       font-size: 14px;
       height: 40px;
       padding-top: 10px;
       a {
-        color: #b8c7ce;
+        color: #000;
         text-decoration: none;
         font-weight: 600;
         font-size: 16px;
@@ -18,16 +18,16 @@
         color: #82ae46;
       } 
       &:hover li {
-        background: #1e282c;
+        background: #82ae46;
       }
     }
   }
 }
 .isActive {
   border-left: 3px solid #82ae46;
-  background: #1e282c;
+  background: #fff;
   a {
-    color: #fff !important;
+    color: #82ae46 !important;
   }
 }
 .fa-user:before {
