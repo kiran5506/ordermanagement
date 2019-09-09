@@ -97,9 +97,9 @@
 
                             </div> 
                         </div>
-                        <div class="form-group">
-                            <label for="total-price"><b>Total Amount : &nbsp;&nbsp;</b></label>
-                            <label name="total" readonly >{{product.totalCartPrice }} </label>
+                        <div class="form-group row bar-row">
+                            <label class="col-md-6" for="total-price"><b>Total Amount : &nbsp;&nbsp;</b></label>
+                            <input name="total" class="col-md-6 input" value="{{product.totalCartPrice }}" placeholder="0.00" readonly >
                         </div>
                         <div>
                             <button type="button" class="btn btn-block cart-btn" (click)="itemAddToCart(k , 2)"><i class="fa fa-shopping-cart"></i>Add To Cart</button>

@@ -29,6 +29,7 @@ export class CheckOutComponent implements OnInit {
   refName: string = "";
   refNumberMessage: string = "";
   refNameMessage: string = "";
+  selectedItem = null ;
   constructor(
     private userService: UserService,
     private productService: ProductsService,
@@ -211,4 +212,9 @@ export class CheckOutComponent implements OnInit {
     }
     // }
   }
+// Method for address highlight
+  onClick(item) {
+    this.selectedItem = item;
+  }
+
 }

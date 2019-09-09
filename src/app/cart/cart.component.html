@@ -42,6 +42,7 @@
                   <i class="fa fa-times"></i>
                 </td>
               </tr>
+              <!-- <hr class="hr"> -->
               <tr *ngIf="cart.type_id == 2">   
                 <td>
                   <img class="product-image" src="assets/cement.jpg" />
@@ -53,9 +54,9 @@
                     </p>
                 </td> 
                 <td class="input1">
-                  <!-- <div class="quantity"> -->
+                  <div class="bar-quant">
                     <input *ngFor="let bars of cart.bar_products" class="custom-input bar-inputs" type="" value="{{bars.quantity}}" (input)="chageCartValue( cart, bars, $event.target.value, 2)" /> 
-                  <!-- </div>    -->
+                  </div>   
                 </td>  
                 <td>
                   <p class="bar-inputs bar-price" *ngFor="let bars of cart.bar_products"> &#8360; {{ bars.value*bars.quantity }}</p>
@@ -64,14 +65,15 @@
                   <i class="fa fa-times"></i>
                 </td> 
               </tr>  
+              <!-- <hr class="hr"> -->
             </tbody>   
           </table> 
         </div>
         <div class="totals">
           <div class="totals-item totals-item-total">
-            <label>Grand Total:</label>
+            <label><b> Grand Total:</b></label>
             <!-- <div> -->
-              <p class="totals-value" id="cart-total">&#8360; {{ totGrandamount }}</p>
+              <p class="totals-value" id="cart-total"><b> &#8360; {{ totGrandamount }}</b></p>
             <!-- </div> -->
           </div>
         </div>

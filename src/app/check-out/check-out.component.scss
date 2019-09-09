@@ -91,13 +91,42 @@
 #button {
   width: 100%;
   padding: 8px;
-  margin-bottom: 10px;
-  //margin-top: px;
-  margin-bottom: 30px;
-  // border: solid lightgray 1.5px;
   background-color: #fff;
+
+  input {
+    display: none;
+  }
+  .user-add {
+    padding-left: 10px;
+    p {
+      margin-bottom: 5px;
+      i {
+        font-size: 21px;
+        margin-right: 5px;
+      }
+    }
+    .add-type {
+      background-color: #82ae46;
+      border-radius: 25px;
+      padding: 7px;
+      font-weight: 600;
+      color: #fff;
+      font-size: 15px;
+      text-align: center;
+      
+    }
+  }
+  
 }
 
+.selected {
+  // background-color: #82ae46;
+  border: 1px solid #82ae46;
+  background-color: #fff;
+  box-shadow: 0px 1px 3px 0px rgb(13, 212, 25);
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
 .confirm-btn {
   // border-radius: 20px;
   margin-left: 78%;
@@ -111,6 +140,7 @@
   letter-spacing: 1px;
   @include mobile {
     margin-left: 56%;
+    margin-top: 14px;
   }
 }
 

@@ -281,6 +281,13 @@ label {
       }
       .input1 {
         display: grid;
+        .bar-quant {
+          width: 148px;
+          display: grid;
+          input {
+            margin-left: 42px;
+          }
+        }
       }
       .bar-inputs {
         margin-bottom: 5px;
@@ -297,6 +304,9 @@ label {
     }
   }
 }  
+// .hr {
+//   // border-bottom: 1px solid rgb(161, 154, 154);
+// }
 .product-image {
   width: 100px;
 }
