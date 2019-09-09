@@ -122,15 +122,12 @@ export class CartComponent implements OnInit {
       };
     }
 
-    console.log("updateCart" , this.updateCart)
+    console.log("updateCartObject" , this.updateCart)
     this.cartService.addToCart(this.updateCart).subscribe(resp => {
-      console.log("cartUpdate", resp);
-      this.cartItems();
-      this.toasterService.info("item Updated")
-      // if (resp.status == 200) {
-      //   console.log("cartItems");
-      //   this.cartItems();
-      // }
+      console.log("updateCartResponse", resp);
+      if (resp.status == 200) {
+        this.cartItems();
+      }
     });
   }
 
