@@ -24,6 +24,8 @@ export class HomeComponent implements OnInit {
   cementList = [];
   cementIndex = [];
 
+  barsListss = [];
+
   constructor(
     private productService: ProductsService,
     private userService: UserService,
@@ -54,7 +56,7 @@ export class HomeComponent implements OnInit {
     this.productService.getCementProducts().subscribe(resp => {
       for (var i = 0; i < resp.product.length; i++) {
         resp.product[i]["qty"] = "";
-        resp.product[i]["totalPrice"] = "0.00";
+        resp.product[i]["totalPrice"] = "";
       }
       this.cementProducts = resp.product;
       console.log("cementProducts", this.cementProducts);
@@ -82,8 +84,8 @@ export class HomeComponent implements OnInit {
 
         for (var j = 0; j < barsList.length; j++) {
           barsList[j]["quantity"] = "";
-          barsList[j]["totalPrice"] = "";
-          response.product[i]["totalCartPrice"] = "0.00";
+          barsList[j]["totalPrice"] = 0;
+          response.product[i]["totalCartPrice"] = 0.0;
         }
       }
       this.barsProducts = response.product;
@@ -91,7 +93,6 @@ export class HomeComponent implements OnInit {
   }
 
   barsQuntity(bar, quantityEvent, itemIndex, barsIndex, prod_bar_company_id) {
-    //  console.log("prod_bar_company_id--->", prod_bar_company_id);
     let barsTotalPrice = quantityEvent * bar.value;
     let barsProducts = this.barsProducts;
 

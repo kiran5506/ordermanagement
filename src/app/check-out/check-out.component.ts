@@ -13,8 +13,11 @@ import { Component, OnInit, Output, EventEmitter } from "@angular/core";
   styleUrls: ["./check-out.component.scss"]
 })
 export class CheckOutComponent implements OnInit {
+  selectedItem: any;
+  totalCartPrice: any;
+  total = [];
   userId: any;
-  cartIds: any;
+  cartIds = [];
   grandTotal: any;
   user: any;
   addressList: any;
@@ -41,13 +44,9 @@ export class CheckOutComponent implements OnInit {
     this.user = JSON.parse(localStorage.getItem("user"));
 
     console.log("userDetails ---> ", this.user.user_id);
-
-    this.databroadcastService.shareGrandTotal.subscribe(
-      data => (this.grandTotal = data)
-    );
-    console.log(this.grandTotal);
-
     this.cartItems();
+    console.log("cartIds", this.cartIds);
+
     this.getUserAddress();
     this.getUserAddressTypes();
     this.loadCheckOutPage();
@@ -148,57 +147,68 @@ export class CheckOutComponent implements OnInit {
     let userIdObj = {
       user_id: this.user.user_id
     };
-    console.log("userIdObj", userIdObj);
     this.userService.userCartList(userIdObj).subscribe(resp => {
       const userCartList = resp.result;
+
+      for (var i = 0; i < userCartList.length; i++) {
+        let barProducts = userCartList[i].bar_products;
+        console.log("barProducts", barProducts);
+        for (var j = 0; j < barProducts.length; j++) {
+          let barQuantity = barProducts[i].quantity;
+          let barPrice = barProducts[i].value;
+          var barTotal = barQuantity * barPrice;
+          let barCartTotal = { itemTotal: barTotal };
+          this.total.push(barCartTotal);
+        }
+
+        let quantity = userCartList[i].quantity;
+        let price = userCartList[i].price;
+        var cementTotal = quantity * price;
+        let CartTotal = { itemTotal: cementTotal };
+        this.total.push(CartTotal);
+      }
+
+      this.totalCartPrice = this.total.reduce((a, b) => a + b.itemTotal, 0);
+      console.log("totalCartPrice", this.totalCartPrice);
+      console.log("totalamount", this.total);
       console.log("userCartList", userCartList);
       this.cartIds = userCartList.map(({ cart_id }) => cart_id);
     });
   }
 
-  selectAddress(addressId) {
-    this.address_id = addressId;
-    console.log("addressId", addressId);
+  selectAddress(item) {
+    this.selectedItem = item;
+    this.address_id = item.address_id;
+    console.log("addressId", item.address_id);
   }
 
   confirmOrder() {
-    // if (this.refName != "" && this.refNumber != "") {
-    //   this.refNumberMessage = "";
-    //   this.refNameMessage = "";
-    // } else {
-    //   if (this.refNumber != "") {
-    //     if (this.refName == "") {
-    //       this.refNameMessage = "Name can't be empty";
-    //     }
-    //   } else {
-    //     this.refNameMessage = "";
-    //     if (this.refName != "") {
-    //       this.refNumberMessage = "Number can't be empty";
-    //     } else {
-    //       this.refNumberMessage = "";
-    //     }
-    //   }
-    // }
     if (this.address_id == undefined) {
       this.toastrService.error("please  selecet a address");
     } else {
-      let orderObj = {
-        user_id: this.user.user_id,
-        address_id: 1,
-        total_amout: this.grandTotal,
-        paymeny_type_id: 1,
-        cart_items: this.cartIds
-      };
-      console.log("orderObj", orderObj);
+      if (this.totalCartPrice == 0) {
+        this.router.navigateByUrl("cart");
+      } else {
+        let orderObj = {
+          user_id: this.user.user_id,
+          address_id: 1,
+          total_amout: this.totalCartPrice,
+          paymeny_type_id: 1,
+          cart_items: this.cartIds
+        };
+        console.log("orderObj", orderObj);
 
-      this.productService.userConfirmOrder(orderObj).subscribe(resp => {
-        console.log("confirmOrder", resp.result);
-        if (resp.status == 200) {
-          this.userReferences();
-          this.databroadcastService.orderId(resp.result);
-          this.router.navigateByUrl("thankYou");
-        }
-      });
+        this.productService.userConfirmOrder(orderObj).subscribe(resp => {
+          console.log("confirmOrder", resp.result);
+          if (resp.status == 200) {
+            // this.userReferences();
+            this.databroadcastService.orderId(resp.result);
+            this.router.navigateByUrl("thankYou");
+            //this.totalCartPrice = "";
+          }
+        });
+      }
     }
+    // }
   }
 }
