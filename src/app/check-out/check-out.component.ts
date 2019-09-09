@@ -18,9 +18,9 @@ export class CheckOutComponent implements OnInit {
   grandTotal: any;
   user: any;
   addressList: any;
+  addressTypes: any;
   addressForm: FormGroup;
   showhideAddressForm: boolean = false;
-  userAddress_type: any;
   address_id: any;
   refNumber = "";
   refName: string = "";
@@ -50,6 +50,7 @@ export class CheckOutComponent implements OnInit {
 
     this.cartItems();
     this.getUserAddress();
+    this.getUserAddressTypes();
     this.loadCheckOutPage();
   }
 
@@ -97,33 +98,40 @@ export class CheckOutComponent implements OnInit {
 
   public loadingAddressForm(fb) {
     this.addressForm = fb.group({
-      Address_type: [null, Validators.required],
+      address_type: [null, Validators.required],
       userAddress: [null, Validators.required]
     });
   }
 
-  onchange(value) {
-    this.userAddress_type = value;
-    console.log("value", value);
-  }
-
   addNewDeliveryAddress() {
     this.showhideAddressForm = true;
+    this.addressForm.patchValue({
+      address_type_id: null,
+      userAddress: null
+    });
   }
 
   createNewAddress() {
-    this.showhideAddressForm = false;
     let addressObj = {
       user_id: this.user.user_id,
-      address_type_id: this.userAddress_type,
+      address_type_id: this.addressForm.value.address_type,
       address: this.addressForm.value.userAddress
     };
     console.log("addressObj", addressObj);
     this.userService.userCreateAddress(addressObj).subscribe(response => {
       console.log("createAddress", response);
       if (response.status == 200) {
+        this.showhideAddressForm = false;
         this.getUserAddress();
       }
+    });
+  }
+
+  getUserAddressTypes() {
+    this.userService.getUserAddressTypes().subscribe(resp => {
+      console.log("typesResponse", resp.result);
+
+      this.addressTypes = resp.result;
     });
   }
 
@@ -149,7 +157,7 @@ export class CheckOutComponent implements OnInit {
     });
   }
 
-  changeAddress(addressId) {
+  selectAddress(addressId) {
     this.address_id = addressId;
     console.log("addressId", addressId);
   }
