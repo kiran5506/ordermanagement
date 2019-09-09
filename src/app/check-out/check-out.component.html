@@ -50,7 +50,7 @@
                             <select class="form-control" name="Type" (change)="onchange($event.target.value)">
                                 <option value="type">Select</option>
                                 <option value="Home">Home</option>
-                                <option value="Office">Office</option>
+                                <option value="Office">Office</option> 
                                 <option value="Other">Other</option>
                             </select>
                         </div>
@@ -72,11 +72,13 @@
                 <div class="sel-address">
                     <label class="con"><b> Select Address:</b></label>
                     <div class="row">
-                        <div class="col-md-12 radio" *ngFor="let address of addressList">
-                            <label id="button">
+                        <div class="col-md-12 radio" *ngFor="let address of addressList" (click)="onClick(address)" [ngClass]="{ 'selected' : address == selectedItem } ">
+                            <label id="button" class="d-flex">
                                 <input type="radio" name="address" (click) = "changeAddress(address.address_id)">
-                                    TypeName : {{ address.type_name}}<br>  
-                                    Address :{{ address.address }}
+                                <div class="user-add">
+                                    <p class="add-type"> {{ address.type_name}} </p>  
+                                    <p><i class="fa fa-map-marker" aria-hidden="true"></i>{{ address.address }} </p>
+                                </div>        
                             </label>
                         </div>
                     </div>

@@ -41,6 +41,12 @@
     .social-icons {
       display: flex;
       padding-left: 509px;
+      a {
+        color: #fff;
+        &:hover {
+          color: #000;
+        }
+      }
       @include mobile {
         padding-left: 0px;
         display: block;

@@ -141,13 +141,18 @@
     font-size: 28px;
     text-align: center;
     animation: 1.6s ease infinite wheel-up-down !important;
+    button {
+      border-radius: 25px;
+    }
     @include mobile {
       top: 262px;
       left: 42%; 
     }
     i {
-      
       color: #fff; 
+      font-size: 28px;
+      animation: 1.6s ease infinite wheel-up-down !important;
+
     }
   }
 }
