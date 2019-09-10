@@ -37,11 +37,11 @@ export class SignupComponent implements OnInit {
         [Validators.required, Validators.pattern("^[0-9]*$")]
       ],
       email: [
-        null,
-        [
-          Validators.required,
-          Validators.pattern("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$")
-        ]
+        "",
+        // [
+        //   Validators.required,
+        //   Validators.pattern("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$")
+        // ]
       ],
       password: [null, Validators.required],
       gst_number: [""],
