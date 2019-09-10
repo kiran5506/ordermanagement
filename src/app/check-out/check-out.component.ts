@@ -29,7 +29,7 @@ export class CheckOutComponent implements OnInit {
   refName: string = "";
   refNumberMessage: string = "";
   refNameMessage: string = "";
-  selectedItem = null ;
+  // selectedItem = null ;
   constructor(
     private userService: UserService,
     private productService: ProductsService,
