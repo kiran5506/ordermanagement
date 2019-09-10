@@ -91,6 +91,8 @@
 #button {
   width: 100%;
   padding: 8px;
+  background-color: #fff;
+
   input {
     display: none;
   }
@@ -105,10 +107,13 @@
     }
     .add-type {
       background-color: #82ae46;
-      padding: 10px;
+      border-radius: 25px;
+      padding: 7px;
       font-weight: 600;
       color: #fff;
-      font-size: 13px;
+      font-size: 15px;
+      text-align: center;
+      
     }
   }
   
@@ -119,6 +124,8 @@
   border: 1px solid #82ae46;
   background-color: #fff;
   box-shadow: 0px 1px 3px 0px rgb(13, 212, 25);
+  margin-bottom: 30px;
+  margin-top: 30px;
 }
 .confirm-btn {
   // border-radius: 20px;
@@ -133,6 +140,7 @@
   letter-spacing: 1px;
   @include mobile {
     margin-left: 56%;
+    margin-top: 14px;
   }
 }
 
