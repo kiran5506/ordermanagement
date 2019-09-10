@@ -72,13 +72,13 @@
                 <div class="sel-address">
                     <label class="con"><b> Select Address:</b></label>
                     <div class="row">
-                        <div class="col-md-12 radio" *ngFor="let address of addressList" (click)="selectAddress(address)" [ngClass]="{ 'selected' : address == selectedItem } ">
-                            <label id="button" class="d-flex">
+                        <div class="col-md-12 radio">
+                            <label id="button" class="d-flex" *ngFor="let address of addressList" (click)="selectAddress(address)" [ngClass]="{ 'selected' : address == selectedItem } ">
                     
                                 <div class="user-add">
                                     <p class="add-type"> {{ address.type_name}} </p>  
                                     <p>
-                                        <!-- <i class="fa fa-map-marker" aria-hidden="true"></i> -->
+                                        <i class="fa fa-map-marker" aria-hidden="true"></i>
                                         {{ address.address }} 
                                     </p>
                                 </div>        
