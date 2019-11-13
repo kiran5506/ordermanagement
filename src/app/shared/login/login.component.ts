@@ -43,6 +43,7 @@ export class LoginComponent implements OnInit {
       console.log("loginResponse", response);
       if (response.status === 200) {
         this.databroadcastService.isShowhide.emit(true);
+        // this.databroadcastService.showUserName.emit(false);
       this.loadheaderComponent= true;
        // this.userNameEmit.emit('sanjeevreddy')
        // this.databroadcastService.userName.emit(response.userdata.owner_name);

@@ -9,7 +9,7 @@ import { DatabroadcastService } from "src/app/services/databroadcast.service";
 })
 export class MyOrdersComponent implements OnInit {
   ordersList: any;
-  // orderID: any;
+  orderId: any;
   user: any;
   //  isHidden: boolean = true;
   constructor(
@@ -21,14 +21,15 @@ export class MyOrdersComponent implements OnInit {
     this.user = JSON.parse(localStorage.getItem("user"));
     console.log("user", this.user);
     this.databroadcastService.isShowhide.emit(true);
-
+    this.databroadcastService.shareOrderId.subscribe(data => (this.orderId = data));
     this.orders();
   }
 
   orders() {
     let ordersObj = {
       user_id: this.user.user_id,
-      type_id: 1
+      type_id: 1,
+      order_id: this.orderId
     };
     console.log("ordersObj", ordersObj);
     this.userService.getUserOrders(ordersObj).subscribe(resp => {

@@ -26,6 +26,14 @@ export class AuthenticationService {
     private broadCastService: DatabroadcastService
   ) {}
 
+  getAddressTypes(): Observable<any> {
+    return this.http.get(this.baseUrl + "users/addressTypes" , options);
+  }
+
+  getUserRole(): Observable<any> {
+    return this.http.get(this.baseUrl + "users/userRoles" , options);
+  }
+
   signUp(data: any): Observable<any> {
     return this.http.post(this.baseUrl + "users/create", data, options);
   }

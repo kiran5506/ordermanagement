@@ -9,6 +9,7 @@ export class DatabroadcastService {
   public shareGrandTotal = this.grandTotal.asObservable();
   private userOrderId = new BehaviorSubject<any>(null);
   public shareOrderId = this.userOrderId.asObservable();
+  // showUserName: any;
   // private userName = new BehaviorSubject<any>("");
   // public sharedName = this.userName.asObservable();
 
@@ -23,5 +24,6 @@ export class DatabroadcastService {
     this.grandTotal.next(number);
   }
   isShowhide = new EventEmitter<any>();
+  // showUserName = new EventEmitter<any>();
   userName = new EventEmitter<string>();
 }

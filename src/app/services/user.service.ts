@@ -26,11 +26,7 @@ export class UserService {
   }
 
   getUserOrders(data: any): Observable<any> {
-    return this.http.post(
-      this.baseUrl + "products/userOrderDetails",
-      data,
-      options
-    );
+    return this.http.post(this.baseUrl + "products/userOrderDetails", data, options);
   }
 
   addToCart(data: any): Observable<any> {

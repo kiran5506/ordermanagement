@@ -10,7 +10,7 @@ import { Component, OnInit } from "@angular/core";
 })
 export class HeaderComponent implements OnInit {
   isShowhide: boolean = false;
-
+  showUserName: boolean = true;
   user: any;
 
   constructor(
@@ -26,8 +26,10 @@ export class HeaderComponent implements OnInit {
     let login = localStorage.getItem(this.user);
     if (login != null) {
       this.isShowhide = true;
+      this.showUserName = true;
     } else {
       this.isShowhide = false;
+      this.showUserName = false;
     }
 
    // this.pageRefresh();

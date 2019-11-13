@@ -48,14 +48,14 @@
                                                         </thead>
                                                      
                                                         <tbody *ngFor="let item of orders.items; let j = index">
-                                                            <tr *ngIf="item.type_id == 1" >
+                                                            <tr *ngIf="item.type_id == 2" >
                                                                 <td><img src="assets/cement.jpg" alt="image"></td>
                                                                 <td>{{item.company_name}}</td>
                                                                 <td><span>&#8360;</span>&nbsp;{{item.price}}</td>
                                                                 <td>{{item.quantity}}</td>
                                                                 <td><span>&#8360;</span>&nbsp;{{item.price * item.quantity}}</td>
                                                             </tr>
-                                                            <tr *ngIf="item.type_id == 2 ">
+                                                            <tr *ngIf="item.type_id == 1 ">
                                                                     <td><img src="assets/cement.jpg" alt="image"></td>
                                                                     <td>{{item.company_name}}</td>
                                                                 <td >

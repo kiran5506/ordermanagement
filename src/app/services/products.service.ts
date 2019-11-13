@@ -20,8 +20,12 @@ export class ProductsService {
   getCementProducts(): Observable<any> {
     return this.http.get(this.baseUrl + "products/cementProductsList", options);
   }
-  getBarsProducts(): Observable<any> {
-    return this.http.get(this.baseUrl + "products/barsList", options);
+
+  getOtherCements(): Observable<any> {
+    return this.http.get(this.baseUrl + "products/othersList", options);
+  }
+  getBarsProducts(data: any): Observable<any> {
+    return this.http.post(this.baseUrl + "products/barsList", data, options);
   }
 
   userConfirmOrder(data: any): Observable<any> {

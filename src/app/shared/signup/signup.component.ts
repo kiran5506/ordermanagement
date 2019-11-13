@@ -15,6 +15,10 @@ import { Router } from "@angular/router";
 export class SignupComponent implements OnInit {
   signUpForm: FormGroup;
   isSubmited: boolean = false;
+  addTypesList : any;
+  addTypeID: any;
+  userRoleList: any;
+  userRoleId: any;
 
   constructor(
     private authService: AuthenticationService,
@@ -26,7 +30,17 @@ export class SignupComponent implements OnInit {
     this.loadSignUpForm(fb);
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.authService.getAddressTypes().subscribe((response: any) => {
+      this.addTypesList = response.result;
+      console.log("addTypesList----" , this.addTypesList);
+    });
+
+    this.authService.getUserRole().subscribe((response: any) => {
+      this.userRoleList = response.users;
+      console.log("userRoleList=====" , this.userRoleList);
+    });
+  }
 
   public loadSignUpForm(fb) {
     this.signUpForm = fb.group({
@@ -46,9 +60,21 @@ export class SignupComponent implements OnInit {
       password: [null, Validators.required],
       gst_number: [""],
       owner_name: [null, Validators.required],
+      addType: [null, Validators.required],
       address: [null, Validators.required],
+      userRoleId: [null, Validators.required],
       pincode: [null, Validators.required]
     });
+  }
+
+  selectChange1(id) {
+    this.addTypeID = id;
+    console.log("addtypeID---" , this.addTypeID);
+  }
+
+  selectChange2(id) {
+    this.userRoleId = id;
+    console.log("userRoleId----" , this.userRoleId);
   }
 
   onSignUp() {
@@ -61,8 +87,10 @@ export class SignupComponent implements OnInit {
       gst_number: this.signUpForm.value.gst_number,
       owner_name: this.signUpForm.value.owner_name,
       address: this.signUpForm.value.address,
+      address_type_id: this.addTypeID,
+      user_role_id: this.userRoleId,
       pincode: this.signUpForm.value.pincode
-    };
+    }
 
     console.log("formData", formData);
 
@@ -71,6 +99,7 @@ export class SignupComponent implements OnInit {
       if (response.status == 200) {
         localStorage.setItem("user", JSON.stringify(response.result));
         this.broadCastService.isShowhide.emit(true);
+        // this.broadCastServicse.showUserName.emit(true);
         this.toastrService.success("sign up successfully");
         this.router.navigateByUrl("home");
       } else {

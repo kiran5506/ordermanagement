@@ -29,7 +29,7 @@ export class CheckOutComponent implements OnInit {
   refName: string = "";
   refNumberMessage: string = "";
   refNameMessage: string = "";
-  // selectedItem = null ;
+  userCartList: any;
   constructor(
     private userService: UserService,
     private productService: ProductsService,
@@ -149,31 +149,36 @@ export class CheckOutComponent implements OnInit {
       user_id: this.user.user_id
     };
     this.userService.userCartList(userIdObj).subscribe(resp => {
-      const userCartList = resp.result;
+      this.userCartList = resp.result;
+      console.log("userCartList" ,  this.userCartList )
 
-      for (var i = 0; i < userCartList.length; i++) {
-        let barProducts = userCartList[i].bar_products;
+      for (var i = 0; i < this.userCartList.length; i++) {
+        let barProducts = this.userCartList[i].bar_products;
         console.log("barProducts", barProducts);
         for (var j = 0; j < barProducts.length; j++) {
-          let barQuantity = barProducts[i].quantity;
-          let barPrice = barProducts[i].value;
+          let barQuantity = barProducts[j].quantity;
+          let barPrice = barProducts[j].value;
           var barTotal = barQuantity * barPrice;
           let barCartTotal = { itemTotal: barTotal };
           this.total.push(barCartTotal);
         }
-
-        let quantity = userCartList[i].quantity;
-        let price = userCartList[i].price;
+        
+        let quantity = this.userCartList[i].quantity;
+        let price = this.userCartList[i].price;
         var cementTotal = quantity * price;
         let CartTotal = { itemTotal: cementTotal };
         this.total.push(CartTotal);
       }
+      console.log("cementTotal" ,cementTotal)
+
+      console.log("totalamount" , this.total)
+
 
       this.totalCartPrice = this.total.reduce((a, b) => a + b.itemTotal, 0);
       console.log("totalCartPrice", this.totalCartPrice);
       console.log("totalamount", this.total);
-      console.log("userCartList", userCartList);
-      this.cartIds = userCartList.map(({ cart_id }) => cart_id);
+      console.log("userCartList", this.userCartList);
+      this.cartIds = this.userCartList.map(({ cart_id }) => cart_id);
     });
   }
 
@@ -192,14 +197,18 @@ export class CheckOutComponent implements OnInit {
       } else {
         let orderObj = {
           user_id: this.user.user_id,
+          order_type: 1,
           address_id: 1,
           total_amout: this.totalCartPrice,
-          paymeny_type_id: 1,
+          distance_charges: 0,
+          extra_charges: 0,
+          upstair_charges: 0,
+          payment_type_id: 2,
           cart_items: this.cartIds
         };
-        console.log("orderObj", orderObj);
+        console.log("orderObj-->", orderObj);
 
-        this.productService.userConfirmOrder(orderObj).subscribe(resp => {
+         this.productService.userConfirmOrder(orderObj).subscribe(resp => {
           console.log("confirmOrder", resp.result);
           if (resp.status == 200) {
             // this.userReferences();
@@ -207,7 +216,7 @@ export class CheckOutComponent implements OnInit {
             this.router.navigateByUrl("thankYou");
             //this.totalCartPrice = "";
           }
-        });
+        }); 
       }
     }
     // }

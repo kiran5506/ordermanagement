@@ -23,7 +23,9 @@ export class HomeComponent implements OnInit {
   barProductsObject = [];
   cementList = [];
   cementIndex = [];
-
+  paints: any;
+  otherbars: any;
+  otherCements: any;
   barsListss = [];
 
   constructor(
@@ -61,7 +63,17 @@ export class HomeComponent implements OnInit {
       this.cementProducts = resp.product;
       console.log("cementProducts", this.cementProducts);
     });
+
+    this.productService.getOtherCements().subscribe((response: any) => {
+      for (var i = 0; i < response.product.length; i++) {
+        response.product[i]["qty"] = "";
+        response.product[i]["totalPrice"] = "";
+      }
+      this.otherCements = response.product;
+      console.log("cementProducts", this.cementProducts);
+    });
   }
+
 
   productValue(item, quantityEvent, index) {
     let cementTotalPrice = quantityEvent * item.price;
@@ -78,7 +90,13 @@ export class HomeComponent implements OnInit {
   /*                                 Bars Integration                                       */
 
   barsproductsList() {
-    this.productService.getBarsProducts().subscribe((response: any) => {
+    /* bar_prod_type = 1 --> bars / bar_prod_type = 2 -->Paints / bar_prod_type = 3 --> Others */
+    
+    let returnBars1 = {
+      type: 1,  
+      bar_prod_type: 1 
+    }
+    this.productService.getBarsProducts(returnBars1).subscribe((response: any) => {
       for (var i = 0; i < response.product.length; i++) {
         let barsList = response.product[i].barsList;
 
@@ -90,6 +108,41 @@ export class HomeComponent implements OnInit {
       }
       this.barsProducts = response.product;
     });
+
+    let returnBars2 = {
+      type: 1,  
+      bar_prod_type: 2 
+    }
+    this.productService.getBarsProducts(returnBars2).subscribe((response: any) => {
+      for (var i = 0; i < response.product.length; i++) {
+        let barsList = response.product[i].barsList;
+
+        for (var j = 0; j < barsList.length; j++) {
+          barsList[j]["quantity"] = "";
+          barsList[j]["totalPrice"] = 0;
+          response.product[i]["totalCartPrice"] = 0.0;
+        }
+      }
+      this.paints = response.product;
+    });
+
+    let returnBars3 = {
+      type: 1,  
+      bar_prod_type: 3 
+    }
+    this.productService.getBarsProducts(returnBars3).subscribe((response: any) => {
+      for (var i = 0; i < response.product.length; i++) {
+        let barsList = response.product[i].barsList;
+
+        for (var j = 0; j < barsList.length; j++) {
+          barsList[j]["quantity"] = "";
+          barsList[j]["totalPrice"] = 0;
+          response.product[i]["totalCartPrice"] = 0.0;
+        }
+      }
+      this.otherbars = response.product;
+    });
+
   }
 
   barsQuntity(bar, quantityEvent, itemIndex, barsIndex, prod_bar_company_id) {
